@@ -270,7 +270,7 @@
             justify-content: flex-end;
         }
 
-        .payment_next_btn {
+/*         .payment_next_btn {
             width: 50%;
             font-family: "bold";
             font-size: 1.5em;
@@ -280,6 +280,20 @@
             color: #D9D9D9;
             padding: 7.665px 0;
             cursor: pointer;
+        } */
+
+        .payment_btn a {
+            width: 50%;
+            font-family: "bold";
+            font-size: 1.5em;
+            border-radius: 50px;
+            border: none;
+            background-color: #0F4C81;
+            color: #D9D9D9;
+            padding: 7.665px 0;
+            text-decoration: none;
+            text-align: center;
+            display: block;
         }
 
         /*footer form*/
@@ -378,7 +392,9 @@
     <header class="header">
         <nav class="header_main">
             <div class="header_logo">
-                <img src="./pic/logo/logo_nav.svg" alt="">
+                <a href="./index.html">
+                    <img src="./pic/logo/logo_nav.svg" alt="">
+                </a>    
             </div>
             <div class="header_menu">
                 <ul>
@@ -396,7 +412,7 @@
             <div class="header_user">
                 <ul class="header_user_list">
                     <li class="pill join">
-                        <a href="#">加入會員</a>
+                        <a href="./member_signup.html">加入會員</a>
                     </li>
                     <li class="pill login">
                         <a href="#">會員登入</a>
@@ -600,7 +616,8 @@
                             </div>
                         </div>
                         <div class="payment_btn">
-                            <button class="payment_next_btn">下一步</button>
+                            <a href="./booking_payment.html">下一步</a>
+                            <!-- <button class="payment_next_btn">下一步</button> -->
                         </div>
                     </div>   
                 </div>

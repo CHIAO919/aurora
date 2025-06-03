@@ -82,7 +82,7 @@
             margin: auto;
         }
 
-        .schedule_management_login > button {
+/*         .schedule_management_login > button {
             width: 100%;
             border-radius: 50px;
             border: none;
@@ -92,6 +92,21 @@
             color: #fff;
             padding: 3.335px 0;
             cursor: pointer;
+        } */
+
+        .schedule_management_login > a {
+            display: block;
+            width: 100%;
+            height: 60px;
+            border-radius: 50px;
+            border: none;
+            font-family: "bold";
+            font-size: 1.875em;
+            background-color: #0F4C81;
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            line-height: 60px;
         }
 
         .schedule_management_notice {
@@ -133,7 +148,9 @@
     <header class="header">
         <nav class="header_main">
             <div class="header_logo">
-                <img src="./pic/logo/logo_nav.svg" alt="">
+                <a href="./index.html">
+                    <img src="./pic/logo/logo_nav.svg" alt="">
+                </a>    
             </div>
             <div class="header_menu">
                 <ul>
@@ -151,7 +168,7 @@
             <div class="header_user">
                 <ul class="header_user_list">
                     <li class="pill join">
-                        <a href="#">加入會員</a>
+                        <a href="./member_signup.html">加入會員</a>
                     </li>
                     <li class="pill login">
                         <a href="#">會員登入</a>
@@ -191,7 +208,8 @@
                     </div>
                     <div class="schedule_management_btn">
                         <div class="schedule_management_login">
-                            <button>登入</button>
+                            <a href="./schedule_management.html">登入</a>
+                            <!-- <button>登入</button> -->
                         </div>
                     </div>
                 </div>

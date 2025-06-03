@@ -223,7 +223,7 @@
             right: 0;
         }
 
-        .btn_submit {
+/*         .btn_submit {
             width: 245px;
             height: 60px;
             font-family: "bold";
@@ -233,6 +233,20 @@
             color: #F0F4F8;
             border: none;
             cursor: pointer;
+        } */
+
+        .booking_submit a {
+            display: block;
+            width: 245px;
+            height: 60px;
+            font-family: "bold";
+            font-size: 1.5em;
+            border-radius: 300px;
+            background-color: #0F4C81;
+            color: #F0F4F8;
+            text-decoration: none;
+            text-align: center;
+            line-height: 60px;
         }
 
         /*manager*/
@@ -423,7 +437,9 @@
     <header class="header">
         <nav class="header_main">
             <div class="header_logo">
-                <img src="./pic/logo/logo_nav.svg" alt="">
+                <a href="./index.html">
+                    <img src="./pic/logo/logo_nav.svg" alt="">
+                </a>    
             </div>
             <div class="header_menu">
                 <ul>
@@ -441,7 +457,7 @@
             <div class="header_user">
                 <ul class="header_user_list">
                     <li class="pill join">
-                        <a href="#">加入會員</a>
+                        <a href="./member_signup.html">加入會員</a>
                     </li>
                     <li class="pill login">
                         <a href="#">會員登入</a>
@@ -633,7 +649,8 @@
                         </div>
 
                         <div class="booking_submit">
-                            <button type="submit" class="btn_submit">Search</button>
+                            <a href="./booking_arr.html">Search</a>
+                            <!-- <button type="submit" class="btn_submit">Search</button> -->
                         </div>
                     </form>
                 </div>
