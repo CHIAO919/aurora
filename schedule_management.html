@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行程管理</title>
+    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/footer_index.css">
+    <style>
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .main {
+            width: 1200px;
+            margin: auto;
+            margin-bottom: 100px;
+        }
+
+        .schedule_management_info_detail {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 30px 0;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .schedule_management_title, .schedule_management_info, .schedule_btns, .reissue_notice, .schedule_management_notice {
+            width: 83%;
+            margin: auto;
+            margin-bottom: 30px;
+        }
+
+        .schedule_management_title h2 {
+            font-family: "bold";
+            font-size: 2.25em;
+            color: #34495E;
+        }
+
+        .schedule_management_info_tital, .schedule_info {
+            width: 79.718875%;
+            margin: auto;
+        }
+
+        .schedule_management_info_tital .schedule_management_name{
+            padding-bottom: 15px;
+            border-bottom: 1px solid #D9D9D9;
+        }
+
+        .schedule_management_info_tital > div {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .schedule_management_info_tital > div > p {
+            font-family: "bold";
+            font-size: 2em;
+            color: #34495E;
+        }
+
+        .schedule_management_info_tital > div:first-child > p {
+            font-family: "bold";
+            font-size: 1.5em;
+        }
+
+        .schedule_info {
+            border-radius: 5px;
+            background: rgba(52, 73, 94, .8);
+            color: #fff;
+            padding: 20px 10%;
+        }
+
+        .schedule_info h2 {
+            font-family: "bold";
+        }
+
+        .schedule_info > div {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: space-between;
+        }
+
+        .schedule_info > div > div {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .schedule_info > div > div > p {
+            font-family: "bold";
+            font-size: 1.25em;
+        }
+
+        .schedule_info > div > div > p.time {
+            font-size: 2em;
+        }
+
+        .schedule_btns {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .checkin_btn, .reissue_btn, .cancel_btn, .refund_btn {
+            width: 24.096385%;
+            text-align: center;
+            border: 1px solid #34495E;
+            border-radius: 30px;
+            padding: 12.665px 0;
+        }
+
+        .checkin_btn a, .reissue_btn a, .cancel_btn a, .refund_btn a {
+            text-decoration: none;
+            color: #34495E;
+            font-family: "bold";
+            font-size: 1.5em;
+            display: block;
+            width: 100%;
+        }
+
+        .checkin_btn {
+            border: none;
+            background-color: #0F4C81;
+        }
+
+        .checkin_btn a {
+            color: #fff;
+        }
+
+        .reissue_notice, .schedule_management_notice {
+            background-color: #fff;
+            padding: 15px 0;
+        }
+
+        .reissue_notice_info, .schedule_management_notice_info {
+            width: 90%;
+            margin: auto;
+        }
+
+        .reissue_notice_pic {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .reissue_notice_pic > p {
+            font-family: "light";
+            color: #FF2525;
+            font-size: 1.25em;
+            flex-grow: 1;
+        }
+
+        .schedule_management_notice_info h2 {
+            font-family: "bold";
+            font-size: 1.5em;
+            color: #FF2525;
+            margin-bottom: 5px;
+        }
+
+        .schedule_management_notice_list {
+            font-family: "light";
+            color: #34495E;
+            font-size: 1.25em;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!--header-->
+    <header class="header">
+        <nav class="header_main">
+            <div class="header_logo">
+                <img src="./pic/logo/logo_nav.svg" alt="">
+            </div>
+            <div class="header_menu">
+                <ul>
+                    <li>
+                        <a href="./cabin_class.html">體驗AURORA</a>
+                    </li>
+                    <li>
+                        <a href="./membership_tier.html">SkyTier會員</a>
+                    </li>
+                    <li>
+                        <a href="./contact.html">聯絡我們</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="header_user">
+                <ul class="header_user_list">
+                    <li class="pill join">
+                        <a href="#">加入會員</a>
+                    </li>
+                    <li class="pill login">
+                        <a href="#">會員登入</a>
+                    </li>
+                    <li class="language">
+                        <a href="#">TW 繁體中文</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="schedule_management">
+            <div class="schedule_management_title">
+                <h2>管理我的行程</h2>
+            </div>
+
+            <div class="schedule_management_info">
+                <div class="schedule_management_info_detail">
+                    <div class="schedule_management_info_tital">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M11.9999 12.0001C14.0391 12.0001 15.6922 10.347 15.6922 8.30779C15.6922 6.26858 14.0391 4.61548 11.9999 4.61548C9.96072 4.61548 8.30762 6.26858 8.30762 8.30779C8.30762 10.347 9.96072 12.0001 11.9999 12.0001Z" fill="#34495E"/>
+                                <path d="M6.47915 19.3846C5.91331 19.3846 5.45915 18.888 5.54962 18.336C6.05639 15.2659 8.75177 12.9231 12.0001 12.9231C15.2484 12.9231 17.9438 15.2659 18.4496 18.336C18.541 18.888 18.0859 19.3846 17.521 19.3846H6.47915Z" fill="#34495E"/>
+                            </svg>
+                            <p>旅客</p>
+                        </div>
+                        <div class="schedule_management_name">
+                            <p>Ms.</p>
+                            <p>WANG</p>
+                            <p>XIAOMING</p>
+                        </div>
+                    </div>
+                    <div class="schedule_info">
+                        <h2>2025/07/08(四)</h2>
+                        <div>
+                            <div>
+                                <p>台北TPE</p>
+                                <p class="time">16:50</p>
+                            </div>
+                            <div>
+                                <p>AK001</p>
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="41" viewBox="0 0 40 41" fill="none">
+                                        <path d="M4.99992 20.4999C4.99992 21.163 5.26331 21.7989 5.73215 22.2677C6.20099 22.7365 6.83688 22.9999 7.49992 22.9999H27.2999L20.7333 29.5666C20.2917 30.0405 20.0512 30.6673 20.0627 31.315C20.0741 31.9627 20.3365 32.5806 20.7945 33.0387C21.2526 33.4967 21.8705 33.7591 22.5182 33.7705C23.1658 33.782 23.7927 33.5415 24.2666 33.0999L35.0999 22.2666C35.5681 21.7979 35.8311 21.1624 35.8311 20.4999C35.8311 19.8374 35.5681 19.202 35.0999 18.7333L24.2666 7.89994C24.0377 7.65432 23.7617 7.45731 23.455 7.32067C23.1484 7.18403 22.8173 7.11056 22.4817 7.10464C22.146 7.09871 21.8126 7.16046 21.5013 7.2862C21.19 7.41194 20.9072 7.59908 20.6698 7.83648C20.4324 8.07388 20.2452 8.35666 20.1195 8.66795C19.9938 8.97924 19.932 9.31267 19.9379 9.64835C19.9439 9.98403 20.0173 10.3151 20.154 10.6217C20.2906 10.9284 20.4876 11.2044 20.7333 11.4333L27.2999 17.9999H7.49992C6.11992 17.9999 4.99992 19.1199 4.99992 20.4999Z" fill="white"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <p>羽田HND</p>
+                                <p class="time">20:50</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule_info">
+                        <h2>2025/07/10(六)</h2>
+                        <div>
+                            <div>
+                                <p>羽田HND</p>
+                                <p class="time">17:00</p>
+                            </div>
+                            <div>
+                                <p>AK011</p>
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="41" viewBox="0 0 40 41" fill="none">
+                                        <path d="M4.99992 20.4999C4.99992 21.163 5.26331 21.7989 5.73215 22.2677C6.20099 22.7365 6.83688 22.9999 7.49992 22.9999H27.2999L20.7333 29.5666C20.2917 30.0405 20.0512 30.6673 20.0627 31.315C20.0741 31.9627 20.3365 32.5806 20.7945 33.0387C21.2526 33.4967 21.8705 33.7591 22.5182 33.7705C23.1658 33.782 23.7927 33.5415 24.2666 33.0999L35.0999 22.2666C35.5681 21.7979 35.8311 21.1624 35.8311 20.4999C35.8311 19.8374 35.5681 19.202 35.0999 18.7333L24.2666 7.89994C24.0377 7.65432 23.7617 7.45731 23.455 7.32067C23.1484 7.18403 22.8173 7.11056 22.4817 7.10464C22.146 7.09871 21.8126 7.16046 21.5013 7.2862C21.19 7.41194 20.9072 7.59908 20.6698 7.83648C20.4324 8.07388 20.2452 8.35666 20.1195 8.66795C19.9938 8.97924 19.932 9.31267 19.9379 9.64835C19.9439 9.98403 20.0173 10.3151 20.154 10.6217C20.2906 10.9284 20.4876 11.2044 20.7333 11.4333L27.2999 17.9999H7.49992C6.11992 17.9999 4.99992 19.1199 4.99992 20.4999Z" fill="white"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <p>台北TPE</p>
+                                <p class="time">19:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="schedule_btns">
+                <div class="checkin_btn">
+                    <a href="">線上報到</a>
+                </div>
+                <div class="reissue_btn">
+                    <a href="">更改日期/航班</a>
+                </div>
+                <div class="cancel_btn">
+                    <a href="">取消全部行程</a>
+                </div>
+                <div class="refund_btn">
+                    <a href="">退票申請</a>
+                </div>
+            </div>
+
+            <div class="reissue_notice">
+                <div class="reissue_notice_info">
+                    <div class="reissue_notice_pic">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
+                            <path d="M15 26.25C21.2132 26.25 26.25 21.2132 26.25 15C26.25 8.7868 21.2132 3.75 15 3.75C8.7868 3.75 3.75 8.7868 3.75 15C3.75 21.2132 8.7868 26.25 15 26.25Z" stroke="#FF2525" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M15 20H15.0125V20.0125H15V20Z" stroke="#FF2525" stroke-width="3" stroke-linejoin="round"/>
+                            <path d="M15 15V10" stroke="#FF2525" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p>提醒您若需修改行程，請於航班起飛前至少3小時操作，如已輸入報到信息，部分功能將限制使用。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="schedule_management_notice">
+                <div class="schedule_management_notice_info">
+                    <h2>辦理網路報到注意事項</h2>
+                    <ol class="schedule_management_notice_list">
+                        <li>1.線上報到開放時間為起飛前48小時至1小時前。請於期限內完成操作。</li>
+                        <li>2.僅限奧若拉天航直營航班可使用網路報到，代碼共享或聯營航班請向對應航空辦理。</li>
+                        <li>3.完成報到後仍須於機場報到櫃檯辦理托運行李。請保留報到證明或電子登機證。</li>
+                        <li>4.需要特別協助(如輪椅服務)旅客請至機場人工櫃檯辦理報到。</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--footer-->
+    <footer class="footer">
+        <div class="footer_inner">
+            <div class="footer_inner_info">
+                <div class="footer_inner_card">
+                    <div class="footer_inner_pic">
+                        <img src="./pic/logo/logo_footer.svg" alt="footer_logo">
+                    </div>
+                    <div class="footer_inner_txt">
+                        <div>
+                            <h3>關於Aurora Sky</h3>
+                            <ul class="footer_inner_txt_list">
+                                <li>
+                                    <a href="">關於我們</a>
+                                </li>
+                                <li>
+                                    <a href="">人才招募專區</a>
+                                </li>
+                                <li>
+                                    <a href="">綠旅行碳抵銷計畫</a>
+                                </li>
+                                <li>
+                                    <a href="">資訊安全政策</a>
+                                </li>
+                                <li>
+                                    <a href="">廣告宣傳政策</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>顧客服務</h3>
+                            <ul class="footer_inner_txt_list">
+                                <li>
+                                    <a href="">顧客滿意度問卷調查</a>
+                                </li>
+                                <li>
+                                    <a href="">聯絡我們</a>
+                                </li>
+                                <li>
+                                    <a href="">常見問題</a>
+                                </li>
+                                <li>
+                                    <a href="">航班異動之改退票</a>
+                                </li>
+                                <li>
+                                    <a href="">下載中心</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>網站聲明與規範</h3>
+                            <ul class="footer_inner_txt_list">
+                                <li>
+                                    <a href="">隱私保護政策</a>
+                                </li>
+                                <li>
+                                    <a href="">Cookie 政策</a>
+                                </li>
+                                <li>
+                                    <a href="">顧客承諾</a>
+                                </li>
+                                <li>
+                                    <a href="">智慧財產權</a>
+                                </li>
+                                <li>
+                                    <a href="">運送條款</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <p>&#64;Copyright 2025. Aurora Sky Co.Ltd. All rights reserved</p>
+        </div>
+    </footer>
+</body>
+</html>

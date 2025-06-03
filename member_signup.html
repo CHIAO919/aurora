@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>註冊成為SkyTier Gold</title>
+    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/footer_index.css">
+    <style>
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .main {
+            width: 1200px;
+            margin: auto;
+            margin-bottom: 100px;
+        }
+
+        .member_singup_title, .member_singup {
+            width: 83%;
+            margin: auto;
+        }
+
+        .member_singup_title h2 {
+            font-family: "bold";
+            font-size: 2.25em;
+            color: #34495E;
+            margin-bottom: 20px;
+        }
+
+        .member_singup {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .member_account_set, .member_pii, .member_other {
+            width: 100%;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px 0;
+        }
+
+        .member_account_set_form, .member_pii_form, .member_other_form {
+            width: 79.718875%;
+            margin: auto;
+        }
+
+        .member_account_set_form h2, .member_pii_form h2, .member_other_form h2 {
+            font-family: "bold";
+            font-size: 2em;
+            color: #34495E;
+            margin-bottom: 20px;
+        }
+
+        .member_other_form > p {
+            font-family: "bold";
+            font-size: 1.25em;
+            color: #34495E;
+            margin-bottom: 15px;
+        }
+
+        .member_account_set_form > div, .member_pii_form > div, .member_other_form > div {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .member_account_set_form > div > label, .member_pii_form > div > label, .member_other_form > div > label {
+            font-family: "bold";
+            font-size: 1.25em;
+            color: #34495E;
+        }
+
+        .member_account_set_form > div > input, .member_pii_form > div > input, .member_pii_form > div select {
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid #34495E;
+        }
+
+        .member_account_set_form > div > p, .member_pii_form > div > p {
+            width: 62.972292%;
+            font-family: "light";
+            font-size: .875em;
+            color: #34495E;
+        }
+
+        .gender, .news_radio, .question_radio {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .gender > div, .news_radio > div , .question_radio > div {
+            flex-grow: 1;
+        }
+
+        .gender label, .news_radio label, .question_radio label {
+            font-family: "bold";
+            font-size: 1.25em;
+            color: #34495E;
+        }
+
+        .birth {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .birth > select, .countary > select {
+            flex-grow: 1;    
+        }
+
+        .birth_year > option, .birth_month > option, .birth_day > option {
+            text-align: right;
+        }
+
+        .countary {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .member_singup_btn {
+            width: 83%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .member_singup_next_btn {
+            width: 22.489959%;
+            text-decoration: none;
+            color: #fff;
+            background-color: #0F4C81;
+            text-align: center;
+            border-radius: 50px;
+            font-family: "bold";
+            font-size: 1.5em;
+            padding: 7.665px 0;
+            border: none;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <!--header-->
+    <header class="header">
+        <nav class="header_main">
+            <div class="header_logo">
+                <img src="./pic/logo/logo_nav.svg" alt="">
+            </div>
+            <div class="header_menu">
+                <ul>
+                    <li>
+                        <a href="./cabin_class.html">體驗AURORA</a>
+                    </li>
+                    <li>
+                        <a href="./membership_tier.html">SkyTier會員</a>
+                    </li>
+                    <li>
+                        <a href="./contact.html">聯絡我們</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="header_user">
+                <ul class="header_user_list">
+                    <li class="pill join">
+                        <a href="#">加入會員</a>
+                    </li>
+                    <li class="pill login">
+                        <a href="#">會員登入</a>
+                    </li>
+                    <li class="language">
+                        <a href="#">TW 繁體中文</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="member_singup_title">
+            <h2>註冊成為SkyTier Gold</h2>
+        </div>
+        
+        <form action="">
+            <div class="member_singup">
+                <div class="member_account_set">
+                    <div class="member_account_set_form">
+                        <h2>會員帳號</h2>
+                        <div>
+                            <label for="">電子信箱</label>
+                            <input type="email">
+                        </div>
+                        <div>
+                            <label for="">設定密碼</label>
+                            <p>密碼請輸入8-30字元，最少1個大寫字母、最少1個小寫字母、最少1個數字、最少1個特殊符號(常見特殊符號字元如：!、#、$、^、*……等)，其他字元不接受。</p>
+                            <input type="password">
+                        </div>
+                        <div>
+                            <label for="">確認密碼</label>
+                            <input type="password">
+                        </div>
+                    </div>
+                </div>
+                <div class="member_pii">
+                    <div class="member_pii_form">
+                        <h2>個人資料</h2>
+                            <div>
+                                <label for="">英文姓 (與護照一致)</label>
+                                <p>範例 &#41;WANG</p>
+                                <input type="text">
+                            </div>
+                            <div>
+                                <label for="">英文名+中間名 (與護照一致)</label>
+                                <p>範例 &#41;XIAOMINGJOSEPH</p>
+                                <input type="text">
+                            </div>
+                            <div>
+                                <label for="">性別</label>
+                                <div class="gender">
+                                    <div>
+                                        <input type="radio" id="male" name="gender" value="male">
+                                        <label for="male">男</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="female" name="gender" value="female">
+                                        <label for="female">女</label>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div>
+                                <label for="">生日</label>
+                                <div class="birth">
+                                    <select name="" id="" class="birth_year">
+                                        <option value="" disabled selected>年</option>
+                                    </select>
+                                    <select name="" id="" class="birth_month">
+                                        <option value="" disabled selected>月</option>
+                                    </select>
+                                    <select name="" id="" class="birth_day">
+                                        <option value="" disabled selected>日</option>
+                                    </select>
+                                </div>    
+                            </div>
+                            <div>
+                                <label for="">國家/地區代碼</label>
+                                <div class="countary">
+                                    <select name="" id="">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="">手機號碼</label>
+                                <input type="tel">
+                            </div>
+                    </div>
+                </div>
+                <div class="member_other">
+                    <div class="member_other_form">
+                        <h2>其他資料</h2>
+                        <p>您願意收到下列哪些相關訊息？</p>
+                            <div>
+                                <label for="">奧若拉天航各項資訊(例如:奧若拉天航電子專刊)</label>
+                                <div class="news_radio">
+                                    <div>
+                                        <input type="radio" id="news_yes" name="news_pick" value="news_yes">
+                                        <label for="news_yes">我願意</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="news_no" name="news_pick" value="news_no">
+                                        <label for="news_no">我不願意</label>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div>
+                                <label for="">奧若拉天航問卷調查</label>
+                                <div class="question_radio">
+                                    <div>
+                                        <input type="radio" id="question_yes" name="question_pick" value="question_yes">
+                                        <label for="question_yes">我願意</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="question_no" name="question_pick" value="question_no">
+                                        <label for="question_no">我不願意</label>
+                                    </div>
+                                </div> 
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="member_singup_btn">
+                <button class="member_singup_next_btn">註冊</button>
+            </div>
+        </form>
+
+    </main>
+
+    <!--footer-->
+    <footer class="footer">
+        <div class="footer_inner">
+            <div class="footer_inner_info">
+                <div class="footer_inner_card">
+                    <div class="footer_inner_pic">
+                        <img src="./pic/logo/logo_footer.svg" alt="footer_logo">
+                    </div>
+                    <div class="footer_inner_txt">
+                        <div>
+                            <h3>關於Aurora Sky</h3>
+                            <ul class="footer_inner_txt_list">
+                                <li>
+                                    <a href="">關於我們</a>
+                                </li>
+                                <li>
+                                    <a href="">人才招募專區</a>
+                                </li>
+                                <li>
+                                    <a href="">綠旅行碳抵銷計畫</a>
+                                </li>
+                                <li>
+                                    <a href="">資訊安全政策</a>
+                                </li>
+                                <li>
+                                    <a href="">廣告宣傳政策</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>顧客服務</h3>
+                            <ul class="footer_inner_txt_list">
+                                <li>
+                                    <a href="">顧客滿意度問卷調查</a>
+                                </li>
+                                <li>
+                                    <a href="">聯絡我們</a>
+                                </li>
+                                <li>
+                                    <a href="">常見問題</a>
+                                </li>
+                                <li>
+                                    <a href="">航班異動之改退票</a>
+                                </li>
+                                <li>
+                                    <a href="">下載中心</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>網站聲明與規範</h3>
+                            <ul class="footer_inner_txt_list">
+                                <li>
+                                    <a href="">隱私保護政策</a>
+                                </li>
+                                <li>
+                                    <a href="">Cookie 政策</a>
+                                </li>
+                                <li>
+                                    <a href="">顧客承諾</a>
+                                </li>
+                                <li>
+                                    <a href="">智慧財產權</a>
+                                </li>
+                                <li>
+                                    <a href="">運送條款</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <p>&#64;Copyright 2025. Aurora Sky Co.Ltd. All rights reserved</p>
+        </div>
+    </footer>
+</body>
+</html>

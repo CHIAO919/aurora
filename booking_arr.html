@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行程預定</title>
+    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <style>
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .main {
+            width: 1200px;
+            margin: auto;
+            margin-bottom: 100px;
+        }
+
+        /*progress bar*/
+        .progress_bar {
+            width: 100%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .progress_icon {
+            width: 46.67px;
+            border: 2px solid #34495E;
+            border-radius: 50%;
+            aspect-ratio: 1/1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .progress {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .progress_icon, .progress_name {
+            font-family: "bold";
+            font-size: 2em;
+            color: #34495E;
+        }
+
+        .progress.booking .progress_icon {
+            background-color: #0F4C81;
+            color: #fff;
+        }
+
+        /*booking*/
+        .dep {
+            width: 100%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            font-family: "bold";
+            color: #34495E;
+            margin-bottom: 15px;
+        }
+
+        .dep_location {
+            width: 100%;
+            margin: auto;
+            font-family: "bold";
+            font-size: 1.25em;
+            color: #34495E;
+            margin-bottom: 15px;
+        }
+
+        .dep_date {
+            width: 100%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .dep_date_box {
+            width: 12.916666%;
+            background-color: #fff;
+            border-radius: 20px;
+        }
+
+        .dep_date_box {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+            font-family: "bold";
+            font-size: 1.25em;
+            color: #34495E;
+            padding: 10px 0;
+            box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.25);
+        }
+
+        .dep_date_box p {
+            width: 81.108458%;
+            text-align: center;
+        }
+
+        .rbd {
+            width: 100%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            margin-bottom: 10px;    
+        }
+
+        .rbd_class {
+            display: flex;
+            flex-wrap: wrap;
+            width: 64.666666%;
+            border-radius: 10px;
+            background-color: #0F4C81;
+        }
+
+        .rbd_economy {
+            width: 50%;
+            text-align: center;
+            color: #F0F4F8;
+            font-family: "bold";
+            font-size: 1.5em;
+        }
+
+        .rbd_business {
+            width: 50%;
+            border-left: 1px solid #D9D9D9;
+            text-align: center;
+            color: #F0F4F8;
+            font-family: "bold";
+            font-size: 1.5em;
+        }
+
+        .flight_price {
+            width: 100%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .flight_price_box {
+            background-color: #fff;
+            border-radius: 10px;
+        }
+
+        .flight_price_box {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .flight_num {
+            display: flex;
+            flex-wrap: wrap;
+            width: 35.333334%;
+            justify-content: space-evenly;
+        }
+
+        .flight_price_economy, .flight_price_business {
+            width: 32.333333%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            font-family: "bold";
+            color: #34495E;
+            justify-content: center;
+            border-left: 1px solid #D9D9D9;
+            
+        }
+
+        .flight_price_economy > p:first-child, .flight_price_business > p:first-child {
+            font-size: 1.75em;
+        }
+
+        .flight_num {
+            margin: 20px 0;
+        }
+        .flight_num_dep, .flight_num_arr {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            font-family: "bold";
+            color: #34495E;
+            font-size: 1.25em;
+        }
+
+        .flight_num_arrow {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+            font-family: "light";
+            color: #34495E;
+            font-size: 1em;
+            justify-content: center;
+        }
+
+        .footer {
+            background-color: #fff;
+            padding: 10px 0;
+            margin-bottom: 78px;
+        }
+
+        .booking_notice {
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(52, 73, 94, .5);
+        }
+
+        .booking_notice_txt, .footer_inner_txt {
+            width: 1200px;
+            margin: auto;
+        }
+
+        .booking_notice_txt p {
+            font-family: "light";
+            font-size: .9em;
+        }
+
+        .booking_notice_icon {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .booking_notice_icon h2 {
+            font-size: 1.25em;
+            font-family: "bold";
+            color: #FF2525;
+        }
+        .footer_inner {
+            margin-top: 10px;
+        }
+        .footer_inner_txt{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .footer_inner_icon {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            font-family: "bold";
+            color: #34495E;
+        }
+
+        .footer_inner_icon p {
+            margin-right: 5px;
+        }
+
+        .footer_inner_icon:nth-child(n+2):before {
+            content: "";
+            width: 0;
+            height: 70%;
+            border: 1px solid #D9D9D9;
+            margin: 0 5px;
+        }
+
+        .total_price {
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0px -1px 4px 0px rgba(0, 0, 0, 0.25);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+
+        .total_price_box {
+            width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .price {
+            font-family: "bold";
+            color: #34495E;
+        }
+
+        .price_num {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .price_change {
+            font-size: 1.75em;
+        }
+
+        .price > p {
+            font-size: .5em;
+        }
+
+        .next_btn {            
+            width: 178px;    
+        }
+
+        .next_btn a {
+            border-radius: 300px;
+            border: none;
+            background-color: #0F4C81;
+            font-family: "bold";
+            font-size: 1.5em;
+            color: #F0F4F8;
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            padding: 7.665px 0;
+        }
+    </style>
+</head>
+<body>
+    <!--header-->
+    <header class="header">
+        <nav class="header_main">
+            <div class="header_logo">
+                <img src="./pic/logo/logo_nav.svg" alt="">
+            </div>
+            <div class="header_menu">
+                <ul>
+                    <li>
+                        <a href="./cabin_class.html">體驗AURORA</a>
+                    </li>
+                    <li>
+                        <a href="./membership_tier.html">SkyTier會員</a>
+                    </li>
+                    <li>
+                        <a href="./contact.html">聯絡我們</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="header_user">
+                <ul class="header_user_list">
+                    <li class="pill join">
+                        <a href="#">加入會員</a>
+                    </li>
+                    <li class="pill login">
+                        <a href="#">會員登入</a>
+                    </li>
+                    <li class="language">
+                        <a href="#">TW 繁體中文</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <main class="main">
+        <!--progress bar-->
+        <div class="progress_bar">
+            <div class="progress booking">
+                <div class="progress_icon">
+                    <p>1</p>
+                </div>
+                <div class="progress_name">
+                    <p>航班</p>
+                </div>
+            </div>
+
+            <div class="progress detail">
+                <div class="progress_icon">
+                    <p>2</p>
+                </div>
+                <div class="progress_name">
+                    <p>詳情</p>
+                </div>
+            </div>
+
+            <div class="progress pii">
+                <div class="progress_icon">
+                    <p>3</p>
+                </div>
+                <div class="progress_name">
+                    <p>個人資料</p>
+                </div>
+            </div>
+
+            <div class="progress payment">
+                <div class="progress_icon">
+                    <p>4</p>
+                </div>
+                <div class="progress_name">
+                    <p>付款</p>
+                </div>
+            </div>
+
+            <div class="progress complete">
+                <div class="progress_icon">
+                    <p>5</p>
+                </div>
+                <div class="progress_name">
+                    <p>完成</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="dep">
+            <img src="./pic/icon/icon_light_flight.svg" alt="">
+            <p>航段2</p>
+        </div>
+
+        <div class="dep_location">
+            <h2>台北前往東京</h2>
+        </div>
+
+        <!--date-->
+        <div class="dep_date">
+            <div class="dep_date_box">
+                <p>7月7日</p>
+                <p>(一)</p>
+                <p class="price">40,000(TWD)</p>
+            </div>
+            <div class="dep_date_box">
+                <p>7月8日</p>
+                <p>(二)</p>
+                <p class="price">40,000(TWD)</p>
+            </div>
+            <div class="dep_date_box">
+                <p>7月9日</p>
+                <p>(三)</p>
+                <p class="price">40,000(TWD)</p>
+            </div>
+            <div class="dep_date_box">
+                <p>7月10日</p>
+                <p>(四)</p>
+                <p class="price">40,000(TWD)</p>
+            </div>
+            <div class="dep_date_box">
+                <p>7月11日</p>
+                <p>(五)</p>
+                <p class="price">40,000(TWD)</p>
+            </div>
+            <div class="dep_date_box">
+                <p>7月12日</p>
+                <p>(六)</p>
+                <p class="price">40,000(TWD)</p>
+            </div>
+            <div class="dep_date_box">
+                <p>7月13日</p>
+                <p>(日)</p>
+                <p class="price">40,000(TWD)</p>
+            </div>
+        </div>
+
+        <div class="rbd">
+            <div class="rbd_class">
+                <div class="rbd_economy">
+                    <p>經濟艙</p>
+                </div>
+                <div   div class="rbd_business">
+                    <p>商務艙</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="price">
+            <div class="flight_price">
+                <div class="flight_price_box">
+                    <div class="flight_num">
+                        <div class="flight_num_dep">
+                            <p>東京(成田)</p>
+                            <p>13:35</p>
+                        </div>
+                        <div class="flight_num_arrow">
+                            <p>AK001</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="101" height="16" viewBox="0 0 101 16" fill="none">
+                                <path d="M100.707 8.70711C101.098 8.31658 101.098 7.68342 100.707 7.29289L94.3431 0.928932C93.9526 0.538408 93.3195 0.538408 92.9289 0.928932C92.5384 1.31946 92.5384 1.95262 92.9289 2.34315L98.5858 8L92.9289 13.6569C92.5384 14.0474 92.5384 14.6805 92.9289 15.0711C93.3195 15.4616 93.9526 15.4616 94.3431 15.0711L100.707 8.70711ZM0 8V9H100V8V7H0V8Z" fill="#34495E"/>
+                            </svg>
+                            <p>3小時10分鐘</p>
+                        </div>
+                        <div class="flight_num_arr">
+                            <p>台北(桃園)</p>
+                            <p>17:45</p>
+                        </div>
+                    </div>
+                    <div class="flight_price_economy">
+                        <p>21,000元</p>
+                        <p>(TWD)</p>
+                    </div>
+                    <div class="flight_price_business">
+                        <p>41,000元</p>
+                        <p>(TWD)</p>
+                    </div>
+                </div>
+                <div class="flight_price_box">
+                    <div class="flight_num">
+                        <div class="flight_num_dep">
+                            <p>東京(成田)</p>
+                            <p>16:50</p>
+                        </div>
+                        <div class="flight_num_arrow">
+                            <p>AK011</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="101" height="16" viewBox="0 0 101 16" fill="none">
+                                <path d="M100.707 8.70711C101.098 8.31658 101.098 7.68342 100.707 7.29289L94.3431 0.928932C93.9526 0.538408 93.3195 0.538408 92.9289 0.928932C92.5384 1.31946 92.5384 1.95262 92.9289 2.34315L98.5858 8L92.9289 13.6569C92.5384 14.0474 92.5384 14.6805 92.9289 15.0711C93.3195 15.4616 93.9526 15.4616 94.3431 15.0711L100.707 8.70711ZM0 8V9H100V8V7H0V8Z" fill="#34495E"/>
+                            </svg>
+                            <p>3小時00分鐘</p>
+                        </div>
+                        <div class="flight_num_arr">
+                            <p>台北(桃園)</p>
+                            <p>20:50</p>
+                        </div>
+                    </div>
+                    <div class="flight_price_economy">
+                        <p>21,000元</p>
+                        <p>(TWD)</p>
+                    </div>
+                    <div class="flight_price_business">
+                        <p>41,000元</p>
+                        <p>(TWD)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+
+    <!--footer-->
+    <footer class="footer">
+        <div class="booking_notice">
+            <div class="booking_notice_txt">
+                <div class="booking_notice_icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                        <path d="M12.0236 21.0414C17.004 21.0414 21.0414 17.004 21.0414 12.0236C21.0414 7.04325 17.004 3.00586 12.0236 3.00586C7.04325 3.00586 3.00586 7.04325 3.00586 12.0236C3.00586 17.004 7.04325 21.0414 12.0236 21.0414Z" stroke="#FF2525" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12.0234 16.0315H12.0334V16.0415H12.0234V16.0315Z" stroke="#FF2525" stroke-width="3" stroke-linejoin="round"/>
+                        <path d="M12.0234 12.0235V8.01562" stroke="#FF2525" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h2>重要通知</h2>
+                </div>
+                <p>起降時間、航班號碼、設備、營運航空公司、座位號碼如有異動，恕不另行通知。</p>
+                <p>空位狀況在完成訂位以前都有可能變動。他航的空位狀況僅供參考。</p>
+                <p>顯示票價內含燃油附加費、航空保險費以及其他各項稅金、費用等。</p>
+            </div>
+        </div>
+        <div class="footer_inner">
+            <div class="footer_inner_txt">
+                <div class="footer_inner_icon">
+                    <p>關於Aurora Sky</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                        <g clip-path="url(#clip0_652_141)">
+                            <path d="M15.8332 16.6841H6.6665C6.20817 16.6841 5.81595 16.521 5.48984 16.1949C5.16373 15.8688 5.00039 15.4763 4.99984 15.0174V3.35075C4.99984 2.89242 5.16317 2.50019 5.48984 2.17408C5.8165 1.84797 6.20873 1.68464 6.6665 1.68408H12.4998L17.4998 6.68408V15.0174C17.4998 15.4757 17.3368 15.8682 17.0107 16.1949C16.6846 16.5216 16.2921 16.6846 15.8332 16.6841ZM11.6665 7.51742V3.35075H6.6665V15.0174H15.8332V7.51742H11.6665ZM3.33317 20.0174C2.87484 20.0174 2.48262 19.8544 2.1565 19.5282C1.83039 19.2021 1.66706 18.8096 1.6665 18.3507V6.68408H3.33317V18.3507H12.4998V20.0174H3.33317Z" fill="#34495E"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_652_141">
+                                <rect width="20" height="20" fill="white" transform="translate(0 0.85083)"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    
+                </div>
+                <div class="footer_inner_icon">
+                    <p>顧客服務</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                        <g clip-path="url(#clip0_652_141)">
+                            <path d="M15.8332 16.6841H6.6665C6.20817 16.6841 5.81595 16.521 5.48984 16.1949C5.16373 15.8688 5.00039 15.4763 4.99984 15.0174V3.35075C4.99984 2.89242 5.16317 2.50019 5.48984 2.17408C5.8165 1.84797 6.20873 1.68464 6.6665 1.68408H12.4998L17.4998 6.68408V15.0174C17.4998 15.4757 17.3368 15.8682 17.0107 16.1949C16.6846 16.5216 16.2921 16.6846 15.8332 16.6841ZM11.6665 7.51742V3.35075H6.6665V15.0174H15.8332V7.51742H11.6665ZM3.33317 20.0174C2.87484 20.0174 2.48262 19.8544 2.1565 19.5282C1.83039 19.2021 1.66706 18.8096 1.6665 18.3507V6.68408H3.33317V18.3507H12.4998V20.0174H3.33317Z" fill="#34495E"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_652_141">
+                                <rect width="20" height="20" fill="white" transform="translate(0 0.85083)"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    
+                </div>
+                <div class="footer_inner_icon">
+                    <p>網站聲明與規範</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                        <g clip-path="url(#clip0_652_141)">
+                            <path d="M15.8332 16.6841H6.6665C6.20817 16.6841 5.81595 16.521 5.48984 16.1949C5.16373 15.8688 5.00039 15.4763 4.99984 15.0174V3.35075C4.99984 2.89242 5.16317 2.50019 5.48984 2.17408C5.8165 1.84797 6.20873 1.68464 6.6665 1.68408H12.4998L17.4998 6.68408V15.0174C17.4998 15.4757 17.3368 15.8682 17.0107 16.1949C16.6846 16.5216 16.2921 16.6846 15.8332 16.6841ZM11.6665 7.51742V3.35075H6.6665V15.0174H15.8332V7.51742H11.6665ZM3.33317 20.0174C2.87484 20.0174 2.48262 19.8544 2.1565 19.5282C1.83039 19.2021 1.66706 18.8096 1.6665 18.3507V6.68408H3.33317V18.3507H12.4998V20.0174H3.33317Z" fill="#34495E"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_652_141">
+                                <rect width="20" height="20" fill="white" transform="translate(0 0.85083)"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="total_price">
+        <div class="total_price_box">
+            <div class="price">
+                <div class="price_num">
+                    <p class="price_change">21,000</p>
+                    <p>元(TWD)</p>
+                </div>
+                <p>*含稅金及燃油附加費</p>
+            </div>
+            <div class="next_btn">
+                <a href="./booking_detail.html">下一步</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

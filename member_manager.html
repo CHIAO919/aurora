@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的 SkyTier</title>
+    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/footer_index.css">
+    <style>
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .main {
+            width: 1200px;
+            margin: auto;
+            margin-bottom: 100px;
+        }
+
+        .member_manager_title, .member_manager {
+            width: 83%;
+            margin: auto;
+        }
+
+        .member_manager_title h2 {
+            font-family: "bold";
+            font-size: 2.25em;
+            color: #34495E;
+            margin-bottom: 30px;
+        }
+
+        .member_manager_info, .member_manager_mile, .member_pii {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+
+        .member_manager_txt {
+            width: 60.071942%;
+        }
+
+        .member_manager_txt_title {
+            padding-bottom: 15px;
+            border-bottom: 1px solid #D9D9D9;
+        }
+
+        .member_manager_txt_title h2 {
+            font-family: "bold";
+            font-size: 2em;
+            color: #0F4C81;
+        }
+
+        .member_manager_txt_detial {
+            display: flex;
+            flex-wrap: wrap;
+            padding-top: 15px;
+        }
+
+        .member_manager_txt_level, .member_manager_txt_expiry, .member_manager_txt_id {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .member_manager_txt_level > div {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .member_manager_txt_level > div a {
+            text-decoration: none;
+            color: #A38D6D;
+            font-family: "bold";
+            font-size: 1.25em;
+        }
+
+        .member_manager_txt_detial > div > p {
+            font-family: "bold";
+            color: #34495E;
+            font-size: 1.25em;
+        }
+
+        .member_manager_txt_detial > div > p:first-child {
+            font-family: "light";
+        }
+
+        .member_manager_card, .member_manager_mile_info {
+            width: 83.734939%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .member_manager_pic {
+            width: 34.172661%;
+            border-radius: 50px 0px;
+            overflow: hidden;
+            box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+        }
+
+        .member_manager_pic img {
+            width: 100%;
+            vertical-align: middle;
+        }
+
+        .member_manager_mile_card {
+            width: 45%;
+        }
+
+        .member_manager_mile_card:first-child {
+            border-right: 1px solid #D9D9D9;
+        }
+
+        .member_manager_mile_card h2 {
+            font-family: "bold";
+            font-size: 2em;
+            color: #34495E;
+        }
+
+        .member_manager_mile_card > div {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        .member_manager_mile_card > div > div {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+
+        .member_manager_mile_card > div > p, .member_manager_mile_card > div > div > p {
+            font-family: "bold";
+            font-size: 1.5em;
+            color: #34495E;
+        }
+
+        .member_manager_mile_card > div > p:first-child, .member_manager_mile_card > div > div > p:first-child {
+            font-size: 2.25em;
+            color: #0F4C81;
+        }
+
+        .member_pii_info {
+            width: 83.734939%;
+            margin: auto;
+        }
+
+        .member_pii_info_title h2 {
+            font-family: "blod";
+            font-size: 2em;
+            color: #34495E;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #D9D9D9;
+        }
+
+        .member_pii_info_detial {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #D9D9D9;
+        }
+
+        .member_pii_info_detial > div {
+            width: 30%;
+        }
+
+        .member_pii_info_detial > div > h2  {
+            font-size: 1.25em;
+            color: #34495E;
+            font-family: "light";
+        }
+
+        .member_pii_info_detial > div > p {
+            font-size: 1.5em;
+            font-family: "bold";
+            color: #0F4C81;
+        }
+
+        .member_pii_info_btn {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            padding-top: 15px;
+        }
+
+        .member_pii_info_btn_revise {
+            width: 30%;
+            background-color: #0F4C81;
+            border-radius: 50px;
+            text-align: center;
+            padding: 7.665px 0;
+        }
+
+        .member_pii_info_btn_revise a {
+            text-decoration: none;
+            font-size: 1.5em;
+            color: #fff;
+            font-family: "bold";
+            display: block;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!--header-->
+    <header class="header">
+        <nav class="header_main">
+            <div class="header_logo">
+                <img src="./pic/logo/logo_nav.svg" alt="">
+            </div>
+            <div class="header_menu">
+                <ul>
+                    <li>
+                        <a href="./cabin_class.html">體驗AURORA</a>
+                    </li>
+                    <li>
+                        <a href="./membership_tier.html">SkyTier會員</a>
+                    </li>
+                    <li>
+                        <a href="./contact.html">聯絡我們</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="header_user">
+                <ul class="header_user_list">
+                    <li class="pill join">
+                        <a href="#">加入會員</a>
+                    </li>
+                    <li class="pill login">
+                        <a href="#">會員登入</a>
+                    </li>
+                    <li class="language">
+                        <a href="#">TW 繁體中文</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="member_manager_title">
+            <h2>我的 SkyTier</h2>
+        </div>
+
+        <div class="member_manager">
+            <div class="member_manager_info">
+                <div class="member_manager_card">
+                    <div class="member_manager_txt">
+                        <div class="member_manager_txt_title">
+                            <h2>您好，WANG先生</h2>
+                        </div>
+                        <div class="member_manager_txt_detial">
+                            <div class="member_manager_txt_level">
+                                <p>會員卡級</p>
+                                <p>SkyTier Blue</p>
+                                <div>
+                                    <a href="./membership_tier.html">其他會員卡級優惠</a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24" fill="none">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.1569 12.7111L4.49994 18.3681L3.08594 16.9541L8.03594 12.0041L3.08594 7.05414L4.49994 5.64014L10.1569 11.2971C10.3444 11.4847 10.4497 11.739 10.4497 12.0041C10.4497 12.2693 10.3444 12.5236 10.1569 12.7111Z" fill="#A38D6D"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="member_manager_txt_expiry">
+                                <p>卡級效期</p>
+                                <p>永久</p>
+                            </div>
+                            <div class="member_manager_txt_id">
+                                <p>SkyTier ID</p>
+                                <p>0123456789</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member_manager_pic">
+                        <img src="./pic/member/SkyTier Blue.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="member_manager_mile">
+                <div class="member_manager_mile_info">
+                    <div class="member_manager_mile_card">
+                        <h2>獎勵哩程</h2>
+                        <div>
+                            <div>
+                                <p>0</p>
+                                <p>哩</p>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="member_manager_mile_card">
+                        <h2>晉升資格計算</h2>
+                        <div>
+                            <div>
+                                <p>0</p>
+                                <p>哩</p>
+                            </div>
+                            <div>
+                                <p>0</p>
+                                <p>有效航段數</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="member_pii">
+                <div class="member_pii_info">
+                    <div class="member_pii_info_card">
+                        <div class="member_pii_info_title">
+                            <h2>個人資料</h2>
+                        </div>
+                        <div class="member_pii_info_detial">
+                            <div class="member_pii_info_lastname">
+                                <h2>姓氏</h2>
+                                <p>WANG</p>
+                            </div>
+                            <div class="member_pii_info_firstname">
+                                <h2>名字</h2>
+                                <p>XIAOMING</p>
+                            </div>
+                            <div class="member_pii_info_birth">
+                                <h2>出生日期</h2>
+                                <p>2000年5月5日</p>
+                            </div>
+                        </div>
+                        <div class="member_pii_info_detial">
+                            <div class="member_pii_info_gender">
+                                <h2>性別</h2>
+                                <p>男性</p>
+                            </div>
+                            <div class="member_pii_info_nation">
+                                <h2>國家/地區代碼</h2>
+                                <p>台灣</p>
+                            </div>
+                            <div class="member_pii_info_phone">
+                                <h2>手機號碼</h2>
+                                <p>0987123123</p>
+                            </div>
+                        </div>
+                        <div class="member_pii_info_btn">
+                            <div class="member_pii_info_btn_revise">
+                                <a href="">修改資料</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--footer-->
+    <footer class="footer">
+        <div class="footer_inner">
+            <div class="footer_inner_info">
+                <div class="footer_inner_card">
+                    <div class="footer_inner_pic">
+                        <img src="./pic/logo/logo_footer.svg" alt="footer_logo">
+                    </div>
+                    <div class="footer_inner_txt">
+                        <div>
+                            <h3>關於Aurora Sky</h3>
+                            <ul class="footer_inner_txt_list">
+                                <li>
+                                    <a href="">關於我們</a>
+                                </li>
+                                <li>
+                                    <a href="">人才招募專區</a>
+                                </li>
+                                <li>
+                                    <a href="">綠旅行碳抵銷計畫</a>
+                                </li>
+                                <li>
+                                    <a href="">資訊安全政策</a>
+                                </li>
+                                <li>
+                                    <a href="">廣告宣傳政策</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>顧客服務</h3>
+                            <ul class="footer_inner_txt_list">
+                                <li>
+                                    <a href="">顧客滿意度問卷調查</a>
+                                </li>
+                                <li>
+                                    <a href="">聯絡我們</a>
+                                </li>
+                                <li>
+                                    <a href="">常見問題</a>
+                                </li>
+                                <li>
+                                    <a href="">航班異動之改退票</a>
+                                </li>
+                                <li>
+                                    <a href="">下載中心</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>網站聲明與規範</h3>
+                            <ul class="footer_inner_txt_list">
+                                <li>
+                                    <a href="">隱私保護政策</a>
+                                </li>
+                                <li>
+                                    <a href="">Cookie 政策</a>
+                                </li>
+                                <li>
+                                    <a href="">顧客承諾</a>
+                                </li>
+                                <li>
+                                    <a href="">智慧財產權</a>
+                                </li>
+                                <li>
+                                    <a href="">運送條款</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <p>&#64;Copyright 2025. Aurora Sky Co.Ltd. All rights reserved</p>
+        </div>
+    </footer>
+</body>
+</html>

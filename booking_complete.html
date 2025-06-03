@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>預訂確認</title>
+    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <style>
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .main {
+            width: 1200px;
+            margin: auto;
+            margin-bottom: 100px;
+        }
+
+        /*progress bar*/
+        .progress_bar {
+            width: 100%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .progress_icon {
+            width: 46.67px;
+            border: 2px solid #34495E;
+            border-radius: 50%;
+            aspect-ratio: 1/1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .progress {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .progress_icon, .progress_name {
+            font-family: "bold";
+            font-size: 2em;
+            color: #34495E;
+        }
+
+        .progress.complete .progress_icon {
+            background-color: #0F4C81;
+            color: #fff;
+        }
+
+        .person_title {
+            font-family: "bold";
+            color: #34495E;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .book_complete {
+            width: 100%;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 30px 80px;
+        }
+
+        .book_complete_info {
+            width: 50%;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+
+        .book_complete_info > div {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 100px;    
+        }
+
+        .book_complete_info > div > p {
+            font-family: "bold";
+            font-size: 1.25em;
+            color: #34495E;
+        }
+
+        .book_complete_info > div > p:first-child  {
+            width: 20%;
+        }
+
+        .manager_btn {
+            width: 40%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .to_manager_btn {
+            width: 42.670682%;
+            border-radius: 50px;
+            border: none;
+            background-color: #0F4C81;
+            color: #fff;
+            font-family: "bold";
+            font-size: 1.5em;
+            padding: 7.6685px 0;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        /*footer form*/
+        .footer_inner {
+            background: linear-gradient(0deg, rgba(240, 244, 248, 0.20) 0%, rgba(240, 244, 248, 0.20) 100%), 
+                        linear-gradient(270deg, #5B5142 0%, #9F8A6D 11.54%, #88765C 35.1%, #5B5142 44.71%, #5B5142 54.33%, #9F8A6D 75.96%, #83745F 86.06%, #5B5142 96.15%);
+            padding: 10px 0;
+        }
+
+        .footer_inner_info_txt {
+            border-bottom: 1px solid #D9D9D9;
+            padding: 5px 0;
+        }
+
+        .footer_inner_info {
+            background-color: #fff;
+        }
+
+        .booking_notice_txt {
+            width: 1200px;
+            margin: auto;
+        }
+
+        .booking_notice_txt > div > p {
+            font-family: "light";
+            color: #34495E;
+            margin-bottom: 5px;
+        }
+
+        .booking_notice_icon {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .booking_notice_icon h2 {
+            font-family: "bold";
+            font-size: 1.25em;
+            color: #FF2525;
+            margin-bottom: 5px;
+        }
+
+        .footer_inner_pic {
+            width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer_inner_pic_img img {
+            width: 100%;
+            vertical-align: middle;
+        }
+
+        .footer_inner_pic_txt {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+
+        .footer_inner_icon {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            font-family: "bold";
+            color: #34495E;
+        }
+
+        .footer_inner_icon p {
+            margin-right: 5px;
+        }
+
+        .footer_inner_icon:nth-child(n+2):before {
+            content: "";
+            width: 0;
+            height: 10px;
+            border: 1px solid #D9D9D9;
+            margin: 0 5px;
+        }
+
+        .footer_bottom {
+            background-color: #0F4C81;
+            padding: 30px 0;
+        }
+
+        .footer_bottom p {
+            color: #F0F4F8;
+            font-family: "light";
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!--header-->
+    <header class="header">
+        <nav class="header_main">
+            <div class="header_logo">
+                <img src="./pic/logo/logo_nav.svg" alt="">
+            </div>
+            <div class="header_menu">
+                <ul>
+                    <li>
+                        <a href="./cabin_class.html">體驗AURORA</a>
+                    </li>
+                    <li>
+                        <a href="./membership_tier.html">SkyTier會員</a>
+                    </li>
+                    <li>
+                        <a href="./contact.html">聯絡我們</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="header_user">
+                <ul class="header_user_list">
+                    <li class="pill join">
+                        <a href="#">加入會員</a>
+                    </li>
+                    <li class="pill login">
+                        <a href="#">會員登入</a>
+                    </li>
+                    <li class="language">
+                        <a href="#">TW 繁體中文</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <!--progress bar-->
+        <div class="progress_bar">
+            <div class="progress booking">
+                <div class="progress_icon">
+                    <p>1</p>
+                </div>
+                <div class="progress_name">
+                    <p>航班</p>
+                </div>
+            </div>
+
+            <div class="progress detail">
+                <div class="progress_icon">
+                    <p>2</p>
+                </div>
+                <div class="progress_name">
+                    <p>詳情</p>
+                </div>
+            </div>
+
+            <div class="progress pii">
+                <div class="progress_icon">
+                    <p>3</p>
+                </div>
+                <div class="progress_name">
+                    <p>個人資料</p>
+                </div>
+            </div>
+
+            <div class="progress payment">
+                <div class="progress_icon">
+                    <p>4</p>
+                </div>
+                <div class="progress_name">
+                    <p>付款</p>
+                </div>
+            </div>
+
+            <div class="progress complete">
+                <div class="progress_icon">
+                    <p>5</p>
+                </div>
+                <div class="progress_name">
+                    <p>完成</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="person_title">
+            <h2>付款詳細資料</h2>
+        </div>
+
+        <div class="book_complete">
+            <div class="book_complete_info">
+                <div>
+                    <p>訂位代號</p>
+                    <p>AB1234</p>
+                </div>
+                <div>
+                    <p>旅客姓名</p>
+                    <p>WANG XIAOMING MR</p>
+                </div>
+                <div>
+                    <p>訂位日期</p>
+                    <p>2025/05/12</p>
+                </div>
+                <div>
+                    <p>總金額</p>
+                    <p>48,000</p>
+                </div>
+                <div>
+                    <p>機票號碼</p>
+                    <p>123-1234567890</p>
+                </div>
+            </div>
+            <div class="manager_btn">
+                <button class="to_manager_btn">行程管理</button>
+            </div>
+        </div>
+    </main>
+
+    <!--footer-->
+    <footer class="footer">
+        <div class="footer_inner">
+            <div class="footer_inner_info">
+                <div class="footer_inner_info_txt">
+                    <div class="booking_notice_txt">
+                        <div class="booking_notice_icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                <path d="M12.0236 21.0414C17.004 21.0414 21.0414 17.004 21.0414 12.0236C21.0414 7.04325 17.004 3.00586 12.0236 3.00586C7.04325 3.00586 3.00586 7.04325 3.00586 12.0236C3.00586 17.004 7.04325 21.0414 12.0236 21.0414Z" stroke="#FF2525" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12.0234 16.0315H12.0334V16.0415H12.0234V16.0315Z" stroke="#FF2525" stroke-width="3" stroke-linejoin="round"/>
+                                <path d="M12.0234 12.0235V8.01562" stroke="#FF2525" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <h2>重要通知</h2>
+                        </div>
+                        <div>
+                            <p>付款總金額為透過本網站購票的金額。票價僅適用於購票時，如果購票後，票價有所變動，將不再重新計算差額(徵收或退還差額)。</p>
+                            <p>除了上述金額，您可能須於機場另行支付必要的稅金及其他費用。</p>
+                            <p>根據各國家/地區或行程不同，依照票價規定支付訂位更改手續費或退票手續費時，可能需負擔額外稅金。</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="footer_inner_pic">
+                    <div class="footer_inner_pic_img">
+                        <img src="./pic/logo/logo_book_footer.svg" alt="">
+                    </div>
+                    <div class="footer_inner_pic_txt">
+                        <div class="footer_inner_icon">
+                            <p>關於Aurora Sky</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                                <g clip-path="url(#clip0_652_141)">
+                                    <path d="M15.8332 16.6841H6.6665C6.20817 16.6841 5.81595 16.521 5.48984 16.1949C5.16373 15.8688 5.00039 15.4763 4.99984 15.0174V3.35075C4.99984 2.89242 5.16317 2.50019 5.48984 2.17408C5.8165 1.84797 6.20873 1.68464 6.6665 1.68408H12.4998L17.4998 6.68408V15.0174C17.4998 15.4757 17.3368 15.8682 17.0107 16.1949C16.6846 16.5216 16.2921 16.6846 15.8332 16.6841ZM11.6665 7.51742V3.35075H6.6665V15.0174H15.8332V7.51742H11.6665ZM3.33317 20.0174C2.87484 20.0174 2.48262 19.8544 2.1565 19.5282C1.83039 19.2021 1.66706 18.8096 1.6665 18.3507V6.68408H3.33317V18.3507H12.4998V20.0174H3.33317Z" fill="#34495E"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_652_141">
+                                        <rect width="20" height="20" fill="white" transform="translate(0 0.85083)"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>    
+                        </div>
+                        <div class="footer_inner_icon">
+                            <p>顧客服務</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                                <g clip-path="url(#clip0_652_141)">
+                                    <path d="M15.8332 16.6841H6.6665C6.20817 16.6841 5.81595 16.521 5.48984 16.1949C5.16373 15.8688 5.00039 15.4763 4.99984 15.0174V3.35075C4.99984 2.89242 5.16317 2.50019 5.48984 2.17408C5.8165 1.84797 6.20873 1.68464 6.6665 1.68408H12.4998L17.4998 6.68408V15.0174C17.4998 15.4757 17.3368 15.8682 17.0107 16.1949C16.6846 16.5216 16.2921 16.6846 15.8332 16.6841ZM11.6665 7.51742V3.35075H6.6665V15.0174H15.8332V7.51742H11.6665ZM3.33317 20.0174C2.87484 20.0174 2.48262 19.8544 2.1565 19.5282C1.83039 19.2021 1.66706 18.8096 1.6665 18.3507V6.68408H3.33317V18.3507H12.4998V20.0174H3.33317Z" fill="#34495E"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_652_141">
+                                        <rect width="20" height="20" fill="white" transform="translate(0 0.85083)"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>    
+                        </div>
+                        <div class="footer_inner_icon">
+                            <p>網站聲明與規範</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                                <g clip-path="url(#clip0_652_141)">
+                                    <path d="M15.8332 16.6841H6.6665C6.20817 16.6841 5.81595 16.521 5.48984 16.1949C5.16373 15.8688 5.00039 15.4763 4.99984 15.0174V3.35075C4.99984 2.89242 5.16317 2.50019 5.48984 2.17408C5.8165 1.84797 6.20873 1.68464 6.6665 1.68408H12.4998L17.4998 6.68408V15.0174C17.4998 15.4757 17.3368 15.8682 17.0107 16.1949C16.6846 16.5216 16.2921 16.6846 15.8332 16.6841ZM11.6665 7.51742V3.35075H6.6665V15.0174H15.8332V7.51742H11.6665ZM3.33317 20.0174C2.87484 20.0174 2.48262 19.8544 2.1565 19.5282C1.83039 19.2021 1.66706 18.8096 1.6665 18.3507V6.68408H3.33317V18.3507H12.4998V20.0174H3.33317Z" fill="#34495E"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_652_141">
+                                        <rect width="20" height="20" fill="white" transform="translate(0 0.85083)"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <p>&#64;Copyright 2025. Aurora Sky Co.Ltd. All rights reserved</p>
+        </div>
+    </footer>
+</body>
+</html>

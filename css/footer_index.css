@@ -1,0 +1,78 @@
+        /*footer*/
+        .footer_inner {
+            background: linear-gradient(0deg, rgba(240, 244, 248, 0.20) 0%, rgba(240, 244, 248, 0.20) 100%), 
+                        linear-gradient(270deg, #5B5142 0%, #9F8A6D 11.54%, #88765C 35.1%, #5B5142 44.71%, #5B5142 54.33%, #9F8A6D 75.96%, #83745F 86.06%, #5B5142 96.15%);
+            padding: 20px 0;
+        }
+
+        .footer_inner_info {
+            background-color: #fff;
+        }
+
+        .footer_inner_card {
+            display: flex;
+            flex-wrap: wrap;
+            width: 72.916666%;
+            margin: auto;
+            justify-content: space-between;
+        }
+
+        .footer_inner_pic {
+            margin: 10px 0;
+        }
+
+        .footer_inner_pic img {
+            width: 100%;
+            vertical-align: middle;
+        }
+
+        .footer_inner_txt {
+            width: 50%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+
+        .footer_inner_txt h3 {
+            color: #34495E;
+            font-family: "bold";
+            font-size: 1em;
+            margin-bottom: 15px;
+            text-align: start;
+        }
+
+        .footer_inner_txt_list {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer_inner_txt_list li::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: url(../pic/icon/list_style.svg);
+        }
+
+        .footer_inner_txt_list li a {
+            text-decoration: none;
+            color: #34495E;
+            font-family: "light";
+            font-size: .8em;
+        }
+
+        .footer_bottom {
+            background-color: #0F4C81;
+            padding: 30px 0;
+        }
+
+        .footer_bottom p {
+            color: #F0F4F8;
+            font-family: "light";
+            text-align: center;
+        }

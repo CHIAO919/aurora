@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登入行程管理</title>
+    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/footer_index.css">
+    <style>
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .main {
+            width: 1200px;
+            margin: auto;
+            margin-bottom: 100px;
+        }
+
+        .schedule_management_title, .schedule_management_form {
+            width: 83%;
+            margin: auto;
+            margin-bottom: 30px;
+        }
+
+        .schedule_management_title h2 {
+            font-family: "bold";
+            font-size: 2.25em;
+            color: #34495E;
+        }
+
+        .schedule_management_form {
+            background-color: #fff;
+            padding: 30px 0;
+            border-radius: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .schedule_management_info, .schedule_management_btn {
+            width: 79.718875%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+
+        .schedule_management_info {
+            gap: 30px;
+        }
+
+        .schedule_tktnum, .schedule_lastname, .schedule_firstname {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .schedule_tktnum > label, .schedule_lastname > label, .schedule_firstname > label {
+            font-family: "bold";
+            font-size: 1.5em;
+            color: #34495E;
+        }
+
+        .schedule_tktnum > p, .schedule_lastname > p, .schedule_firstname > p {
+            font-family: "light";
+            font-size: 1em;
+            color: #34495E;
+        }
+
+        .schedule_tktnum > input, .schedule_lastname > input, .schedule_firstname > input {
+            height: 60px;
+            border-radius: 30px;
+            border: 1px solid #34495E;
+        }
+
+        .schedule_management_login {
+            width: 30%;
+            margin: auto;
+        }
+
+        .schedule_management_login > button {
+            width: 100%;
+            border-radius: 50px;
+            border: none;
+            font-family: "bold";
+            font-size: 1.875em;
+            background-color: #0F4C81;
+            color: #fff;
+            padding: 3.335px 0;
+            cursor: pointer;
+        }
+
+        .schedule_management_notice {
+            width: 83%;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px 0;
+        }
+
+        .schedule_management_notice_info {
+            width: 79.717871%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .schedule_management_notice_info h2 {
+            color: #FF2525;
+            font-family: "bold";
+            font-size: 1.5em;
+        }
+
+        .schedule_management_notice_list {
+            color: #34495E;
+            font-family: "light";
+            font-size: 1.25em;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!--header-->
+    <header class="header">
+        <nav class="header_main">
+            <div class="header_logo">
+                <img src="./pic/logo/logo_nav.svg" alt="">
+            </div>
+            <div class="header_menu">
+                <ul>
+                    <li>
+                        <a href="./cabin_class.html">體驗AURORA</a>
+                    </li>
+                    <li>
+                        <a href="./membership_tier.html">SkyTier會員</a>
+                    </li>
+                    <li>
+                        <a href="./contact.html">聯絡我們</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="header_user">
+                <ul class="header_user_list">
+                    <li class="pill join">
+                        <a href="#">加入會員</a>
+                    </li>
+                    <li class="pill login">
+                        <a href="#">會員登入</a>
+                    </li>
+                    <li class="language">
+                        <a href="#">TW 繁體中文</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="schedule_management">
+            <div class="schedule_management_title">
+                <h2>登入行程管理</h2>
+            </div>
+
+            <form action="">
+                <div class="schedule_management_form">
+                    <div class="schedule_management_info">
+                        <div class="schedule_tktnum">
+                            <label for="">訂位代號/機票號碼</label>
+                            <p>請輸入訂位代號共 6 位數字或英文字母,亦可輸入機票號碼共 13 位數字。</p>
+                            <input type="text">
+                        </div>
+                        <div class="schedule_lastname">
+                            <label for="">姓</label>
+                            <p>(例如:王小明[姓]填入WANG)</p>
+                            <input type="text">
+                        </div>
+                        <div class="schedule_firstname">
+                            <label for="">名</label>
+                            <p>(例如:王小明[名]填入XIAOMING)</p>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="schedule_management_btn">
+                        <div class="schedule_management_login">
+                            <button>登入</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="schedule_management_notice">
+                <div class="schedule_management_notice_info">
+                    <h2>辦理網路報到注意事項</h2>
+                    <ol class="schedule_management_notice_list">
+                        <li>1.線上報到開放時間為起飛前48小時至1小時前。請於期限內完成操作。</li>
+                        <li>2.僅限奧若拉天航直營航班可使用網路報到，代碼共享或聯營航班請向對應航空辦理。</li>
+                        <li>3.完成報到後仍須於機場報到櫃檯辦理托運行李。請保留報到證明或電子登機證。</li>
+                        <li>4.需要特別協助(如輪椅服務)旅客請至機場人工櫃檯辦理報到。</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--footer-->
+    <footer class="footer">
+        <div class="footer_inner">
+            <div class="footer_inner_info">
+                <div class="footer_inner_card">
+                    <div class="footer_inner_pic">
+                        <img src="./pic/logo/logo_footer.svg" alt="footer_logo">
+                    </div>
+                    <div class="footer_inner_txt">
+                        <div>
+                            <h3>關於Aurora Sky</h3>
+                            <ul class="footer_inner_txt_list">
+                                <li>
+                                    <a href="">關於我們</a>
+                                </li>
+                                <li>
+                                    <a href="">人才招募專區</a>
+                                </li>
+                                <li>
+                                    <a href="">綠旅行碳抵銷計畫</a>
+                                </li>
+                                <li>
+                                    <a href="">資訊安全政策</a>
+                                </li>
+                                <li>
+                                    <a href="">廣告宣傳政策</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>顧客服務</h3>
+                            <ul class="footer_inner_txt_list">
+                                <li>
+                                    <a href="">顧客滿意度問卷調查</a>
+                                </li>
+                                <li>
+                                    <a href="">聯絡我們</a>
+                                </li>
+                                <li>
+                                    <a href="">常見問題</a>
+                                </li>
+                                <li>
+                                    <a href="">航班異動之改退票</a>
+                                </li>
+                                <li>
+                                    <a href="">下載中心</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>網站聲明與規範</h3>
+                            <ul class="footer_inner_txt_list">
+                                <li>
+                                    <a href="">隱私保護政策</a>
+                                </li>
+                                <li>
+                                    <a href="">Cookie 政策</a>
+                                </li>
+                                <li>
+                                    <a href="">顧客承諾</a>
+                                </li>
+                                <li>
+                                    <a href="">智慧財產權</a>
+                                </li>
+                                <li>
+                                    <a href="">運送條款</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <p>&#64;Copyright 2025. Aurora Sky Co.Ltd. All rights reserved</p>
+        </div>
+    </footer>
+</body>
+</html>
