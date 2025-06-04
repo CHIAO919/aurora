@@ -430,6 +430,24 @@
             font-family: "light";
             font-size: .9em;
         }
+
+
+
+    .select_input {
+        width: 100%;
+        height: 60px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1em;
+        appearance: none;
+        background-color: #fff;
+        background-image: url('data:image/svg+xml;utf8,<svg fill="%2334495E" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 16px 16px;
+    }
+
     </style>
 </head>
 <body>
@@ -492,7 +510,7 @@
                         <!-- 出發地 / 目的地 -->
                         <div class="booking_location">
                             <div class="booking_location_depa">
-                                <div class="select_group departure">
+                                <!-- <div class="select_group departure">
                                     <button class="select_trigger" type="button">
                                         <span class="icon">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -515,7 +533,15 @@
                                             <a href="">高雄</a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> -->
+                                <select id="departure" name="departure" class="select_input">
+                                    <option value="" disabled selected>
+                                        請選擇出發地
+                                    </option>
+                                    <option value="tpe">台北(桃園機場)</option>
+                                    <option value="tsa">台北(松山機場)</option>
+                                    <option value="khh">高雄</option>
+                                </select>
                             </div>
                                 
                             
@@ -529,7 +555,7 @@
                             </div>
 
                             <div class="booking_location_arr">
-                                <div class="select_group arrival">
+<!--                                 <div class="select_group arrival">
                                     <button class="select_trigger" type="button">
                                         <span class="icon">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -561,7 +587,16 @@
                                             <a href="">釜山</a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> -->
+                                <select id="arrival" name="arrival" class="select_input">
+                                    <option value="" disabled selected>請選擇目的地</option>
+                                    <option value="nrt">東京(成田機場)</option>
+                                    <option value="kix">大阪</option>
+                                    <option value="kmj">熊本</option>
+                                    <option value="ngo">名古屋</option>
+                                    <option value="icn">首爾(仁川機場)</option>
+                                    <option value="pus">釜山</option>
+                                </select>
                             </div>
                                 
                         </div>
