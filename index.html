@@ -433,6 +433,12 @@
 
 
 
+    .select_input > option:first-child {
+        color: #A38D6D;
+        font-family: "bold";
+        text-align: center;
+    }
+
     .select_input {
         width: 100%;
         height: 60px;
@@ -446,7 +452,18 @@
         background-repeat: no-repeat;
         background-position: right 10px center;
         background-size: 16px 16px;
+        color: #34495E;
+        font-family: "bold";
+        font-size: 1.5em;
     }
+
+
+    .select_input > option {
+        color: #34495E;
+        font-family: "light";
+        font-size: .75em;
+    }
+
 
     </style>
 </head>
@@ -536,7 +553,7 @@
                                 </div> -->
                                 <select id="departure" name="departure" class="select_input">
                                     <option value="" disabled selected>
-                                        請選擇出發地
+                                        出發地
                                     </option>
                                     <option value="tpe">台北(桃園機場)</option>
                                     <option value="tsa">台北(松山機場)</option>
@@ -589,7 +606,9 @@
                                     </ul>
                                 </div> -->
                                 <select id="arrival" name="arrival" class="select_input">
-                                    <option value="" disabled selected>請選擇目的地</option>
+                                    <option value="" disabled selected>
+                                        目的地
+                                    </option>
                                     <option value="nrt">東京(成田機場)</option>
                                     <option value="kix">大阪</option>
                                     <option value="kmj">熊本</option>
