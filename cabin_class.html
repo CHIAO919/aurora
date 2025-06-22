@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/all.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/footer_index.css">
+    <link rel="stylesheet" href="./css/login_modal.css">
     <style>
         .main {
             width: 1400px;
@@ -14,16 +15,27 @@
         }
         /*banner*/
         .class_banner {
+            width: 100%;
+            /* height: 100%; */
+            /* overflow: hidden; */
             position: relative;
             padding-bottom: 40px;
         }
         .class_banner_pic {
             width: 100%;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
         }
+
         .class_banner_pic img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
             vertical-align: middle;
         }
+
         .class_banner_txt {
             font-family: "bold";
             color: #fff;
@@ -33,14 +45,23 @@
             top: 70%;
             left: 50%;
             transform: translateX(-50%);
-            text-wrap: nowrap;
+            width: 100%;
+        }
+
+        .class_banner_txt > span {
+            display: block;
+            white-space: normal;
+            line-height: 1;
+            /* padding: 0 10px; */
+            width: 80%;
+            margin: auto;
         }
 
         /*breadcrumbs*/
         .breadcrumbs {
-            width: 100%;
+            width: 90%;
             margin: auto;
-            margin-bottom: 35px;
+            margin-bottom: 60px;
         }
         .breadcrumbs_list {
             display: flex;
@@ -88,21 +109,21 @@
 
         /*class info*/
         .class_info_title {
-            width: 100%;
+            width: 90%;
             text-align: center;
             margin: auto;
-            font-size: 1.5em;
             font-family: "bold";
-            color: #A38D6D;
-            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
             position: relative;
+            margin-bottom: 40px;
         }
 
         .class_info_title h2 {
-            margin-bottom: 15px;
+            font-size: 2em;
+            color: #A38D6D;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
         }
 
-        .class_info_title h2::before {
+/*         .class_info_title h2::before {
             content: "";
             width: 40.714285%;
             height: 0;
@@ -111,22 +132,32 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
+        } */
+        .class_info_title h2::before {
+            content: "";
+            border-bottom: 8px solid #B8A78E;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 100%;
         }
 
         .class_info_title h2::after{
             content: "";
-            width: 40.714285%;
+            width: 100%;
             height: 0;
-            border: 1px solid #A38D6D;
+            border: 1.5px solid #B8A78E;
             display: block;
             position: absolute;
-            top: 50%;
+            top: 120%;
             right: 0;
-            transform: translateY(-50%);
+            transform: translateY(-120%);
         }
 
         .class_info {
-            width: 100%;
+            width: 75%;
             margin: auto;
             display: flex;
             flex-wrap: wrap;
@@ -135,11 +166,13 @@
         }
 
         .class_info_card {
-            width: 49.285714%;
+            width: 45%;
         }
 
         .class_info_pic {
             margin-bottom: 20px;
+            border-radius: 0 0 0 50px;
+            overflow: hidden;
         }
 
         .class_info_pic img {
@@ -167,9 +200,112 @@
         }
 
         .class_info_txt p {
-            width: 72.463768%;
+            /* width: 90%; */
             font-family: "light";
             font-size: 1.25em;
+        }
+
+        @media screen and (max-width: 1400px) {
+            .main {
+                width: 1200px;
+            }
+        }
+
+        @media screen and (max-width: 1200px) {
+            .main {
+                width: 1024px;
+            }
+
+            .breadcrumbs_list > li {
+                font-size: 1.125em;
+            }
+
+            .class_banner_txt > span {
+                font-size: .8em;
+            }
+
+            .class_info_title > h2, .class_info_txt > h3 {
+                font-size: 1.75em;
+            }
+
+            .class_info_title h2::after{
+                top: 125%;
+            }
+
+            .class_info_txt > h4 {
+                font-size: 1.25em;
+            }
+
+            .class_info_txt > p {
+                font-size: 1.125em;
+            }
+
+            .class_info_pic {
+                margin-bottom: 10px;
+            }
+
+            .class_info_txt {
+                gap: 5px;
+            }
+        }
+
+        @media screen and (max-width: 1024px) {
+            .main {
+                width: 768px;
+            }
+
+            .breadcrumbs {
+                margin-bottom: 40px;
+            }
+
+            .class_info {
+                width: 90%;
+            }
+
+            .class_info {
+                margin-bottom: 70px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .main {
+                max-width: 375px;
+                min-width: 320px;
+            }
+
+            .breadcrumbs_list > li {
+                font-size: 1em;
+            }
+
+            .class_banner_pic {
+                height: 500px;
+            }
+
+            .class_info {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .class_info_card {
+                width: 100%;
+            }
+
+            .class_banner_txt {
+                font-size: 1.5em;
+                top: 65%;
+            }
+
+            .class_banner_txt > span {
+                font-size: 1em;
+            }
+
+            .class_info_title > h2, .class_info_txt > h3 {
+                font-size: 1.5em;
+            }
+
+            .class_info_txt > p {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
@@ -179,8 +315,8 @@
         <nav class="header_main">
             <div class="header_logo">
                 <a href="./index.html">
-                    <img src="./pic/logo/logo_nav.svg" alt="">
-                </a>
+                    <img src="./pic/logo/logo_book_footer.svg" alt="">
+                </a>    
             </div>
             <div class="header_menu">
                 <ul>
@@ -197,20 +333,40 @@
             </div>
             <div class="header_user">
                 <ul class="header_user_list">
-                    <li class="pill join">
+                    <li class="pill join" id="joinbtn">
                         <a href="./member_signup.html">加入會員</a>
                     </li>
-                    <li class="pill login">
+                    <li class="pill login" id="cancelbtn">
                         <a href="#">會員登入</a>
                     </li>
-                    <li class="language">
-                        <a href="#">TW 繁體中文</a>
+                    <li class="header_user_member" id="header_user_member">
+                        <a href="./member_manager.html">您好，<span>WANG先生</span></a>
+                    </li>
+                    <li class="header_user_search" id="header_user_search">
+                        <a href="./booking.html">航班搜尋</a>
+                    </li>
+                    <li class="hamburger_menu">
+                        <div>
+                            <button class="hamburger_toggle" id="hamburger_toggle">
+                                <img src="./pic/icon/icon_menu-burger.svg" alt="" id="menu_open" style="display: block;">
+                                <img src="./pic/icon/icon_menu-burger_cancel.svg" alt="" id="menu_close" style="display: none;">
+                            </button>
+                            <div class="menu_list_group" id="menu_list_group">
+                                <ul class="menu_list">
+                                    <li><a href="./cabin_class.html">體驗AURORA</a></li>
+                                    <li><a href="./membership_tier.html">SkyTier會員</a></li>
+                                    <li><a href="./contact.html">聯絡我們</a></li>
+                                    <li><a href="./booking.html">航班搜尋</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
-        </nav>
+        </nav>    
     </header>
 
+    <!--class banner-->
     <div class="class_banner">
         <div class="class_banner_pic">
             <img src="./pic/calss/class_banner.png" alt="">
@@ -221,9 +377,6 @@
     </div>
 
     <main class="main">
-        <!--class banner-->
-        
-
         <!--breadcrumbs-->
         <div class="breadcrumbs">
             <ol class="breadcrumbs_list">
@@ -267,6 +420,43 @@
         </div>    
     </main>
 
+    <!-- login modal -->
+    <div id="loginmodal" class="modal">
+        <div class="modal_content">
+            <button class="modal_close" id="modal_close" type="button">x</button>
+            <div class="modal_title">
+                <h2>SkyTier Gold</h2>
+                <p>會員登入</p>
+            </div>
+            <div class="modal_form">
+                <form action="">
+                    <div>
+                        <label for="">會員號碼</label>
+                        <p>10位數字</p>
+                        <input type="text" id="member_id">
+                    </div>
+                    <div>
+                        <label for="">密碼</label>
+                        <input type="password" id="member_password">
+                    </div>
+                    <div>
+                        <p>個人資訊使用之目的請務必先詳細閱讀奧若拉天航隱私權保護政策並同意其內容再進行下一步。</p>
+                    </div>
+                    <div class="modal_form_btn_group">
+                        <div class="modal_form_btn">
+                            <button id="modal_close_btn" type="button">不登入，直接使用</button>
+                            <button id="modal_login_btn" type="button">登入</button>
+                        </div>
+                        <div class="modal_form_btn">
+                            <a href="">忘記會員號碼的旅客</a>
+                            <a href="">忘記密碼</a>
+                        </div>
+                    </div>    
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!--footer-->
     <footer class="footer">
         <div class="footer_inner">
@@ -277,7 +467,7 @@
                     </div>
                     <div class="footer_inner_txt">
                         <div>
-                            <h3>關於Aurora Sky</h3>
+                            <h3 class="footer_inner_title">關於Aurora Sky</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">關於我們</a>
@@ -297,7 +487,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3>顧客服務</h3>
+                            <h3 class="footer_inner_title">顧客服務</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">顧客滿意度問卷調查</a>
@@ -317,7 +507,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3>網站聲明與規範</h3>
+                            <h3 class="footer_inner_title">網站聲明與規範</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">隱私保護政策</a>
@@ -337,13 +527,29 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                
+                </div>    
             </div>
         </div>
         <div class="footer_bottom">
             <p>&#64;Copyright 2025. Aurora Sky Co.Ltd. All rights reserved</p>
         </div>
     </footer>
+
+    <script src="./js/header.js"></script>
+    <script src="./js/lightbox.js"></script>
+    <script src="./js/footer.js"></script>
+    <script>
+        function init(){
+            checkLoginStatus();
+            document.getElementById("cancelbtn").onclick = login;
+            document.getElementById("modal_close").onclick = logincancel;
+            document.getElementById("modal_close_btn").onclick = logincancelBtn;
+            document.getElementById("modal_login_btn").onclick = checkLoginData;
+            document.getElementById("menu_open").onclick = hamburgeropen;
+            document.getElementById("menu_close").onclick = hamburgerclose;
+        }
+
+        window.addEventListener("load", init);
+    </script>
 </body>
 </html>

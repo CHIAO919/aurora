@@ -6,6 +6,7 @@
     <title>旅客詳細資料</title>
     <link rel="stylesheet" href="./css/all.css">
     <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/login_modal.css">
     <style>
         .header {
             margin-bottom: 40px;
@@ -19,16 +20,17 @@
 
         /*progress bar*/
         .progress_bar {
-            width: 100%;
+            width: 65%;
             margin: auto;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             margin-bottom: 40px;
+            align-items: center;
         }
 
         .progress_icon {
-            width: 46.67px;
+            width: 35px;
             border: 2px solid #34495E;
             border-radius: 50%;
             aspect-ratio: 1/1;
@@ -40,14 +42,18 @@
         .progress {
             display: flex;
             flex-wrap: wrap;
-            gap: 1px;
+            gap: 5px;
             justify-content: center;
             align-items: center;
         }
 
-        .progress_icon, .progress_name {
+        .progress_icon p, .progress_name p {
             font-family: "bold";
-            font-size: 2em;
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .progress_icon, .progress_name {
             color: #34495E;
         }
 
@@ -123,7 +129,6 @@
             height: 30px;
             border-radius: 5px;
             border: 1px solid #34495E;
-            flex-grow: 3;
         }
 
         .passport > div > label {
@@ -134,6 +139,11 @@
         .title_name ,.last_name, .first_name {
             width: 85.245901%;
             height: 30px;
+            padding-left: 10px;
+        }
+
+        .birth_year ,.birth_month, .birth_day {
+            padding-left: 10px;
         }
 
         .birth {
@@ -164,6 +174,7 @@
             height: 30px;
             border-radius: 5px;
             border: 1px solid #34495E;
+            padding-left: 10px;
         }
 
         .person_payment {
@@ -208,6 +219,7 @@
             height: 30px;
             border-radius: 5px;
             border: 1px solid #34495E;
+            padding-left: 10px;
         }
 
         .person_contact_info_form label {
@@ -233,6 +245,10 @@
             box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
             position: sticky;
             top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: flex-end;
         }
 
         .payment_detail_content {
@@ -265,9 +281,9 @@
         }
 
         .payment_btn {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end;
+            width: 50%;
+            background-color: #0F4C81;
+            border-radius: 50px;
         }
 
 /*         .payment_next_btn {
@@ -283,12 +299,9 @@
         } */
 
         .payment_btn a {
-            width: 50%;
             font-family: "bold";
             font-size: 1.5em;
-            border-radius: 50px;
             border: none;
-            background-color: #0F4C81;
             color: #D9D9D9;
             padding: 7.665px 0;
             text-decoration: none;
@@ -377,13 +390,179 @@
 
         .footer_bottom {
             background-color: #0F4C81;
-            padding: 30px 0;
+            padding: 10px 0;
         }
 
         .footer_bottom p {
             color: #F0F4F8;
             font-family: "light";
             text-align: center;
+        }
+
+        @media screen and (max-width: 1400px) {
+            .main, .footer_inner_info_txt, .footer_inner_pic {
+                width: 960px;   
+            }
+
+            .footer_inner_info_txt, .footer_inner_pic {
+                margin: auto;
+            }
+
+            .booking_notice_txt {
+                width: 100%;
+            }
+
+            .progress_icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            .progress_icon > p, .progress_name > p {
+                font-size: 20px;
+            }
+
+            .booking_notice_txt > div > p {
+                font-size: .875em;
+            }
+
+            .passport {
+                flex-direction: column;
+            }
+
+            .passport > div {
+                width: 100%;
+            }
+        }
+
+        @media screen  and (max-width: 1024px) {
+            .main, .footer_inner_info_txt, .footer_inner_pic {
+                width: 90%;
+                max-width: 768px;
+            }
+
+            .person_title > h2 {
+                font-size: 1.75em;
+            }
+
+            .person_info_contant_title > h2, .person_contact_info_title > h2 {
+                font-size: 1.25em
+            }
+
+            .person_payment {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .person_info, .payment_detial {
+                width: 100%;
+            }
+
+            .payment_btn {
+                width: 30%;
+            }
+            
+        }
+
+        @media screen and (max-width: 768px) {
+            .main, .footer_inner_info_txt, .footer_inner_pic {
+                max-width: 375px;
+                min-width: 320px;
+            }
+
+            .progress {
+                gap: 1px;
+            }
+
+            .progress_bar {
+                width: 95%;
+            }
+
+            .progress_icon p, .progress_name p {
+                font-size: .875em;
+            }
+
+            .progress_icon {
+                width: 20px;
+                height: 20px;
+                aspect-ratio: 1/1;
+            }
+
+            .person_title > h2 {
+                font-size: 1.25em;
+            }
+
+            .person_info_contant_title, .person_info_contant_form, .person_contact_info_title, .person_contact_info_form {
+                width: 90%;
+            }
+
+            .person_info_contant_title > h2, .person_contact_info_title > h2 {
+                font-size: 1.125em;
+            }
+
+            .person_info_contant_form > div, .passport > div, .person_contact_info_form > div {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .person_info_contant_form > div > label, .passport > div > label, .person_contact_info_form > div > label {
+                text-align: left;
+                width: 100%;
+            }
+
+            .person_info_contant_form input, .person_info_contant_form select, .passport > div > input, .person_contact_info_form > div > input {
+                width: 100%;
+                flex: none;
+            }
+
+            .birth {
+                width: 100%;
+            }
+
+            .payment_mile > div > p, .payment_total > div > p {
+                font-size: 1.125em;
+            }
+
+            .payment_mile > h2, .payment_total > h2, .payment_btn > a {
+                font-size: 1.25em;
+            }
+
+            .booking_notice_icon > svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .booking_notice_icon > h2 {
+                font-size: 1em;
+            }
+
+            .booking_notice_txt > div > p {
+                font-size: .75em;
+                line-height: 1.875em;
+            }
+
+            .footer_inner_pic {
+                flex-direction: column;
+            }
+
+            .footer_inner_pic_img {
+                width: 178px;
+            }
+
+            .footer_inner_icon > p {
+                font-size: .875em;
+            }
+
+            .footer_bottom > p {
+                font-size: .75em;
+            }
+
+            .footer_inner_icon p {
+                margin-right: 2px;
+            }
+
+            .footer_inner_icon:nth-child(n+2):before {
+                margin: 0 2px;
+            }
         }
     </style>
 </head>
@@ -393,7 +572,7 @@
         <nav class="header_main">
             <div class="header_logo">
                 <a href="./index.html">
-                    <img src="./pic/logo/logo_nav.svg" alt="">
+                    <img src="./pic/logo/logo_book_footer.svg" alt="">
                 </a>    
             </div>
             <div class="header_menu">
@@ -411,18 +590,37 @@
             </div>
             <div class="header_user">
                 <ul class="header_user_list">
-                    <li class="pill join">
+                    <li class="pill join" id="joinbtn">
                         <a href="./member_signup.html">加入會員</a>
                     </li>
-                    <li class="pill login">
+                    <li class="pill login" id="cancelbtn">
                         <a href="#">會員登入</a>
                     </li>
-                    <li class="language">
-                        <a href="#">TW 繁體中文</a>
+                    <li class="header_user_member" id="header_user_member">
+                        <a href="./member_manager.html">您好，<span>WANG先生</span></a>
+                    </li>
+                    <li class="header_user_search" id="header_user_search">
+                        <a href="./booking.html">航班搜尋</a>
+                    </li>
+                    <li class="hamburger_menu">
+                        <div>
+                            <button class="hamburger_toggle" id="hamburger_toggle">
+                                <img src="./pic/icon/icon_menu-burger.svg" alt="" id="menu_open" style="display: block;">
+                                <img src="./pic/icon/icon_menu-burger_cancel.svg" alt="" id="menu_close" style="display: none;">
+                            </button>
+                            <div class="menu_list_group" id="menu_list_group">
+                                <ul class="menu_list">
+                                    <li><a href="./cabin_class.html">體驗AURORA</a></li>
+                                    <li><a href="./membership_tier.html">SkyTier會員</a></li>
+                                    <li><a href="./contact.html">聯絡我們</a></li>
+                                    <li><a href="./booking.html">航班搜尋</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
-        </nav>
+        </nav>    
     </header>
 
     <main class="main">
@@ -579,15 +777,15 @@
                                 <h2>聯絡資料</h2>
                             </div>
                             <div class="person_contact_info_form">
-                                    <div class="div">
+                                    <div>
                                         <label for="">電子信箱</label>
                                         <input type="text">
                                     </div>
-                                    <div class="div">
+                                    <div>
                                         <label for="">住家電話</label>
                                         <input type="text">
                                     </div>
-                                    <div class="div">
+                                    <div>
                                         <label for="">行動電話</label>
                                         <input type="text">
                                     </div>
@@ -623,11 +821,44 @@
                 </div>
             </div>
         </form>
-
-
-
-
     </main>
+
+    <!-- login modal -->
+    <div id="loginmodal" class="modal">
+        <div class="modal_content">
+            <button class="modal_close" id="modal_close" type="button">x</button>
+            <div class="modal_title">
+                <h2>SkyTier Gold</h2>
+                <p>會員登入</p>
+            </div>
+            <div class="modal_form">
+                <form action="">
+                    <div>
+                        <label for="">會員號碼</label>
+                        <p>10位數字</p>
+                        <input type="text" id="member_id">
+                    </div>
+                    <div>
+                        <label for="">密碼</label>
+                        <input type="password" id="member_password">
+                    </div>
+                    <div>
+                        <p>個人資訊使用之目的請務必先詳細閱讀奧若拉天航隱私權保護政策並同意其內容再進行下一步。</p>
+                    </div>
+                    <div class="modal_form_btn_group">
+                        <div class="modal_form_btn">
+                            <button id="modal_close_btn" type="button">不登入，直接使用</button>
+                            <button id="modal_login_btn" type="button">登入</button>
+                        </div>
+                        <div class="modal_form_btn">
+                            <a href="">忘記會員號碼的旅客</a>
+                            <a href="">忘記密碼</a>
+                        </div>
+                    </div>    
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!--footer-->
     <footer class="footer">
@@ -704,5 +935,21 @@
             <p>&#64;Copyright 2025. Aurora Sky Co.Ltd. All rights reserved</p>
         </div>
     </footer>
+
+    <script src="./js/header.js"></script>
+    <script src="./js/lightbox.js"></script>
+    <script>
+        function init(){
+            checkLoginStatus();
+            document.getElementById("cancelbtn").onclick = login;
+            document.getElementById("modal_close").onclick = logincancel;
+            document.getElementById("modal_close_btn").onclick = logincancelBtn;
+            document.getElementById("modal_login_btn").onclick = checkLoginData;
+            document.getElementById("menu_open").onclick = hamburgeropen;
+            document.getElementById("menu_close").onclick = hamburgerclose;
+        }
+
+        window.addEventListener("load", init);
+    </script>
 </body>
 </html>

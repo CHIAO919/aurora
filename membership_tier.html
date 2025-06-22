@@ -7,16 +7,22 @@
     <link rel="stylesheet" href="./css/all.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/footer_index.css">
+    <link rel="stylesheet" href="./css/login_modal.css">
     <style>
     .header {
         margin-bottom: 40px;
     }
 
+    .main {
+        width: 1200px;
+        margin: auto;
+    }
+
     /*breadcrumbs*/
     .breadcrumbs {
-        width: 72.916666%;
+        width: 90%;
         margin: auto;
-        margin-bottom: 35px;
+        margin-bottom: 60px;
     }
     .breadcrumbs_list {
         display: flex;
@@ -63,7 +69,7 @@
     }
 
     .contact_title {
-        width: 72.916666%;
+        width: 90%;
         margin: auto;
         font-family: "bold";
         font-size: 1.5em;
@@ -72,12 +78,13 @@
     }
 
     .membership_tier {
-        width: 72.916666%;
+        width: 90%;
         margin: auto;
     }
 
     .membership_tier_card {
         width: 100%;
+        margin: auto;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -148,18 +155,30 @@
         flex-wrap: wrap;
         flex-direction: column;
         position: relative;
-        margin-bottom: 5%;
-        margin-left: 5%;
-        width: 23.645833;
+        margin-bottom: 5px;
+        margin-right: 30px;
+        width: 200px;
+        text-align: center;
+        align-items: flex-start;
     }
     .membership_tier_discount_list > li > p {
         font-family: "bold";
-        font-size: 1.5em;
-        color: #34495E;   
+        font-size: 1.25em;
+        color: #34495E;
     }
 
-    .membership_tier_discount_list > li > p,span {
+    .membership_tier_discount_list > li > p {
         margin-left: 35px;
+        text-align: start;
+    }
+
+    .membership_tier_discount_list > li > span {
+        width: 144px;
+        text-align: start;
+        margin-left: 35px;
+        font-family: "light";
+        font-size: 1em;
+        color: #34495E;
     }
 
     .membership_tier_discount_list > li > p::before {
@@ -171,14 +190,145 @@
         background-size: contain;
         background-position: center;
         position: absolute;
-        top: 5px;
+        top: 1px;
         left: 0;
-        background-image: url("data:image/svg+xml;utf8,<svg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M7.125 6C6.03098 6 4.98177 6.4346 4.20818 7.20818C3.4346 7.98177 3 9.03098 3 10.125V18.375C3 19.469 3.4346 20.5182 4.20818 21.2918C4.98177 22.0654 6.03098 22.5 7.125 22.5H19.875C20.969 22.5 22.0182 22.0654 22.7918 21.2918C23.5654 20.5182 24 19.469 24 18.375V10.125C24 9.03098 23.5654 7.98177 22.7918 7.20818C22.0182 6.4346 20.969 6 19.875 6H7.125ZM4.5 18.375V15H9.4395L6.969 17.469C6.82817 17.6098 6.74905 17.8008 6.74905 18C6.74905 18.1992 6.82817 18.3902 6.969 18.531C7.10983 18.6718 7.30084 18.7509 7.5 18.7509C7.69916 18.7509 7.89017 18.6718 8.031 18.531L10.5 16.0605V21H7.125C6.42881 21 5.76113 20.7234 5.26884 20.2312C4.77656 19.7389 4.5 19.0712 4.5 18.375ZM4.5 13.5V10.125C4.5 8.676 5.676 7.5 7.125 7.5H10.5V9.402C9.92808 9.07186 9.26321 8.93964 8.6085 9.02586C7.95378 9.11208 7.34581 9.41191 6.87886 9.87886C6.41191 10.3458 6.11208 10.9538 6.02586 11.6085C5.93964 12.2632 6.07186 12.9281 6.402 13.5H4.5ZM10.5 13.5H9C8.70333 13.5 8.41332 13.412 8.16665 13.2472C7.91997 13.0824 7.72771 12.8481 7.61418 12.574C7.50065 12.2999 7.47094 11.9983 7.52882 11.7074C7.5867 11.4164 7.72956 11.1491 7.93934 10.9393C8.14912 10.7296 8.41639 10.5867 8.70736 10.5288C8.99834 10.4709 9.29994 10.5006 9.57403 10.6142C9.84811 10.7277 10.0824 10.92 10.2472 11.1666C10.412 11.4133 10.5 11.7033 10.5 12V13.5ZM12 13.5V12C12 11.7033 12.088 11.4133 12.2528 11.1666C12.4176 10.92 12.6519 10.7277 12.926 10.6142C13.2001 10.5006 13.5017 10.4709 13.7926 10.5288C14.0836 10.5867 14.3509 10.7296 14.5607 10.9393C14.7704 11.1491 14.9133 11.4164 14.9712 11.7074C15.0291 11.9983 14.9994 12.2999 14.8858 12.574C14.7723 12.8481 14.58 13.0824 14.3334 13.2472C14.0867 13.412 13.7967 13.5 13.5 13.5H12ZM16.5 12C16.5 11.4734 16.3614 10.9561 16.098 10.5C15.8347 10.044 15.456 9.66528 15 9.40198C14.5439 9.13868 14.0266 9.00007 13.5 9.00008C12.9734 9.00008 12.4561 9.1387 12 9.402V7.5H19.875C21.324 7.5 22.5 8.676 22.5 10.125V13.5H16.098C16.3613 13.0439 16.5 12.5266 16.5 12ZM15.531 17.469L13.0605 15H22.5V18.375C22.5 19.0712 22.2234 19.7389 21.7312 20.2312C21.2389 20.7234 20.5712 21 19.875 21H12V16.0605L14.469 18.531C14.6098 18.6718 14.8008 18.7509 15 18.7509C15.1992 18.7509 15.3902 18.6718 15.531 18.531C15.6718 18.3902 15.7509 18.1992 15.7509 18C15.7509 17.8008 15.6718 17.6098 15.531 17.469ZM10.125 25.5C8.8425 25.5 7.6965 24.915 6.9405 23.997L7.125 24H19.875C21.3668 24 22.7976 23.4074 23.8525 22.3525C24.9074 21.2976 25.5 19.8668 25.5 18.375V10.125L25.497 9.9405C25.9678 10.3268 26.3469 10.8129 26.6068 11.3636C26.8668 11.9144 27.0011 12.516 27 13.125V18.375C27 20.2647 26.2493 22.0769 24.9131 23.4131C23.5769 24.7493 21.7647 25.5 19.875 25.5H10.125Z' fill='%2334495E'/></svg>");
+        background-image: url("data:image/svg+xml;utf8,<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M9 2C9.56748 1.99997 10.1285 2.12069 10.6457 2.35414C11.163 2.58758 11.6246 2.92842 12 3.354C12.3754 2.92842 12.837 2.58758 13.3543 2.35414C13.8715 2.12069 14.4325 1.99997 15 2H15.5C15.8978 2 16.2794 2.15804 16.5607 2.43934C16.842 2.72064 17 3.10218 17 3.5V4C17 4.729 16.805 5.412 16.465 6H19C19.5304 6 20.0391 6.21071 20.4142 6.58579C20.7893 6.96086 21 7.46957 21 8V11C21 11.3511 20.9076 11.6959 20.732 12C20.5565 12.304 20.304 12.5565 20 12.732V18C20 18.7956 19.6839 19.5587 19.1213 20.1213C18.5587 20.6839 17.7956 21 17 21H7C6.20435 21 5.44129 20.6839 4.87868 20.1213C4.31607 19.5587 4 18.7956 4 18V12.732C3.69597 12.5565 3.4435 12.304 3.26796 12C3.09243 11.6959 3.00001 11.3511 3 11V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H7.535C7.18424 5.39184 6.99973 4.70207 7 4V3.5C7 3.10218 7.15804 2.72064 7.43934 2.43934C7.72064 2.15804 8.10218 2 8.5 2H9ZM18 13H13V19H17L17.117 18.993C17.3402 18.9667 17.5481 18.8659 17.707 18.707C17.8659 18.5481 17.9667 18.3402 17.993 18.117L18 18V13ZM11 13H6V18C6.00003 18.2449 6.08996 18.4813 6.25272 18.6644C6.41547 18.8474 6.63975 18.9643 6.883 18.993L7 19H11V13ZM19 8H13V11H19V8ZM11 8H5V11H11V8ZM9 4C9 4.53043 9.21071 5.03914 9.58579 5.41421C9.96086 5.78929 10.4696 6 11 6C11 5.46957 10.7893 4.96086 10.4142 4.58579C10.0391 4.21071 9.53043 4 9 4ZM15 4C14.4696 4 13.9609 4.21071 13.5858 4.58579C13.2107 4.96086 13 5.46957 13 6C13.5304 6 14.0391 5.78929 14.4142 5.41421C14.7893 5.03914 15 4.53043 15 4Z' fill='%2334495E'/></svg>");
     }
 
-    .membership_tier_discount_list > li > span {
-        font-family: "light";
-        font-size: 1em;
+    @media screen and (max-width: 1200px) {
+        .main {
+            width: 1024px;
+        }
+
+        .breadcrumbs {
+            margin-bottom: 40px;
+        }
+
+        .breadcrumbs_list > li {
+            font-size: 1.125em;
+        }
+
+        .contact_title {
+            margin-bottom: 20px;
+        }
+
+        .contact_title > h2 {
+            font-size: 1.25em;
+        }
+
+        .membership_tier_txt > h2 {
+            font-size: 1.75em;
+        }
+
+        .membership_tier_txt > p {
+            font-size: 1.125em;
+        }
+
+        .membership_tier_txt {
+            gap: 10px;
+        }
+
+        .membership_tier_discount_list > li {
+            margin-right: 10px;
+        }
+
+        .membership_tier_discount_list > li > p {
+            margin-left: 25px;
+            font-size: 1.125em;
+        }
+
+        .membership_tier_discount_list > li > span {
+            margin-left: 25px;
+            font-size: .875em;
+        }
+
+        .membership_tier_discount_list > li > p::before {
+            width: 25px;
+            height: 25px;
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        .main {
+            width: 768px;
+        }
+
+        .breadcrumbs {
+            margin-bottom: 40px;
+        }
+
+        .membership_tier_card {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .membership_tier_pic {
+            width: 50%;
+        }
+
+        .contact_title > h2 {
+            font-size: 28px;
+        }
+
+        .membership_tier_txt {
+            width: 100%;
+        }
+
+        .membership_tier_discount_list {
+            gap: 15px;
+        }
+
+        .membership_tier_discount_list > li > p {
+            margin-left: 25px;
+        }
+
+        .membership_tier_txt {
+            margin-left: 0;
+        }
+        
+    }
+
+    @media screen and (max-width: 768px) {
+        .main {
+            max-width: 375px;
+            min-width: 320px;
+        }
+
+        .breadcrumbs_list > li {
+            font-size: 1em;
+        }
+
+        .membership_tier_card:nth-child(1n+2) {
+            padding: 20px 0;
+        }
+
+        .membership_tier_pic {
+            width: 100%;
+        }
+
+        .contact_title > h2 {
+            font-size: 24px;
+        }
+
+        .membership_tier_txt > h2 {
+            font-size: 1.5em;
+        }
+
+        .membership_tier_txt > p {
+            font-size: .875em;
+        }
+
+        .membership_tier_discount_list {
+            gap: 10px;
+        }
+
+        .membership_tier_discount_list > li {
+            width: 100%;
+        }
+
+        .membership_tier_discount_list > li > p {
+            font-size: 1em;
+        }
     }
     </style>
 </head>
@@ -188,7 +338,7 @@
         <nav class="header_main">
             <div class="header_logo">
                 <a href="./index.html">
-                    <img src="./pic/logo/logo_nav.svg" alt="">
+                    <img src="./pic/logo/logo_book_footer.svg" alt="">
                 </a>    
             </div>
             <div class="header_menu">
@@ -206,21 +356,40 @@
             </div>
             <div class="header_user">
                 <ul class="header_user_list">
-                    <li class="pill join">
+                    <li class="pill join" id="joinbtn">
                         <a href="./member_signup.html">加入會員</a>
                     </li>
-                    <li class="pill login">
+                    <li class="pill login" id="cancelbtn">
                         <a href="#">會員登入</a>
                     </li>
-                    <li class="language">
-                        <a href="#">TW 繁體中文</a>
+                    <li class="header_user_member" id="header_user_member">
+                        <a href="./member_manager.html">您好，<span>WANG先生</span></a>
+                    </li>
+                    <li class="header_user_search" id="header_user_search">
+                        <a href="./booking.html">航班搜尋</a>
+                    </li>
+                    <li class="hamburger_menu">
+                        <div>
+                            <button class="hamburger_toggle" id="hamburger_toggle">
+                                <img src="./pic/icon/icon_menu-burger.svg" alt="" id="menu_open" style="display: block;">
+                                <img src="./pic/icon/icon_menu-burger_cancel.svg" alt="" id="menu_close" style="display: none;">
+                            </button>
+                            <div class="menu_list_group" id="menu_list_group">
+                                <ul class="menu_list">
+                                    <li><a href="./cabin_class.html">體驗AURORA</a></li>
+                                    <li><a href="./membership_tier.html">SkyTier會員</a></li>
+                                    <li><a href="./contact.html">聯絡我們</a></li>
+                                    <li><a href="./booking.html">航班搜尋</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
-        </nav>
+        </nav>    
     </header>
 
-    <main>
+    <main class="main">
         <!--breadcrumbs-->
         <div class="breadcrumbs">
             <ol class="breadcrumbs_list">
@@ -347,6 +516,43 @@
         </div>
     </main>
 
+    <!-- login modal -->
+    <div id="loginmodal" class="modal">
+        <div class="modal_content">
+            <button class="modal_close" id="modal_close" type="button">x</button>
+            <div class="modal_title">
+                <h2>SkyTier Gold</h2>
+                <p>會員登入</p>
+            </div>
+            <div class="modal_form">
+                <form action="">
+                    <div>
+                        <label for="">會員號碼</label>
+                        <p>10位數字</p>
+                        <input type="text" id="member_id">
+                    </div>
+                    <div>
+                        <label for="">密碼</label>
+                        <input type="password" id="member_password">
+                    </div>
+                    <div>
+                        <p>個人資訊使用之目的請務必先詳細閱讀奧若拉天航隱私權保護政策並同意其內容再進行下一步。</p>
+                    </div>
+                    <div class="modal_form_btn_group">
+                        <div class="modal_form_btn">
+                            <button id="modal_close_btn" type="button">不登入，直接使用</button>
+                            <button id="modal_login_btn" type="button">登入</button>
+                        </div>
+                        <div class="modal_form_btn">
+                            <a href="">忘記會員號碼的旅客</a>
+                            <a href="">忘記密碼</a>
+                        </div>
+                    </div>    
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!--footer-->
     <footer class="footer">
         <div class="footer_inner">
@@ -357,7 +563,7 @@
                     </div>
                     <div class="footer_inner_txt">
                         <div>
-                            <h3>關於Aurora Sky</h3>
+                            <h3 class="footer_inner_title">關於Aurora Sky</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">關於我們</a>
@@ -377,7 +583,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3>顧客服務</h3>
+                            <h3 class="footer_inner_title">顧客服務</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">顧客滿意度問卷調查</a>
@@ -397,7 +603,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3>網站聲明與規範</h3>
+                            <h3 class="footer_inner_title">網站聲明與規範</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">隱私保護政策</a>
@@ -417,13 +623,29 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                
+                </div>    
             </div>
         </div>
         <div class="footer_bottom">
             <p>&#64;Copyright 2025. Aurora Sky Co.Ltd. All rights reserved</p>
         </div>
     </footer>
+
+    <script src="./js/header.js"></script>
+    <script src="./js/lightbox.js"></script>
+    <script src="./js/footer.js"></script>
+    <script>
+        function init(){
+            checkLoginStatus();
+            document.getElementById("cancelbtn").onclick = login;
+            document.getElementById("modal_close").onclick = logincancel;
+            document.getElementById("modal_close_btn").onclick = logincancelBtn;
+            document.getElementById("modal_login_btn").onclick = checkLoginData;
+            document.getElementById("menu_open").onclick = hamburgeropen;
+            document.getElementById("menu_close").onclick = hamburgerclose;
+        }
+
+        window.addEventListener("load", init);
+    </script>
 </body>
 </html>

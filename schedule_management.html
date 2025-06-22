@@ -7,13 +7,15 @@
     <link rel="stylesheet" href="./css/all.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/footer_index.css">
+    <link rel="stylesheet" href="./css/login_modal.css">
     <style>
         .header {
             margin-bottom: 40px;
         }
 
         .main {
-            width: 1200px;
+            width: 100%;
+            max-width: 1200px;
             margin: auto;
             margin-bottom: 100px;
         }
@@ -86,7 +88,7 @@
             justify-content: space-between;
         }
 
-        .schedule_info > div > div {
+        .schedule_info_dep, .schedule_info_flight, .schedule_info_arr {
             display: flex;
             flex-wrap: wrap;
             flex-direction: column;
@@ -94,12 +96,12 @@
             justify-content: space-between;
         }
 
-        .schedule_info > div > div > p {
+        .schedule_info_flight > p, .schedule_info_dep > p, .schedule_info_arr > p {
             font-family: "bold";
             font-size: 1.25em;
         }
 
-        .schedule_info > div > div > p.time {
+        .schedule_info_dep > p.time, .schedule_info_arr > p.time {
             font-size: 2em;
         }
 
@@ -141,7 +143,7 @@
         }
 
         .reissue_notice_info, .schedule_management_notice_info {
-            width: 90%;
+            width: 79.717871%;
             margin: auto;
         }
 
@@ -151,9 +153,20 @@
             align-items: center;
         }
 
+        .reissue_notice_pic > div {
+            display: flex;
+            align-items: center;
+        }
+
+        .reissue_notice_pic > div > p {
+            font-family: "bold";
+            font-size: 1.5em;
+            color: #FF2525;
+        }
+
         .reissue_notice_pic > p {
             font-family: "light";
-            color: #FF2525;
+            color: #34495E;
             font-size: 1.25em;
             flex-grow: 1;
         }
@@ -166,13 +179,151 @@
         }
 
         .schedule_management_notice_list {
-            font-family: "light";
-            color: #34495E;
-            font-size: 1.25em;
             display: flex;
             flex-wrap: wrap;
             flex-direction: column;
             gap: 5px;
+        }
+
+        .schedule_management_notice_list > li {
+            font-family: "light";
+            color: #34495E;
+            font-size: 1.25em;
+        }
+
+        @media screen and (max-width: 1024px) {
+            .main {
+                max-width: 960px;
+            }
+
+            .schedule_management_title > h2 {
+                font-size: 1.75em;
+            }
+
+            .schedule_management_info_tital > div:first-child > p {
+                font-size: 1.125em;
+            }
+
+            .schedule_management_info_tital > div > p {
+                font-size: 1.5em;
+            }
+
+            .schedule_info > h2 {
+                font-size: 1.125em
+            }
+
+            .schedule_info_flight > p {
+                font-size: 1.125em;
+            }
+
+            .schedule_info_dep > p.time, .schedule_info_arr > p.time {
+                font-size: 1.75em;
+            }
+
+            .checkin_btn a, .reissue_btn a, .cancel_btn a, .refund_btn a {
+                font-size: 1.25em;
+            }
+
+            .reissue_notice_pic > div > p {
+                font-size: 1.25em;
+            }
+
+            .reissue_notice_pic > p {
+                font-size: 1em;
+            }
+
+            .schedule_management_notice_info, .reissue_notice_info {
+                width: 85%;
+            }
+
+            .schedule_management_notice_info > h2 {
+                font-size: 1.25em;
+            }
+
+            .schedule_management_notice_list > li {
+                font-size: 1em;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .main {
+                max-width: 375px;
+                min-width: 320px;
+            }
+
+            .schedule_management_title {
+                margin-bottom: 10px;
+            }
+
+            .schedule_management_title > h2 {
+                font-size: 1.25em;
+            }
+
+            .schedule_management_info_tital > div:first-child > p {
+                font-size: 1em;
+            }
+
+            .schedule_management_info_tital > div > p {
+                font-size: 1.25em;
+            }
+
+            .schedule_info {
+                padding: 20px 10px;
+            }
+
+
+
+            .schedule_info > h2 {
+                text-align: center;
+                margin-bottom: 15px;
+            }
+
+            .schedule_info > div {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .schedule_info_flight {
+                flex-direction: row-reverse;
+            }
+
+            .schedule_info_flight> div > svg {
+                transform: rotate(-270deg);
+            }
+
+            .schedule_info_flight > p {
+                font-size: .875em;
+            }
+
+            .schedule_info_dep > p, .schedule_info_arr > p {
+                font-size: 1.125em;
+            }
+
+            .schedule_info_dep > p.time, .schedule_info_arr > p.time {
+                font-size: 1.5em;
+            }
+
+            .schedule_btns {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .checkin_btn, .reissue_btn, .cancel_btn, .refund_btn {
+                width: 100%;
+            }
+
+            .schedule_management_login > a {
+                font-size: 1.25em;
+            }
+
+            .schedule_management_notice_info > h2, .reissue_notice_pic > div > p  {
+                font-size: 1.125em;
+            }
+
+            .schedule_management_notice_list > li, .reissue_notice_pic > p {
+                font-size: .875em;
+                line-height: 1.875em;
+            }
         }
     </style>
 </head>
@@ -182,7 +333,7 @@
         <nav class="header_main">
             <div class="header_logo">
                 <a href="./index.html">
-                    <img src="./pic/logo/logo_nav.svg" alt="">
+                    <img src="./pic/logo/logo_book_footer.svg" alt="">
                 </a>    
             </div>
             <div class="header_menu">
@@ -200,18 +351,37 @@
             </div>
             <div class="header_user">
                 <ul class="header_user_list">
-                    <li class="pill join">
+                    <li class="pill join" id="joinbtn">
                         <a href="./member_signup.html">加入會員</a>
                     </li>
-                    <li class="pill login">
+                    <li class="pill login" id="cancelbtn">
                         <a href="#">會員登入</a>
                     </li>
-                    <li class="language">
-                        <a href="#">TW 繁體中文</a>
+                    <li class="header_user_member" id="header_user_member">
+                        <a href="./member_manager.html">您好，<span>WANG先生</span></a>
+                    </li>
+                    <li class="header_user_search" id="header_user_search">
+                        <a href="./booking.html">航班搜尋</a>
+                    </li>
+                    <li class="hamburger_menu">
+                        <div>
+                            <button class="hamburger_toggle" id="hamburger_toggle">
+                                <img src="./pic/icon/icon_menu-burger.svg" alt="" id="menu_open" style="display: block;">
+                                <img src="./pic/icon/icon_menu-burger_cancel.svg" alt="" id="menu_close" style="display: none;">
+                            </button>
+                            <div class="menu_list_group" id="menu_list_group">
+                                <ul class="menu_list">
+                                    <li><a href="./cabin_class.html">體驗AURORA</a></li>
+                                    <li><a href="./membership_tier.html">SkyTier會員</a></li>
+                                    <li><a href="./contact.html">聯絡我們</a></li>
+                                    <li><a href="./booking.html">航班搜尋</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
-        </nav>
+        </nav>    
     </header>
 
     <main class="main">
@@ -239,11 +409,11 @@
                     <div class="schedule_info">
                         <h2>2025/07/08(四)</h2>
                         <div>
-                            <div>
+                            <div class="schedule_info_dep">
                                 <p>台北TPE</p>
                                 <p class="time">16:50</p>
                             </div>
-                            <div>
+                            <div class="schedule_info_flight">
                                 <p>AK001</p>
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="41" viewBox="0 0 40 41" fill="none">
@@ -251,7 +421,7 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div>
+                            <div class="schedule_info_arr">
                                 <p>羽田HND</p>
                                 <p class="time">20:50</p>
                             </div>
@@ -261,11 +431,11 @@
                     <div class="schedule_info">
                         <h2>2025/07/10(六)</h2>
                         <div>
-                            <div>
+                            <div class="schedule_info_dep">
                                 <p>羽田HND</p>
                                 <p class="time">17:00</p>
                             </div>
-                            <div>
+                            <div class="schedule_info_flight">
                                 <p>AK011</p>
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="41" viewBox="0 0 40 41" fill="none">
@@ -273,7 +443,7 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div>
+                            <div class="schedule_info_arr">
                                 <p>台北TPE</p>
                                 <p class="time">19:00</p>
                             </div>
@@ -300,12 +470,15 @@
             <div class="reissue_notice">
                 <div class="reissue_notice_info">
                     <div class="reissue_notice_pic">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
-                            <path d="M15 26.25C21.2132 26.25 26.25 21.2132 26.25 15C26.25 8.7868 21.2132 3.75 15 3.75C8.7868 3.75 3.75 8.7868 3.75 15C3.75 21.2132 8.7868 26.25 15 26.25Z" stroke="#FF2525" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M15 20H15.0125V20.0125H15V20Z" stroke="#FF2525" stroke-width="3" stroke-linejoin="round"/>
-                            <path d="M15 15V10" stroke="#FF2525" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <p>提醒您若需修改行程，請於航班起飛前至少3小時操作，如已輸入報到信息，部分功能將限制使用。</p>
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
+                                <path d="M15 26.25C21.2132 26.25 26.25 21.2132 26.25 15C26.25 8.7868 21.2132 3.75 15 3.75C8.7868 3.75 3.75 8.7868 3.75 15C3.75 21.2132 8.7868 26.25 15 26.25Z" stroke="#FF2525" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15 20H15.0125V20.0125H15V20Z" stroke="#FF2525" stroke-width="3" stroke-linejoin="round"/>
+                                <path d="M15 15V10" stroke="#FF2525" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <p>提醒您</p>
+                        </div>
+                        <p>若需修改行程，請於航班起飛前至少3小時操作，如已完成報到，部分功能將限制使用。</p>
                     </div>
                 </div>
             </div>
@@ -324,6 +497,43 @@
         </div>
     </main>
 
+    <!-- login modal -->
+    <div id="loginmodal" class="modal">
+        <div class="modal_content">
+            <button class="modal_close" id="modal_close" type="button">x</button>
+            <div class="modal_title">
+                <h2>SkyTier Gold</h2>
+                <p>會員登入</p>
+            </div>
+            <div class="modal_form">
+                <form action="">
+                    <div>
+                        <label for="">會員號碼</label>
+                        <p>10位數字</p>
+                        <input type="text" id="member_id">
+                    </div>
+                    <div>
+                        <label for="">密碼</label>
+                        <input type="password" id="member_password">
+                    </div>
+                    <div>
+                        <p>個人資訊使用之目的請務必先詳細閱讀奧若拉天航隱私權保護政策並同意其內容再進行下一步。</p>
+                    </div>
+                    <div class="modal_form_btn_group">
+                        <div class="modal_form_btn">
+                            <button id="modal_close_btn" type="button">不登入，直接使用</button>
+                            <button id="modal_login_btn" type="button">登入</button>
+                        </div>
+                        <div class="modal_form_btn">
+                            <a href="">忘記會員號碼的旅客</a>
+                            <a href="">忘記密碼</a>
+                        </div>
+                    </div>    
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!--footer-->
     <footer class="footer">
         <div class="footer_inner">
@@ -334,7 +544,7 @@
                     </div>
                     <div class="footer_inner_txt">
                         <div>
-                            <h3>關於Aurora Sky</h3>
+                            <h3 class="footer_inner_title">關於Aurora Sky</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">關於我們</a>
@@ -354,7 +564,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3>顧客服務</h3>
+                            <h3 class="footer_inner_title">顧客服務</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">顧客滿意度問卷調查</a>
@@ -374,7 +584,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3>網站聲明與規範</h3>
+                            <h3 class="footer_inner_title">網站聲明與規範</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">隱私保護政策</a>
@@ -394,13 +604,29 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                
+                </div>    
             </div>
         </div>
         <div class="footer_bottom">
             <p>&#64;Copyright 2025. Aurora Sky Co.Ltd. All rights reserved</p>
         </div>
     </footer>
+
+    <script src="./js/header.js"></script>
+    <script src="./js/lightbox.js"></script>
+    <script src="./js/footer.js"></script>
+    <script>
+        function init(){
+            checkLoginStatus();
+            document.getElementById("cancelbtn").onclick = login;
+            document.getElementById("modal_close").onclick = logincancel;
+            document.getElementById("modal_close_btn").onclick = logincancelBtn;
+            document.getElementById("modal_login_btn").onclick = checkLoginData;
+            document.getElementById("menu_open").onclick = hamburgeropen;
+            document.getElementById("menu_close").onclick = hamburgerclose;
+        }
+
+        window.addEventListener("load", init);
+    </script>
 </body>
 </html>

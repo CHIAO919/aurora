@@ -7,17 +7,21 @@
     <link rel="stylesheet" href="./css/all.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/footer_index.css">
+    <link rel="stylesheet" href="./css/login_modal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="./css/flatpickr.css">
     <style>
         .header {
             margin-bottom: 60px;
         }
 
         .main {
-            width: 1200px;
+            width: 100%;
+            max-width: 1200px;
             margin: auto;
         }
         .booking_title {
-            width: 100%;
+            width: 90%;
             margin: auto;
             margin-bottom: 50px;
         }
@@ -29,7 +33,7 @@
         }
 
         .booking {
-            width: 83%;
+            width: 90%;
             margin: auto;
             margin-bottom: 100px;
             background-color: #fff;
@@ -44,74 +48,85 @@
 
         .location_class {
             display: flex;
+            flex-direction: column;
             flex-wrap: wrap;
-            width: 85.341365%;
+            width: 85%;
             margin: auto;
-            justify-content: space-evenly;
+            /* justify-content: space-evenly; */
         }
 
         .booking_location {
             display: flex;
-            flex-wrap: wrap;
+            /* flex-wrap: wrap; */
             align-items: center;
-            width: 40.160642%;
-            justify-content: space-between;
+            width: 100%;
+            justify-content: center;
+            gap: 10px;
+            margin: auto;
         }
 
-        .booking_location p {
+        .booking_location_dep, .booking_location_arr {
             width: 40%;
+        }
+
+        .select_input {
+            width: 100%;
+            appearance: none;         /* 標準 */
+            -webkit-appearance: none; /* Chrome / Safari */
+            -moz-appearance: none;    /* Firefox */
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            /* font: inherit; */
+            /* color: inherit; */
+            background-color: transparent;
+            width: 100%;
             text-align: center;
             font-family: "bold";
-            font-size: 2.25em;
+            font-size: 1.875em;
             color: #A38D6D;
             text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
         }
 
-        .booking_class {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            width: 40.160642%;
-            border: 1px solid #D9D9D9;
-            border-radius: 5px;
-            justify-content: space-between;
-            padding: 0 2%;
-            cursor: pointer;
-        }
-
-        .booking_class > div > svg {
-            transform: rotate(-270deg);
-        }
-
-        .booking_class > p {
-            font-family: "light";
+        .select_input > option {
+            font-size: .5em;
             color: #34495E;
-            font-size: 1.25em;
+        }
+
+        optgroup.jpn, optgroup.kor {
+            font-size: .5em;
+        }
+
+        .select_input > optgroup > option {
+            color: #34495E;
         }
 
         .departure_arrival {
             display: flex;
-            flex-wrap: wrap;
-            width: 85.341365%;
+            width: 85%;
             margin: auto;
             justify-content: space-evenly;
         }
 
         .booking_departure, .booking_arrival {
-            width: 40.160642%;
+            width: 40%;
             display: flex;
             align-items: center;
             border: 1px solid #D9D9D9;
-            border-radius: 5px;
+            border-radius: 30px;
             justify-content: space-between;
-            padding: .5% 2%;
+            padding: 10px 5px;
             cursor: pointer;
         }
 
-        .booking_departure > p, .booking_arrival > p {
+        .booking_departure > input, .booking_arrival > input {
             font-family: "light";
             color: #34495E;
             font-size: 1.25em;
+            text-align: center;
+            width: 100%;
+            border: none;
         }
 
         .booking_submit {
@@ -138,6 +153,59 @@
             border: none;
             cursor: pointer;
         }
+
+        @media screen and (max-width: 1024px) {
+            .booking_title h2 {
+                font-size: 1.875em;
+            }
+
+            .booking_title {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .main {
+                max-width: 375px;
+                min-width: 320px;
+            }
+
+            .booking {
+                padding: 30px 0;
+            }
+
+            .booking_title h2 {
+                width: 60%;
+                font-size: 1.75em;
+            }
+
+            .booking_location {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .booking_location > div > svg {
+                transform: rotate(-270deg);
+            }
+
+            .departure_arrival {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .booking_departure, .booking_arrival {
+                width: 100%;
+            }
+
+            .booking_submit {
+                justify-content: center;
+            }
+
+            button.btn_submit {
+                font-size: 1.5em;
+                width: 150px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -146,7 +214,7 @@
         <nav class="header_main">
             <div class="header_logo">
                 <a href="./index.html">
-                    <img src="./pic/logo/logo_nav.svg" alt="">
+                    <img src="./pic/logo/logo_book_footer.svg" alt="">
                 </a>    
             </div>
             <div class="header_menu">
@@ -164,76 +232,87 @@
             </div>
             <div class="header_user">
                 <ul class="header_user_list">
-                    <li class="pill join">
+                    <li class="pill join" id="joinbtn">
                         <a href="./member_signup.html">加入會員</a>
                     </li>
-                    <li class="pill login">
+                    <li class="pill login" id="cancelbtn">
                         <a href="#">會員登入</a>
                     </li>
-                    <li class="language">
-                        <a href="#">TW 繁體中文</a>
+                    <li class="header_user_member" id="header_user_member">
+                        <a href="./member_manager.html">您好，<span>WANG先生</span></a>
+                    </li>
+                    <li class="header_user_search" id="header_user_search">
+                        <a href="./booking.html">航班搜尋</a>
+                    </li>
+                    <li class="hamburger_menu">
+                        <div>
+                            <button class="hamburger_toggle" id="hamburger_toggle">
+                                <img src="./pic/icon/icon_menu-burger.svg" alt="" id="menu_open" style="display: block;">
+                                <img src="./pic/icon/icon_menu-burger_cancel.svg" alt="" id="menu_close" style="display: none;">
+                            </button>
+                            <div class="menu_list_group" id="menu_list_group">
+                                <ul class="menu_list">
+                                    <li><a href="./cabin_class.html">體驗AURORA</a></li>
+                                    <li><a href="./membership_tier.html">SkyTier會員</a></li>
+                                    <li><a href="./contact.html">聯絡我們</a></li>
+                                    <li><a href="./booking.html">航班搜尋</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
-        </nav>
+        </nav>    
     </header>
 
     <!--flight booking-->
     <main class="main">
         <div class="booking_title">
             <h2>
-            您的空中行程，從這裡啟航
+                您的空中行程，從這裡啟航
             </h2>
         </div>
         
         <div class="booking">
             <div class="location_class">
                 <div class="booking_location">
-                    <p>出發地</p>
+                    <div class="booking_location_dep">
+                        <select name="departure" id="departure" class="select_input">
+                            <option value="" disabled selected>出發地</option>
+                            <option value="tpe">台北(桃園機場)</option>
+                            <option value="tsa">台北(松山機場)</option>
+                            <option value="khh">高雄</option>
+                        </select>
+                    </div>
+                    
                     <div>
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6.55597 29.68C6.38153 29.5369 6.24113 29.3568 6.14495 29.1527C6.04878 28.9486 5.99926 28.7256 5.99997 28.5C5.99871 28.3038 6.03703 28.1093 6.11263 27.9282C6.18822 27.7471 6.29956 27.5831 6.43997 27.446L12.456 21.438C12.7372 21.1571 13.1185 20.9993 13.516 20.9993C13.9135 20.9993 14.2947 21.1571 14.576 21.438C14.8569 21.7192 15.0147 22.1005 15.0147 22.498C15.0147 22.8955 14.8569 23.2767 14.576 23.558L11.112 27H32.5C32.8978 27 33.2793 27.158 33.5606 27.4393C33.8419 27.7206 34 28.1022 34 28.5C34 28.8978 33.8419 29.2793 33.5606 29.5607C33.2793 29.842 32.8978 30 32.5 30H11.132L14.568 33.444C14.8483 33.7252 15.0057 34.106 15.0057 34.503C15.0057 34.9 14.8483 35.2808 14.568 35.562C14.2867 35.8429 13.9055 36.0007 13.508 36.0007C13.1105 36.0007 12.7292 35.8429 12.448 35.562L6.55597 29.68ZM33.444 12.68C33.6184 12.5369 33.7588 12.3568 33.855 12.1527C33.9512 11.9486 34.0007 11.7256 34 11.5C34.0012 11.3038 33.9629 11.1093 33.8873 10.9282C33.8117 10.7471 33.7004 10.5831 33.56 10.446L27.544 4.43999C27.2627 4.15909 26.8815 4.00131 26.484 4.00131C26.0865 4.00131 25.7052 4.15909 25.424 4.43999C25.1431 4.72124 24.9853 5.10249 24.9853 5.49999C24.9853 5.89749 25.1431 6.27874 25.424 6.55999L28.886 9.99999H7.49997C7.10214 9.99999 6.72061 10.158 6.43931 10.4393C6.158 10.7206 5.99997 11.1022 5.99997 11.5C5.99997 11.8978 6.158 12.2793 6.43931 12.5607C6.72061 12.842 7.10214 13 7.49997 13H28.868L25.432 16.444C25.1517 16.7252 24.9943 17.106 24.9943 17.503C24.9943 17.9 25.1517 18.2808 25.432 18.562C25.7132 18.8429 26.0945 19.0007 26.492 19.0007C26.8895 19.0007 27.2707 18.8429 27.552 18.562L33.444 12.68Z" fill="#A38D6D"/>
                         </svg>
                     </div>
-                    <p>目的地</p>
-                </div>
-                <div class="booking_class">
-                    <p>選擇艙等</p>
-                    <div>
-                        <svg width="24" height="48" viewBox="0 0 12 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.157 12.711L4.5 18.368L3.086 16.954L8.036 12.004L3.086 7.05401L4.5 5.64001L10.157 11.297C10.3445 11.4845 10.4498 11.7389 10.4498 12.004C10.4498 12.2692 10.3445 12.5235 10.157 12.711Z" fill="#34495E"/>
-                        </svg>
+                    <div class="booking_location_arr">
+                        <select name="" id="" class="select_input">
+                            <option value="" disabled selected>目的地</option>
+                            <optgroup label="日本" class="jpn">
+                                <option value="nrt">東京(成田機場)</option>
+                                <option value="kix">大阪</option>
+                                <option value="kmj">熊本</option>
+                                <option value="ngo">名古屋</option>
+                            </optgroup>
+                            <optgroup label="韓國" class="kor">
+                                <option value="icn">首爾(仁川機場)</option>
+                                <option value="pus">釜山</option>
+                            </optgroup>
+                        </select>
                     </div>
                 </div>
             </div>
             <div class="departure_arrival">
                 <div class="booking_departure">
-                    <p>出發日期</p>
-                    <div>
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 6H5C3.89543 6 3 6.89543 3 8V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V8C21 6.89543 20.1046 6 19 6Z" stroke="#34495E" stroke-width="2"/>
-                            <path d="M7 6.5H17C17.9571 6.5 18.6245 6.50064 19.1279 6.56836C19.5556 6.62589 19.8073 6.72548 19.9873 6.87305L20.0605 6.93945C20.2452 7.12414 20.3659 7.38316 20.4316 7.87207C20.4869 8.28279 20.494 8.80269 20.4961 9.5H3.50391C3.50604 8.80269 3.51311 8.28279 3.56836 7.87207C3.62589 7.44441 3.72548 7.19266 3.87305 7.0127L3.93945 6.93945C4.12414 6.75477 4.38316 6.63414 4.87207 6.56836C5.37548 6.50064 6.04285 6.5 7 6.5Z" fill="#34495E" stroke="#34495E"/>
-                            <path d="M7 3V6M17 3V6" stroke="#34495E" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M10.5 12.5V13.5H7.5V12.5H10.5Z" fill="black" stroke="#34495E"/>
-                            <path d="M10.5 16.5V17.5H7.5V16.5H10.5Z" fill="black" stroke="#34495E"/>
-                            <path d="M16.5 12.5V13.5H13.5V12.5H16.5Z" fill="black" stroke="#34495E"/>
-                            <path d="M16.5 16.5V17.5H13.5V16.5H16.5Z" fill="black" stroke="#34495E"/>
-                        </svg>
-                    </div>
+                    <input id="depart_date" type="text" placeholder="出發日期" readonly>
                 </div>
                 <div class="booking_arrival">
-                    <p>回程日期</p>
-                    <div>
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 6H5C3.89543 6 3 6.89543 3 8V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V8C21 6.89543 20.1046 6 19 6Z" stroke="#34495E" stroke-width="2"/>
-                            <path d="M7 6.5H17C17.9571 6.5 18.6245 6.50064 19.1279 6.56836C19.5556 6.62589 19.8073 6.72548 19.9873 6.87305L20.0605 6.93945C20.2452 7.12414 20.3659 7.38316 20.4316 7.87207C20.4869 8.28279 20.494 8.80269 20.4961 9.5H3.50391C3.50604 8.80269 3.51311 8.28279 3.56836 7.87207C3.62589 7.44441 3.72548 7.19266 3.87305 7.0127L3.93945 6.93945C4.12414 6.75477 4.38316 6.63414 4.87207 6.56836C5.37548 6.50064 6.04285 6.5 7 6.5Z" fill="#34495E" stroke="#34495E"/>
-                            <path d="M7 3V6M17 3V6" stroke="#34495E" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M10.5 12.5V13.5H7.5V12.5H10.5Z" fill="black" stroke="#34495E"/>
-                            <path d="M10.5 16.5V17.5H7.5V16.5H10.5Z" fill="black" stroke="#34495E"/>
-                            <path d="M16.5 12.5V13.5H13.5V12.5H16.5Z" fill="black" stroke="#34495E"/>
-                            <path d="M16.5 16.5V17.5H13.5V16.5H16.5Z" fill="black" stroke="#34495E"/>
-                        </svg>
-                    </div>
+                    <input id="return_date" type="text" placeholder="回程日期" readonly>
                 </div>
             </div>
 
@@ -242,6 +321,43 @@
             </div>
         </div>
     </main>
+
+    <!-- login modal -->
+    <div id="loginmodal" class="modal">
+        <div class="modal_content">
+            <button class="modal_close" id="modal_close" type="button">x</button>
+            <div class="modal_title">
+                <h2>SkyTier Gold</h2>
+                <p>會員登入</p>
+            </div>
+            <div class="modal_form">
+                <form action="">
+                    <div>
+                        <label for="">會員號碼</label>
+                        <p>10位數字</p>
+                        <input type="text" id="member_id">
+                    </div>
+                    <div>
+                        <label for="">密碼</label>
+                        <input type="password" id="member_password">
+                    </div>
+                    <div>
+                        <p>個人資訊使用之目的請務必先詳細閱讀奧若拉天航隱私權保護政策並同意其內容再進行下一步。</p>
+                    </div>
+                    <div class="modal_form_btn_group">
+                        <div class="modal_form_btn">
+                            <button id="modal_close_btn" type="button">不登入，直接使用</button>
+                            <button id="modal_login_btn" type="button">登入</button>
+                        </div>
+                        <div class="modal_form_btn">
+                            <a href="">忘記會員號碼的旅客</a>
+                            <a href="">忘記密碼</a>
+                        </div>
+                    </div>    
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!--footer-->
     <footer class="footer">
@@ -253,7 +369,7 @@
                     </div>
                     <div class="footer_inner_txt">
                         <div>
-                            <h3>關於Aurora Sky</h3>
+                            <h3 class="footer_inner_title">關於Aurora Sky</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">關於我們</a>
@@ -273,7 +389,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3>顧客服務</h3>
+                            <h3 class="footer_inner_title">顧客服務</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">顧客滿意度問卷調查</a>
@@ -293,7 +409,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3>網站聲明與規範</h3>
+                            <h3 class="footer_inner_title">網站聲明與規範</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">隱私保護政策</a>
@@ -313,13 +429,54 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                
+                </div>    
             </div>
         </div>
         <div class="footer_bottom">
             <p>&#64;Copyright 2025. Aurora Sky Co.Ltd. All rights reserved</p>
         </div>
     </footer>
+
+    <script src="./js/header.js"></script>
+    <script src="./js/lightbox.js"></script>
+    <script src="./js/footer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+
+            // 出發日選擇器
+            flatpickr("#depart_date", {
+                dateFormat: "Y-m-d",
+                minDate: tomorrow, // 出發日從明天開始
+                onChange: function (selectedDates, dateStr, instance) {
+                    // 回程最小日期要 >= 出發日 +1
+                    const returnMin = new Date(selectedDates[0]);
+                    returnMin.setDate(returnMin.getDate() + 1);
+                    returnPicker.set("minDate", returnMin);
+                }
+            });
+
+            // 回程日選擇器
+            const returnPicker = flatpickr("#return_date", {
+                dateFormat: "Y-m-d",
+                minDate: new Date().fp_incr(2) // 預設回程日最早是後天
+            });
+        });
+
+        function init(){
+            checkLoginStatus();
+            document.getElementById("cancelbtn").onclick = login;
+            document.getElementById("modal_close").onclick = logincancel;
+            document.getElementById("modal_close_btn").onclick = logincancelBtn;
+            document.getElementById("modal_login_btn").onclick = checkLoginData;
+            document.getElementById("menu_open").onclick = hamburgeropen;
+            document.getElementById("menu_close").onclick = hamburgerclose;
+        }
+
+        window.addEventListener("DOMContentLoaded", init);
+    </script>
 </body>
 </html>

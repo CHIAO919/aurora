@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="./css/all.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/footer_index.css">
+    <link rel="stylesheet" href="./css/login_modal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="./css/flatpickr.css">
     <style>
         .main {
             width: 1200px;
@@ -18,12 +21,30 @@
         }
 
         .content_banner {
+            width: 100%;
+            position: relative;
+        }
+
+        .content_banner_pic {
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
             position: relative;
         }
 
         .content_banner_pic img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
             vertical-align: middle;
+        }
+
+        .content_banner_pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
 
         .content_banner_txt {
@@ -59,13 +80,13 @@
             flex-wrap: wrap;
             position: relative;
             justify-content: space-evenly;
-            padding-bottom: 8%;
+            padding-bottom: 9%;
         }
         .content_booking {
-            width: 100%;
+            width: 80%;
             margin: auto;
             border-radius: 25px;
-            padding: 1.041666% 2.083333%;
+            padding: 15px 20px;
             position: relative;
             top: -80px;
             background-color: #fff;
@@ -77,8 +98,9 @@
         }
         .content_booking_search h2 {
             font-family: "bold";
-            font-size: 2.25em;
+            font-size: 2em;
             color: #0F4C81;
+            letter-spacing: 2px;
         }
         .content_booking_search h2::after {
             content: "";
@@ -105,6 +127,7 @@
         .booking_location_arr {
             width: 100%;
         }
+
         .booking_location_arrow {
             position: absolute;
             left: 50%;
@@ -113,31 +136,56 @@
             z-index: 2;
             pointer-events: none;
         }
+
         .select_group.departure {
             padding-left: 1.041666%;
         }
-        .select_trigger {
+
+        .select_input {
             width: 100%;
             height: 60px;
-            background-color: #fff;
+            padding: 10px;
             border: 1px solid rgba(53, 74, 95, .5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            cursor: pointer;
-        }
-        .select_group.departure .select_trigger{
-            border-radius: 5px 0 0 5px;
-        }
-        .select_trigger .icon_txt {
-            font-family: "bold";
-            font-size: 1.5em;
+            border-radius: 0 30px 30px 0;
+            appearance: none;
+            background-color: #fff;
+            background-image: none;
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px 16px;
             color: #34495E;
+            font-family: "bold";
+            font-size: 1.25em;
+            text-align: center;
+            text-align-last: center;
         }
 
-        .select_group.arrival .select_trigger{
-            border-radius: 0 5px 5px 0;
+        #departure.select_input {
+            border-radius: 30px 0 0 30px;
+        }
+
+        #departure > option {
+            font-family: "light";
+            font-size: .75em;
+        }
+
+        .select_input > optgroup.jpn, .select_input > optgroup.kor {
+            color: #0F4C81;
+            font-family: "bold";
+            text-align: center;
+        }
+
+        .select_input > optgroup.jpn > option, .select_input > optgroup.kor > option {
+            color: #34495E;
+            font-family: "light";
+            font-size: .75em;
+            text-align: center;
+        }
+
+        option.countary {
+            color: #A38D6D;
+            font-family: "bold";
+            text-align: left;
         }
 
         .select_dropdown {
@@ -153,6 +201,7 @@
         .select_dropdown li:nth-child(1n+2) {
             border-top: 1px solid #D9D9D9;
         }
+
         .select_dropdown li a {
             text-decoration: none;
             color: #F0F4F8;
@@ -161,6 +210,7 @@
             font-size: 1.5em;
             padding: .2em .5em;
         }
+
         .booking_date {
             padding-top: 30px;
             display: flex;
@@ -168,6 +218,7 @@
             position: relative;
             width: 44.642857%;
         }
+
         .booking_date_depa {
             width: 50%;
         }
@@ -175,17 +226,35 @@
         .booking_date_arr {
             width: 50%;
         }
+
         .select_date {
             width: 100%;
             height: 60px;
+            padding: 0 15px;
             background-color: #fff;
             border: 1px solid rgba(53, 74, 95, .5);
+            cursor: pointer;
+            text-align: center;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
         }
-        
+
+        .select_date > input {
+            width: 100%;
+            border: none;
+            background: none;
+            font-family: "bold";
+            font-size: 1.5em;
+            color: #34495E;
+            flex: 1;
+            text-align: center;
+            font-family: "bold";
+            font-size: 1.25em;
+        }
+
+        .select_date > input:focus {
+            outline: none;
+        }
+
         .select_group.departure, .select_group.arrival {
             width: 100%;
         }
@@ -194,11 +263,11 @@
             width: 100%;
         }
         .select_group.depart_date .select_date {
-            border-radius: 5px 0 0 5px;
+            border-radius: 30px 0 0 30px;
         }
 
         .select_group.return_date .select_date {
-            border-radius: 0 5px 5px 0;
+            border-radius: 0 30px 30px 0;
         }
 
         .booking_date .icon_txt{
@@ -223,7 +292,7 @@
             right: 0;
         }
 
-/*         .btn_submit {
+        .btn_submit {
             width: 245px;
             height: 60px;
             font-family: "bold";
@@ -233,9 +302,10 @@
             color: #F0F4F8;
             border: none;
             cursor: pointer;
-        } */
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, .5);
+        }
 
-        .booking_submit a {
+        /* .booking_submit a {
             display: block;
             width: 245px;
             height: 60px;
@@ -247,35 +317,56 @@
             text-decoration: none;
             text-align: center;
             line-height: 60px;
-        }
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, .5);
+        } */
 
         /*manager*/
         .content_manager {
             position: relative;
-            width: 100%;
+            width: 90%;
+            margin: auto;
             margin-bottom: 100px;
         }
+
         .flight_manager {
+            margin: 5px 0;
             background-color: rgba(15, 75, 128, .8);
         }
+
         .flight_manager_list {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
         }
+
         .flight_manager_list li {
             padding: 10px 0;
         }
+
         .flight_manager_list li a {
             text-decoration: none;
             color: #F0F4F8;
             font-family: "bold";
-            font-size: 1.25em;
+            font-size: 1em;
         }
 
         .flight_manager_list div {
             text-align: center;
         }
+
+        .manager_book, .manager_checkin , .manager_flightinfo {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .manager_book > img, .manager_checkin > img, .manager_flightinfo > img {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 5px;
+        }
+
         .flight_manager_info {
             margin-top: 5px;
         }
@@ -300,13 +391,20 @@
             text-decoration: none;
             font-family: "bold";
             color: #34495E;
-            font-size: 1.25em;
+            font-size: 1.125em;
             border: 1px solid #34495E;
             display: block;
             width: 200px;
             text-align: center;
             padding: 5px 0;
             border-radius: 300px;
+        }
+
+        .flight_manager_detial_1_1 a:hover,.flight_manager_detial_1_2 a:hover,.flight_manager_detial_1_3 a:hover {
+            background-color: rgba(15, 75, 128, .8);
+            color: #fff;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease-in-out;
         }
 
         .flight_manager_detial_1_1 div, .flight_manager_detial_1_2 div, .flight_manager_detial_1_3 div {
@@ -318,7 +416,7 @@
 
         /*news*/
         .news {
-            width: 100%;
+            width: 90%;
             margin: auto;
             margin-bottom: 100px;
         }
@@ -328,13 +426,21 @@
             margin-bottom: 20px;
             font-family: "bold";
             font-size: 2.25em;
-            letter-spacing: .5em;
+            letter-spacing: 2px;
             color: #0F4C81;
+        }
+
+        .news_slider_container {
+            position: relative;
+        }
+
+        .news_list_slider {
+            display: flex;
+            width: 100%;
         }
 
         .news_list {
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
         }
 
@@ -347,6 +453,31 @@
         .news_list_pic img {
             width: 100%;
             vertical-align: middle;
+            transition: 0.3s ease;
+        }
+
+        .news_list_pic img:hover {
+            transform: scale(1.05);
+        }
+
+        .news_arrow {
+            display: none;
+            border: none;
+            position: absolute;
+            background-color: transparent;
+            z-index: 1;
+        }
+
+        .news_arrow.prev {
+            top: 50%;
+            transform: translateY(-50%);
+            left: -5%;
+        }
+
+        .news_arrow.next {
+            top: 50%;
+            transform: translateY(-50%);
+            right: -5%;
         }
 
         /*recommend*/
@@ -360,7 +491,7 @@
             margin-bottom: 20px;
             font-family: "bold";
             font-size: 2.25em;
-            letter-spacing: .5em;
+            letter-spacing: 2px;
             color: #0F4C81;
         }
 
@@ -370,6 +501,8 @@
             position: relative;
             align-items: center;
             justify-content: center;
+            width: 90%;
+            margin: auto;
         }
 
         .slider_btn {
@@ -383,26 +516,45 @@
         }
 
         .prev_btn {
-            left: 5px;
+            left: -1%;
         }
 
         .next_btn {
-            right: 10px;
+            right: -1%;
         }
 
         .recomm_hotel {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
             background-color: #fff;
             padding: 2.5% 1.666666%;
             border-radius: 25px;
             width: 100%;
+            overflow: hidden;
+            align-items: center;
         }
+
+        .recomm_hotel_list {
+            display: flex;
+            gap: 40px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .recomm_hotel_list::-webkit-scrollbar {
+            display: none;
+        }
+
         .recomm_hotel_card {
             width: 22.083333%;
+            flex: 0 0 auto;
         }
         
+        .recomm_hotel_card a {
+            text-decoration: none;
+        }
+
         .recomm_hotel_pic {
             margin-bottom: 15px;
         }
@@ -430,40 +582,259 @@
             font-family: "light";
             font-size: .9em;
         }
+        
+        @media screen and (max-width: 1200px) {
+            .main {
+                width: 1024px;
+            }
 
+            .content_banner_txt {
+                top: 5%;
+                right: 5%;
+                padding: 10px;
+                gap: 10px;
+            }
 
+            .content_banner_txt_en {
+                font-size: 2.5em;
+            }
 
-    .select_input > option:first-child {
-        color: #A38D6D;
-        font-family: "bold";
-        text-align: center;
-    }
+            .content_banner_txt_tw {
+                font-size: 2em;
+            }
 
-    .select_input {
-        width: 100%;
-        height: 60px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        font-size: 1em;
-        appearance: none;
-        background-color: #fff;
-        background-image: url('data:image/svg+xml;utf8,<svg fill="%2334495E" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
-        background-repeat: no-repeat;
-        background-position: right 10px center;
-        background-size: 16px 16px;
-        color: #34495E;
-        font-family: "bold";
-        font-size: 1.5em;
-    }
+            .booking_form {
+                flex-direction: column;
+                padding-bottom: 75px;
+            }
 
+            .booking_date,.booking_location {
+                width: 90%;
+                margin: auto;
+            }
 
-    .select_input > option {
-        color: #34495E;
-        font-family: "light";
-        font-size: .75em;
-    }
+            .content_banner_pic {
+                width: 100%;
+            }
 
+            .flight_manager_detial_1_1, .flight_manager_detial_1_2, .flight_manager_detial_1_3 {
+                padding: 3% 5%;
+            }
+        }
+
+        @media screen and (max-width: 1024px) {
+            .main {
+                width: 768px;
+            }
+
+            .recomm_hotel {
+                padding: 5% 3%;
+            }
+
+            .recomm_hotel_card {
+                width: 47%;
+                flex: 0 0 auto;
+            }
+
+            .news_list_slider {
+                overflow: hidden;
+            }
+
+            .news_list {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                scroll-behavior: smooth;
+                gap: 15px;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+
+            .news_list::-webkit-scrollbar {
+                display: none;
+            }
+
+            .news_list_pic {
+                flex: 0 0 auto;
+                width: 60%;
+                border-radius: 25px;
+                overflow: hidden;
+            }
+
+            .news_list_pic img {
+                width: 100%;
+                transition: 0.3s ease;
+            }
+
+            .news_list_pic img:hover {
+                transform: scale(1.05);
+            }
+
+            .news_arrow {
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .main {
+                max-width: 375px;
+                min-width: 320px;
+            }
+
+            .booking_submit > a {
+                width: 150px;
+                height: 50px;
+                font-size: 1.125em;
+                line-height: 50px;
+            }
+
+            .content_booking {
+                width: 90%;
+            }
+
+            .content_booking_search h2 {
+                font-size: 1.875em;
+            }
+
+            .content_booking_search h2::after {
+                top: 45px;
+            }
+
+            .booking_location, .booking_date {
+                padding-top: 20px;
+                width: 100%;
+            }
+
+            .select_input {
+                font-size: 1.125em;
+                height: 50px;
+            }
+
+            .select_input > option {
+                text-align: center;
+            }
+
+            .booking_location_arrow, .booking_date_arrow {
+                top: 30px;
+            }
+
+            .select_date {
+                height: 50px;
+            }
+
+            .select_date > input {
+                font-size: 18px;
+            }
+
+            .booking_form {
+                padding-bottom: 60px;
+            }
+
+            .manager_book > img, .manager_checkin > img, .manager_flightinfo > img {
+                width: 55px;
+                height: 55px;
+            }
+
+            #manager_txt{
+                font-size: .875em;
+            }
+
+            .flight_manager_detial_1_1, .flight_manager_detial_1_2, .flight_manager_detial_1_3 {
+                flex-direction: column;
+            }
+
+            .flight_manager_detial_1_1 div, .flight_manager_detial_1_2 div, .flight_manager_detial_1_3 div {
+                margin-top: 5px;
+                font-size: .75em;
+            }
+
+            .flight_manager_detial_1_1 > li, .flight_manager_detial_1_2 > li, .flight_manager_detial_1_3 > li {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+
+            .flight_manager_detial_1_1 a, .flight_manager_detial_1_2 a, .flight_manager_detial_1_3 a {
+                font-size: 1em;
+            }
+
+            .content_banner_txt {
+                width: 100%;
+                top: 40%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                align-items: center;
+                gap: 5px;
+                background-color: rgb(255, 255, 255, .4);
+            }
+
+            .content_banner_txt_en {
+                font-size: 1.875em;
+            }
+
+            .content_banner_txt_tw {
+                font-size: 1.5em;
+                padding-left: 0%;
+            }
+
+            .news > h2, .recomm > h2 {
+                font-size: 1.875em;
+            }
+
+            .news_slider_container{
+                margin: auto;
+                width: 90%;
+            }
+
+            .news_arrow, .slider_btn {
+                width: 35px;
+                height: 35px;
+            }
+
+            .news_arrow.prev {
+                left: -5%;
+            }
+
+            .news_arrow.next {
+                right: -5%;
+            }
+
+            .news_arrow img, .slider_btn img {
+                width: 100%;
+            }
+
+            .recomm {
+                width: 90%;;
+            }
+
+            .news_list_pic {
+                width: 100%;
+            }
+
+            .news_list_pic img {
+                width: 100%;
+            }
+            
+            .recomm_hotel {
+                width: 90%;
+                margin: auto;
+            }
+
+            .recomm_hotel_card {
+                width: 100%;
+            }
+
+            .prev_btn {
+                left: 0%;
+            }
+
+            .next_btn {
+                right: 0;
+            }
+
+            
+        }
 
     </style>
 </head>
@@ -473,7 +844,7 @@
         <nav class="header_main">
             <div class="header_logo">
                 <a href="./index.html">
-                    <img src="./pic/logo/logo_nav.svg" alt="">
+                    <img src="./pic/logo/logo_book_footer.svg" alt="">
                 </a>    
             </div>
             <div class="header_menu">
@@ -491,18 +862,37 @@
             </div>
             <div class="header_user">
                 <ul class="header_user_list">
-                    <li class="pill join">
+                    <li class="pill join" id="joinbtn">
                         <a href="./member_signup.html">加入會員</a>
                     </li>
-                    <li class="pill login">
+                    <li class="pill login" id="cancelbtn">
                         <a href="#">會員登入</a>
                     </li>
-                    <li class="language">
-                        <a href="#">TW 繁體中文</a>
+                    <li class="header_user_member" id="header_user_member">
+                        <a href="./member_manager.html">您好，<span>WANG先生</span></a>
+                    </li>
+                    <li class="header_user_search" id="header_user_search">
+                        <a href="./booking.html">航班搜尋</a>
+                    </li>
+                    <li class="hamburger_menu">
+                        <div>
+                            <button class="hamburger_toggle" id="hamburger_toggle">
+                                <img src="./pic/icon/icon_menu-burger.svg" alt="" id="menu_open" style="display: block;">
+                                <img src="./pic/icon/icon_menu-burger_cancel.svg" alt="" id="menu_close" style="display: none;">
+                            </button>
+                            <div class="menu_list_group" id="menu_list_group">
+                                <ul class="menu_list">
+                                    <li><a href="./cabin_class.html">體驗AURORA</a></li>
+                                    <li><a href="./membership_tier.html">SkyTier會員</a></li>
+                                    <li><a href="./contact.html">聯絡我們</a></li>
+                                    <li><a href="./booking.html">航班搜尋</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
-        </nav>
+        </nav>    
     </header>
 
     <!--banner-->
@@ -527,42 +917,14 @@
                         <!-- 出發地 / 目的地 -->
                         <div class="booking_location">
                             <div class="booking_location_depa">
-                                <!-- <div class="select_group departure">
-                                    <button class="select_trigger" type="button">
-                                        <span class="icon">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.39374 3.76625C4.69437 3.7649 4.98657 3.86555 5.2226 4.05175C5.45862 4.23796 5.62452 4.4987 5.69317 4.79139V4.78625L5.2766 4.89253L5.69489 4.79653L5.69317 4.79139L6.52803 8.06568L15.3155 6.30853C16.3546 6.10473 17.4258 6.1324 18.453 6.38959C19.4802 6.64677 20.4381 7.12715 21.2585 7.79655C22.079 8.46594 22.7419 9.30792 23.2 10.2626C23.6581 11.2172 23.9003 12.2611 23.9092 13.32V13.3251C23.9094 13.6226 23.851 13.9171 23.7373 14.192C23.6235 14.4668 23.4567 14.7166 23.2464 14.9269C23.0361 15.1372 22.7863 15.304 22.5115 15.4178C22.2366 15.5315 21.9421 15.5899 21.6446 15.5897H13.7966L12.0875 18.2931L12.0857 18.2948C11.7144 18.8718 11.2045 19.3467 10.6027 19.6764C10.0009 20.006 9.32621 20.1799 8.64003 20.1822H6.61203C6.38195 20.1803 6.1562 20.1194 5.95629 20.0055C5.75639 19.8916 5.58899 19.7283 5.47006 19.5314C5.35112 19.3344 5.2846 19.1103 5.27685 18.8803C5.26909 18.6503 5.32035 18.4222 5.42574 18.2177L5.80803 18.4131L5.42746 18.216L6.72689 15.6445H2.35546C2.05786 15.645 1.7631 15.5867 1.48805 15.4731C1.213 15.3595 0.963065 15.1927 0.752553 14.9824C0.542042 14.772 0.37509 14.5222 0.261257 14.2472C0.147425 13.9723 0.0889472 13.6776 0.089173 13.38V5.11368C0.089173 4.75632 0.231134 4.41359 0.483826 4.1609C0.736518 3.90821 1.07924 3.76625 1.4366 3.76625H4.39374Z" fill="#34495E"/>
-                                            </svg>
-                                        </span>
-                                        <span class="icon_txt">出發地</span>
-                                    </button>
-                                </div>
-
-                                <div class="select_dropdown_list">
-                                    <ul class="select_dropdown">
-                                        <li data-value="tpe">
-                                            <a href="#">台北(桃園機場)</a>
-                                        </li>
-                                        <li data-value="tsa">
-                                            <a href="#">台北(松山機場)</a>
-                                        </li>
-                                        <li data-value="khh">
-                                            <a href="">高雄</a>
-                                        </li>
-                                    </ul>
-                                </div> -->
                                 <select id="departure" name="departure" class="select_input">
-                                    <option value="" disabled selected>
-                                        出發地
-                                    </option>
+                                    <option value="" disabled selected>出發地</option>
                                     <option value="tpe">台北(桃園機場)</option>
                                     <option value="tsa">台北(松山機場)</option>
                                     <option value="khh">高雄</option>
                                 </select>
                             </div>
                                 
-                            
-
                             <div class="booking_location_arrow">
                                 <svg width="30" height="30" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12.5" cy="12.5" r="12.5" fill="#A38D6D"/>
@@ -572,103 +934,33 @@
                             </div>
 
                             <div class="booking_location_arr">
-<!--                                 <div class="select_group arrival">
-                                    <button class="select_trigger" type="button">
-                                        <span class="icon">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.39374 3.76625C4.69437 3.7649 4.98657 3.86555 5.2226 4.05175C5.45862 4.23796 5.62452 4.4987 5.69317 4.79139V4.78625L5.2766 4.89253L5.69489 4.79653L5.69317 4.79139L6.52803 8.06568L15.3155 6.30853C16.3546 6.10473 17.4258 6.1324 18.453 6.38959C19.4802 6.64677 20.4381 7.12715 21.2585 7.79655C22.079 8.46594 22.7419 9.30792 23.2 10.2626C23.6581 11.2172 23.9003 12.2611 23.9092 13.32V13.3251C23.9094 13.6226 23.851 13.9171 23.7373 14.192C23.6235 14.4668 23.4567 14.7166 23.2464 14.9269C23.0361 15.1372 22.7863 15.304 22.5115 15.4178C22.2366 15.5315 21.9421 15.5899 21.6446 15.5897H13.7966L12.0875 18.2931L12.0857 18.2948C11.7144 18.8718 11.2045 19.3467 10.6027 19.6764C10.0009 20.006 9.32621 20.1799 8.64003 20.1822H6.61203C6.38195 20.1803 6.1562 20.1194 5.95629 20.0055C5.75639 19.8916 5.58899 19.7283 5.47006 19.5314C5.35112 19.3344 5.2846 19.1103 5.27685 18.8803C5.26909 18.6503 5.32035 18.4222 5.42574 18.2177L5.80803 18.4131L5.42746 18.216L6.72689 15.6445H2.35546C2.05786 15.645 1.7631 15.5867 1.48805 15.4731C1.213 15.3595 0.963065 15.1927 0.752553 14.9824C0.542042 14.772 0.37509 14.5222 0.261257 14.2472C0.147425 13.9723 0.0889472 13.6776 0.089173 13.38V5.11368C0.089173 4.75632 0.231134 4.41359 0.483826 4.1609C0.736518 3.90821 1.07924 3.76625 1.4366 3.76625H4.39374Z" fill="#34495E"/>
-                                            </svg>
-                                        </span>
-                                        <span class="icon_txt">目的地</span>
-                                    </button>
-                                </div>
-
-                                <div class="select_dropdown_list">
-                                    <ul class="select_dropdown">
-                                        <li data-value="nrt">
-                                            <a href="">東京(成田機場)</a>
-                                        </li>
-                                        <li data-value="kix">
-                                            <a href="">大阪</a>
-                                        </li>
-                                        <li data-value="kmj">
-                                            <a href="">熊本</a>
-                                        </li>
-                                        <li data-value="ngo">
-                                            <a href="">名古屋</a>
-                                        </li>
-                                        <li data-value="icn">
-                                            <a href="">首爾(仁川機場)</a>
-                                        </li>
-                                        <li data-value="pus">
-                                            <a href="">釜山</a>
-                                        </li>
-                                    </ul>
-                                </div> -->
                                 <select id="arrival" name="arrival" class="select_input">
-                                    <option value="" disabled selected>
-                                        目的地
-                                    </option>
-                                    <option value="nrt">東京(成田機場)</option>
-                                    <option value="kix">大阪</option>
-                                    <option value="kmj">熊本</option>
-                                    <option value="ngo">名古屋</option>
-                                    <option value="icn">首爾(仁川機場)</option>
-                                    <option value="pus">釜山</option>
+                                    <option value="" disabled selected>目的地</option>
+                                    <optgroup label="日本" class="jpn">
+                                        <option value="nrt">東京(成田機場)</option>
+                                        <option value="kix">大阪</option>
+                                        <option value="kmj">熊本</option>
+                                        <option value="ngo">名古屋</option>
+                                    </optgroup>
+                                    <!-- <option value="" disabled class="countary">日本</option> -->
+                                    <optgroup label="韓國" class="kor">
+                                        <option value="icn">首爾(仁川機場)</option>
+                                        <option value="pus">釜山</option>
+                                    </optgroup>
+                                    <!-- <option value="" disabled class="countary">韓國</option> -->
+                                    
                                 </select>
                             </div>
                                 
                         </div>
-                        <script>
-                            document.addEventListener("DOMContentLoaded", function () {
-                                // 找出所有的 select_trigger
-                                const triggers = document.querySelectorAll(".select_trigger");
-
-                                triggers.forEach(trigger => {
-                                    trigger.addEventListener("click", function () {
-                                        // 先關掉所有其他選單
-                                        document.querySelectorAll(".select_dropdown").forEach(dropdown => {
-                                            dropdown.classList.remove("show");
-                                        });
-
-                                        // 尋找對應這個 trigger 的下個 .select_dropdown
-                                        const dropdownList = this.parentElement.nextElementSibling;
-                                        if (dropdownList && dropdownList.querySelector(".select_dropdown")) {
-                                            const dropdown = dropdownList.querySelector(".select_dropdown");
-                                            dropdown.classList.toggle("show");
-                                        }
-                                    });
-                                });
-
-                                // 點擊畫面其他地方關閉選單
-                                document.addEventListener("click", function (e) {
-                                    if (!e.target.closest('.select_group')) {
-                                        document.querySelectorAll(".select_dropdown").forEach(dropdown => {
-                                            dropdown.classList.remove("show");
-                                        });
-                                    }
-                                });
-                            });
-                        </script>
 
                         <!-- 出發日期 / 回程日期 -->
                         <div class="booking_date">
                             <div class="booking_date_depa">
                                 <div class="select_group depart_date">
-                                    <button class="select_date depart" type="button">
-                                        <span class="icon">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M19 6H5C3.89543 6 3 6.89543 3 8V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V8C21 6.89543 20.1046 6 19 6Z" stroke="#34495E" stroke-width="2"/>
-                                                <path d="M7 6.5H17C17.9571 6.5 18.6245 6.50064 19.1279 6.56836C19.5556 6.62589 19.8073 6.72548 19.9873 6.87305L20.0605 6.93945C20.2452 7.12414 20.3659 7.38316 20.4316 7.87207C20.4869 8.28279 20.494 8.80269 20.4961 9.5H3.50391C3.50604 8.80269 3.51311 8.28279 3.56836 7.87207C3.62589 7.44441 3.72548 7.19266 3.87305 7.0127L3.93945 6.93945C4.12414 6.75477 4.38316 6.63414 4.87207 6.56836C5.37548 6.50064 6.04285 6.5 7 6.5Z" fill="#34495E" stroke="#34495E"/>
-                                                <path d="M7 3V6M17 3V6" stroke="#34495E" stroke-width="2" stroke-linecap="round"/>
-                                                <path d="M10.5 12.5V13.5H7.5V12.5H10.5Z" fill="black" stroke="#34495E"/>
-                                                <path d="M10.5 16.5V17.5H7.5V16.5H10.5Z" fill="black" stroke="#34495E"/>
-                                                <path d="M16.5 12.5V13.5H13.5V12.5H16.5Z" fill="black" stroke="#34495E"/>
-                                                <path d="M16.5 16.5V17.5H13.5V16.5H16.5Z" fill="black" stroke="#34495E"/>
-                                            </svg>
-                                        </span>
-                                        <span class="icon_txt">出發日期</span>
-                                    </button>
+                                    <div class="select_date depart" type="button">
+                                        <input id="depart_date" type="text" placeholder="出發日期" value="" readonly />
+                                    </div>
                                 </div>
                             </div>
                             
@@ -683,28 +975,16 @@
 
                             <div class="booking_date_arr">
                                 <div class="select_group return_date">
-                                    <button class="select_date return" type="button">
-                                        <span class="icon">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M19 6H5C3.89543 6 3 6.89543 3 8V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V8C21 6.89543 20.1046 6 19 6Z" stroke="#34495E" stroke-width="2"/>
-                                                <path d="M7 6.5H17C17.9571 6.5 18.6245 6.50064 19.1279 6.56836C19.5556 6.62589 19.8073 6.72548 19.9873 6.87305L20.0605 6.93945C20.2452 7.12414 20.3659 7.38316 20.4316 7.87207C20.4869 8.28279 20.494 8.80269 20.4961 9.5H3.50391C3.50604 8.80269 3.51311 8.28279 3.56836 7.87207C3.62589 7.44441 3.72548 7.19266 3.87305 7.0127L3.93945 6.93945C4.12414 6.75477 4.38316 6.63414 4.87207 6.56836C5.37548 6.50064 6.04285 6.5 7 6.5Z" fill="#34495E" stroke="#34495E"/>
-                                                <path d="M7 3V6M17 3V6" stroke="#34495E" stroke-width="2" stroke-linecap="round"/>
-                                                <path d="M10.5 12.5V13.5H7.5V12.5H10.5Z" fill="black" stroke="#34495E"/>
-                                                <path d="M10.5 16.5V17.5H7.5V16.5H10.5Z" fill="black" stroke="#34495E"/>
-                                                <path d="M16.5 12.5V13.5H13.5V12.5H16.5Z" fill="black" stroke="#34495E"/>
-                                                <path d="M16.5 16.5V17.5H13.5V16.5H16.5Z" fill="black" stroke="#34495E"/>
-                                            </svg>
-                                        </span>
-                                        <span class="icon_txt">回程日期</span>
-                                    </button>
+                                    <div class="select_date return" type="button">
+                                        <input id="return_date" type="text" placeholder="回程日期" value="" readonly/>
+                                    </div>
                                 </div>
                             </div>
-                            
                         </div>
 
                         <div class="booking_submit">
-                            <a href="./booking_dep.html">Search</a>
-                            <!-- <button type="submit" class="btn_submit">Search</button> -->
+                            <!-- <a href="./booking_dep.html">Search</a> -->
+                            <button type="button" class="btn_submit">Search</button>
                         </div>
                     </form>
                 </div>
@@ -715,59 +995,33 @@
         <div class="content_manager">
             <div class="flight_manager">
                 <ul class="flight_manager_list">
-                    <li>
+                    <li id="manager_book">
                         <a href="" class="manager_book">
-                            <img src="./pic/icon/book_manager_unactive.svg" alt="">
-                            <img class="active" src="./pic/icon/book_manager_active.svg" alt="" style="display: none;">
-                            <div>預約管理</div>
+                            <img src="./pic/icon/book_manager_unactive.svg" alt="" id="book_unactive">
+                            <img class="active" src="./pic/icon/book_manager_active.svg" alt="" id="book_active" style="display: none;">
+                            <div id="manager_txt">預約管理</div>
                         </a>
                     </li>
-                    <li>
+                    <li id="manager_checkin">
                         <a href="" class="manager_checkin">
-                            <img src="./pic/icon/checkin_unactive.svg" alt="">
-                            <img class="active" src="./pic/icon/checkin_active.svg" alt="" style="display: none;">
-                            <div>報到</div>
+                            <img src="./pic/icon/checkin_unactive.svg" alt="" id="checkin_unactive">
+                            <img class="active" src="./pic/icon/checkin_active.svg" alt="" id="checkin_active" style="display: none;">
+                            <div id="manager_txt">報到</div>
                         </a>
                     </li>
-                    <li>
+                    <li id="manager_flightinfo">
                         <a href="" class="manager_flightinfo">
-                            <img src="./pic/icon/flight_unactive.svg" alt="">
-                            <img class="active" src="./pic/icon/flight_active.svg" alt="" style="display: none;">
-                            <div>航班動態</div>
+                            <img src="./pic/icon/flight_unactive.svg" alt="" id="flight_unactive">
+                            <img class="active" src="./pic/icon/flight_active.svg" alt="" id="flight_active" style="display: none;">
+                            <div id="manager_txt">航班動態</div>
                         </a>
                     </li>
                 </ul>
             </div>
-            <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    const links = document.querySelectorAll('.flight_manager_list a');
-
-                    links.forEach(link => {
-                        link.addEventListener('click', function (e) {
-                            e.preventDefault(); // 阻止跳轉
-
-                            // 先將所有連結的圖片重置為未啟用狀態
-                            links.forEach(l => {
-                                const unactiveImg = l.querySelector('img:not(.active)');
-                                const activeImg = l.querySelector('.active');
-                                if (unactiveImg) unactiveImg.style.display = 'block';
-                                if (activeImg) activeImg.style.display = 'none';
-                            });
-
-                            // 然後將目前點擊的設為啟用狀態
-                            const clickedUnactiveImg = this.querySelector('img:not(.active)');
-                            const clickedActiveImg = this.querySelector('.active');
-                            if (clickedUnactiveImg) clickedUnactiveImg.style.display = 'none';
-                            if (clickedActiveImg) clickedActiveImg.style.display = 'block';
-                        });
-                    });
-                });
-            </script>
-
 
             <div class="flight_manager_info">
                 <div class="flight_manager_detial_1">
-                    <ul class="flight_manager_detial_1_1">
+                    <ul class="flight_manager_detial_1_1" id="flight_manager_detial_1_1">
                         <li>
                             <a href="./schedule_management.html">管理我的行程</a>
                             <div>確認，變更/取消行程等</div>
@@ -783,7 +1037,7 @@
                     </ul>
                 </div>
                 <div class="flight_manager_detial_1">
-                    <ul class="flight_manager_detial_1_2" style="display: none;">
+                    <ul class="flight_manager_detial_1_2" id="flight_manager_detial_1_2" style="display: none;">
                         <li>
                             <a href="">線上報到</a>
                             <div>起飛前48小時至1小時前</div>
@@ -791,7 +1045,7 @@
                     </ul>
                 </div>
                 <div class="flight_manager_detial_1">
-                    <ul class="flight_manager_detial_1_3" style="display: none;">
+                    <ul class="flight_manager_detial_1_3" id="flight_manager_detial_1_3" style="display: none;">
                         <li>
                             <a href="">AURORA營運航班</a>
                             <div>搜尋航班資訊等</div>
@@ -804,87 +1058,174 @@
         <!--news-->
         <div class="news">
             <h2>最新消息</h2>
-            <div class="news_list">
-                <div class="news_list_pic">
-                    <img src="./pic/news/1.png" alt="">
+            <div class="news_slider_container">
+                <button class="news_arrow prev" id="news_arrow_prev">
+                    <img src="./pic/icon/changepage_prev.svg" alt="">
+                </button>
+
+                <div class="news_list_slider" id="news_list_slider">
+                    <div class="news_list" id="news_list">
+                        <div class="news_list_pic">
+                            <img src="./pic/news/1.png" alt="">
+                        </div>
+                        <div class="news_list_pic">
+                            <img src="./pic/news/2.png" alt="">
+                        </div>
+                        <div class="news_list_pic">
+                            <img src="./pic/news/3.png" alt="">
+                        </div>
+                    </div>
                 </div>
-                <div class="news_list_pic">
-                    <img src="./pic/news/2.png" alt="">
-                </div>
-                <div class="news_list_pic">
-                    <img src="./pic/news/3.png" alt="">
-                </div>
-            </div>   
+
+                <button class="news_arrow next" id="news_arrow_next">
+                    <img src="./pic/icon/changepage_next.svg" alt="">
+                </button>
+            </div>
         </div>
+
 
         <!--recommend-->
         <div class="recomm">
             <h2>推薦的飯店</h2>
             <div class="recomm_slider">
-                <button class="slider_btn prev_btn">
+                <button class="slider_btn prev_btn" id="prevBtn">
                     <img src="./pic/icon/changepage_prev.svg" alt="上一頁">
                 </button>
             
 
                 <div class="recomm_hotel">
-                    <div class="recomm_hotel_card">
-                        <div class="recomm_hotel_pic">
-                            <img src="./pic/hotel/1.png" alt="">
+                    <div class="recomm_hotel_list" id="carousel">
+                        <div class="recomm_hotel_card">
+                            <a href="https://www.keioprelia.co.jp/sapporo/">
+                                <div class="recomm_hotel_pic">
+                                    <img src="./pic/hotel/Keio_Prelia.jpg" alt="">
+                                </div>
+                                <div class="recomm_hotel_txt">
+                                    <h3>Keio Prelia Hotel</h3>
+                                    <div class="recomm_hotel_txt_location">
+                                        <img src="./pic/icon/icon_place.png" alt="">
+                                        <p>Sapporo</p>
+                                    </div>
+                                </div>
+                            </a>
+                            
                         </div>
-                        <div class="recomm_hotel_txt">
-                            <h3>晴峯 HARE MINE HOTEL</h3>
-                            <div class="recomm_hotel_txt_location">
-                                <img src="./pic/icon/icon_place.png" alt="">
-                                <p>Sapporo</p>
-                            </div>
+                        <div class="recomm_hotel_card">
+                            <a href="https://www.vessel-hotel.jp/ref/kumamoto/">
+                                <div class="recomm_hotel_pic">
+                                    <img src="./pic/hotel/REF_Kumamoto.jpg" alt="">
+                                </div>
+                                <div class="recomm_hotel_txt">
+                                    <h3>REF Kumamoto</h3>
+                                    <div class="recomm_hotel_txt_location">
+                                        <img src="./pic/icon/icon_place.png" alt="">
+                                        <p>Kumamoto</p>
+                                    </div>
+                                </div>
+                            </a>    
                         </div>
-                    </div>
-                    <div class="recomm_hotel_card">
-                        <div class="recomm_hotel_pic">
-                            <img src="./pic/hotel/2.png" alt="">
+                        <div class="recomm_hotel_card">
+                            <a href="https://www.princehotels.com/shiomi/">
+                                <div class="recomm_hotel_pic">
+                                    <img src="./pic/hotel/Shiomi_Prince.jpg" alt="">
+                                </div>
+                                <div class="recomm_hotel_txt">
+                                    <h3>Shiomi Prince Hotel</h3>
+                                    <div class="recomm_hotel_txt_location">
+                                        <img src="./pic/icon/icon_place.png" alt="">
+                                        <p>Tokyo</p>
+                                    </div>
+                                </div>
+                            </a>    
                         </div>
-                        <div class="recomm_hotel_txt">
-                            <h3>東隅商旅 Easton Business Hotel</h3>
-                            <div class="recomm_hotel_txt_location">
-                                <img src="./pic/icon/icon_place.png" alt="">
-                                <p>Seoul</p>
-                            </div>
+                        <div class="recomm_hotel_card">
+                            <a href="https://www.gardenhotels.co.jp/nagoya-premier/">
+                                <div class="recomm_hotel_pic">
+                                    <img src="./pic/hotel/Mitsui_Garden_Hotel.jpg" alt="">
+                                </div>
+                                <div class="recomm_hotel_txt">
+                                    <h3>Mitsui Garden Hotel</h3>
+                                    <div class="recomm_hotel_txt_location">
+                                        <img src="./pic/icon/icon_place.png" alt="">
+                                        <p>Nagoya</p>
+                                    </div>
+                                </div>
+                            </a>    
                         </div>
-                    </div>
-                    <div class="recomm_hotel_card">
-                        <div class="recomm_hotel_pic">
-                            <img src="./pic/hotel/3.png" alt="">
+                        <div class="recomm_hotel_card">
+                            <a href="http://www.roynethotelkorea.com/">
+                                <div class="recomm_hotel_pic">
+                                    <img src="./pic/hotel/Roynet_Hotel.jpg" alt="">
+                                </div>
+                                <div class="recomm_hotel_txt">
+                                    <h3>Roynet Hotel</h3>
+                                    <div class="recomm_hotel_txt_location">
+                                        <img src="./pic/icon/icon_place.png" alt="">
+                                        <p>Seoul</p>
+                                    </div>
+                                </div>
+                            </a>    
                         </div>
-                        <div class="recomm_hotel_txt">
-                            <h3>晨曜 CHENYO HOTEL</h3>
-                            <div class="recomm_hotel_txt_location">
-                                <img src="./pic/icon/icon_place.png" alt="">
-                                <p>Nagoya</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="recomm_hotel_card">
-                        <div class="recomm_hotel_pic">
-                            <img src="./pic/hotel/4.png" alt="">
-                        </div>
-                        <div class="recomm_hotel_txt">
-                            <h3>NEOVIEW 城際商旅</h3>
-                            <div class="recomm_hotel_txt_location">
-                                <img src="./pic/icon/icon_place.png" alt="">
-                                <p>Busan</p>
-                            </div>
+                        <div class="recomm_hotel_card">
+                            <a href="https://www.shillahotels.com/">
+                                <div class="recomm_hotel_pic">
+                                    <img src="./pic/hotel/Shilla_Stay.jpg" alt="">
+                                </div>
+                                <div class="recomm_hotel_txt">
+                                    <h3>Shilla Stay</h3>
+                                    <div class="recomm_hotel_txt_location">
+                                        <img src="./pic/icon/icon_place.png" alt="">
+                                        <p>Busan</p>
+                                    </div>
+                                </div>
+                            </a>    
                         </div>
                     </div>
                 </div>
 
-                <div class="recomm_slider">
-                    <button class="slider_btn next_btn">
-                        <img src="./pic/icon/changepage_next.svg" alt="下一頁">
-                    </button>
-                </div>
-            </div>
+                <button class="slider_btn next_btn" id="nextBtn">
+                    <img src="./pic/icon/changepage_next.svg" alt="下一頁">
+                </button>
+            </div>    
         </div>
     </main>
+
+    <!-- login modal -->
+    <div id="loginmodal" class="modal">
+        <div class="modal_content">
+            <button class="modal_close" id="modal_close" type="button">x</button>
+            <div class="modal_title">
+                <h2>SkyTier Gold</h2>
+                <p>會員登入</p>
+            </div>
+            <div class="modal_form">
+                <form action="">
+                    <div>
+                        <label for="">會員號碼</label>
+                        <p>10位數字</p>
+                        <input type="text" id="member_id">
+                    </div>
+                    <div>
+                        <label for="">密碼</label>
+                        <input type="password" id="member_password">
+                    </div>
+                    <div>
+                        <p>個人資訊使用之目的請務必先詳細閱讀奧若拉天航隱私權保護政策並同意其內容再進行下一步。</p>
+                    </div>
+                    <div class="modal_form_btn_group">
+                        <div class="modal_form_btn">
+                            <button id="modal_close_btn" type="button">不登入，直接使用</button>
+                            <button id="modal_login_btn" type="button">登入</button>
+                        </div>
+                        <div class="modal_form_btn">
+                            <a href="">忘記會員號碼的旅客</a>
+                            <a href="">忘記密碼</a>
+                        </div>
+                    </div>    
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!--footer-->
     <footer class="footer">
@@ -896,7 +1237,7 @@
                     </div>
                     <div class="footer_inner_txt">
                         <div>
-                            <h3>關於Aurora Sky</h3>
+                            <h3 class="footer_inner_title">關於Aurora Sky</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">關於我們</a>
@@ -916,7 +1257,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3>顧客服務</h3>
+                            <h3 class="footer_inner_title">顧客服務</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">顧客滿意度問卷調查</a>
@@ -936,7 +1277,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3>網站聲明與規範</h3>
+                            <h3 class="footer_inner_title">網站聲明與規範</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">隱私保護政策</a>
@@ -956,13 +1297,230 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                
+                </div>    
             </div>
         </div>
         <div class="footer_bottom">
             <p>&#64;Copyright 2025. Aurora Sky Co.Ltd. All rights reserved</p>
         </div>
     </footer>
+    <script src="./vendors/flatpickr.js"></script>
+    <script src="./js/header.js"></script>
+    <script src="./js/lightbox.js"></script>
+    <script src="./js/footer.js"></script>
+    <script src="./vendors/jquery/jquery-3.7.1.min.js"></script>
+    <script>
+        let links = document.querySelectorAll('.flight_manager_list a');
+
+        //換圖片
+        document.addEventListener("DOMContentLoaded", function (e) {
+            links.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault(); // 阻止跳轉
+
+                    // 先將所有連結的圖片重置為未啟用狀態
+                    links.forEach(l => {
+                        const unactiveImg = l.querySelector('img:not(.active)');
+                        const activeImg = l.querySelector('.active');
+                        if (unactiveImg) unactiveImg.style.display = 'block';
+                        if (activeImg) activeImg.style.display = 'none';
+                    });
+
+                    // 然後將目前點擊的設為啟用狀態
+                    const clickedUnactiveImg = this.querySelector('img:not(.active)');
+                    const clickedActiveImg = this.querySelector('.active');
+                    if (clickedUnactiveImg) clickedUnactiveImg.style.display = 'none';
+                    if (clickedActiveImg) clickedActiveImg.style.display = 'block';
+                });
+            });
+
+            
+        });
+
+        //控制行程管理下底線
+        document.addEventListener("DOMContentLoaded", function (e){
+            let underline_book = document.getElementById('book_unactive');
+            underline_book.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.getElementById('manager_book').style.borderBottom = "5px solid #A38D6D";
+                document.getElementById('manager_checkin').style.borderBottom = "none";
+                document.getElementById('manager_flightinfo').style.borderBottom = "none";
+            });
+
+            let underline_checkin = document.getElementById('checkin_unactive');
+            underline_checkin.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.getElementById('manager_book').style.borderBottom = "none";
+                document.getElementById('manager_checkin').style.borderBottom = "5px solid #A38D6D";
+                document.getElementById('manager_flightinfo').style.borderBottom = "none";
+            });
+
+            let underline_flightinfo = document.getElementById('flight_unactive');
+                underline_flightinfo.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.getElementById('manager_book').style.borderBottom = "none";
+                document.getElementById('manager_checkin').style.borderBottom = "none";
+                document.getElementById('manager_flightinfo').style.borderBottom = "5px solid #A38D6D";
+            });
+        })
+
+        //控制行程管理內容切換
+        document.addEventListener("DOMContentLoaded", function (e){
+            let underline_book = document.getElementById('book_unactive');
+            underline_book.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.getElementById('flight_manager_detial_1_1').style.display = "flex";
+                document.getElementById('flight_manager_detial_1_2').style.display = "none";
+                document.getElementById('flight_manager_detial_1_3').style.display = "none";
+            });
+
+            let underline_checkin = document.getElementById('checkin_unactive');
+            underline_checkin.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.getElementById('flight_manager_detial_1_1').style.display = "none";
+                    document.getElementById('flight_manager_detial_1_2').style.display = "flex";
+                    document.getElementById('flight_manager_detial_1_3').style.display = "none";
+                });
+
+            let underline_flightinfo = document.getElementById('flight_unactive');
+            underline_flightinfo.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.getElementById('flight_manager_detial_1_1').style.display = "none";
+                document.getElementById('flight_manager_detial_1_2').style.display = "none";
+                document.getElementById('flight_manager_detial_1_3').style.display = "flex";
+            });
+        })
+
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            //控制小螢幕news slider
+            let newslist = document.querySelector('.news_list');
+            let news_cards = document.querySelectorAll('.news_list_pic');
+            let btn_prev = document.getElementById("news_arrow_prev");
+            let btn_next = document.getElementById("news_arrow_next");
+
+            let current_index = 1; // 預設中間圖 index
+
+            function centerCard(index) {
+                let card = news_cards[index];
+                let list_rect = newslist.getBoundingClientRect();
+                let card_rect = card.getBoundingClientRect();
+                let scrollX = card.offsetLeft - (list_rect.width / 2) + (card_rect.width / 2);
+                newslist.scrollTo({ left: scrollX, behavior: 'smooth' });
+            }
+
+            // 初始化，先置中第 2 張圖
+            if (window.innerWidth <= 1024) {
+                centerCard(current_index);
+            }
+
+            btn_next.addEventListener("click", () => {
+                current_index = (current_index + 1) % news_cards.length;
+                centerCard(current_index);
+            });
+
+            btn_prev.addEventListener("click", () => {
+                current_index = (current_index - 1 + news_cards.length) % news_cards.length;
+                centerCard(current_index);
+            });
+
+            //控制hotel slider
+            let carousel = document.getElementById("carousel");
+            let prevBtn = document.getElementById("prevBtn");
+            let nextBtn = document.getElementById("nextBtn");
+            let card = document.querySelector(".recomm_hotel_card");
+            let scrollAmount = card.offsetWidth + 40;
+            nextBtn.addEventListener("click", (e) => {
+                carousel.scrollLeft += scrollAmount;
+            });
+
+            prevBtn.addEventListener("click", (e) => {
+                carousel.scrollLeft -= scrollAmount;
+            });
+        });
+
+        let originPicker;
+        let destinationPicker;
+
+        function init(){
+
+            //控制預訂航班出發日+回程日月曆
+            originPicker = flatpickr("#depart_date", {
+                dateFormat: "Y-m-d",
+                minDate: new Date(Date.now() + 86400000),
+                monthSelectorType: "dropdown",
+                onChange: function (selectedDates) {
+                    if (selectedDates.length > 0) {
+                        destinationPicker.set("minDate", selectedDates[0]);
+                    }
+                },
+                onReady: function (_, __, instance) {
+                    instance.input.value = "";
+                }
+            });
+
+            destinationPicker = flatpickr("#return_date", {
+                dateFormat: "Y-m-d",
+                minDate: new Date(Date.now() + 86400000),
+                monthSelectorType: "dropdown",
+                onReady: function (_, __, instance) {
+                    instance.input.value = "";
+                }
+            });
+
+            checkLoginStatus();
+            document.getElementById("cancelbtn").onclick = login;
+            document.getElementById("modal_close").onclick = logincancel;
+            document.getElementById("modal_close_btn").onclick = logincancelBtn;
+            document.getElementById("modal_login_btn").onclick = checkLoginData;
+            document.getElementById("menu_open").onclick = hamburgeropen;
+            document.getElementById("menu_close").onclick = hamburgerclose;
+            
+        }
+
+        window.addEventListener("DOMContentLoaded", init);
+
+        $(document).ready(function() {
+            $("button.btn_submit").on("click", function(){
+                const originDate = originPicker.selectedDates[0];
+                const destinationDate = destinationPicker.selectedDates[0];
+                if (!originDate || !destinationDate) {
+                    alert("請先選擇日期");
+                    return;
+                }
+
+                // const originYear = originDate.getFullYear();
+                // const originMonth = originDate.getMonth() + 1;
+                // const originDay = originDate.getDate();
+                // const originWeekday = originDate.toLocaleDateString("en", { weekday: 'long' }); // 星期幾
+
+                // const destinationYear = destinationDate.getFullYear();
+                // const destinationMonth = destinationDate.getMonth() + 1;
+                // const destinationDay = destinationDate.getDate();
+                // const destinationWeekday = destinationDate.toLocaleDateString("en", { weekday: 'long' }); // 星期幾
+
+                // console.log(`出發日期為：${originYear}年${originMonth}月${originDay}日（${originday}
+                // 回程日期為：${destinationYear}年${destinationMonth}月${destinationDay}日（${destinationWeekday}）`);
+                
+                // let departure = $('#departure').val();
+                // console.log("出發地代碼：", departure); // 例如 "tpe"
+
+                // console.log("aa");
+                // console.log($("select[name='departure']").val());
+                let origin = $("select[name='departure']").val();
+                let destination = $("select[name='arrival']").val();
+
+                // 格式化成 YYYY-MM-DD 字串
+                const originDateStr = originDate.toISOString().split('T')[0];
+                const destinationDateStr = destinationDate.toISOString().split('T')[0];
+
+                // const url = `booking_dep.html?origin=${origin}&destination=${destination}&originMonth=${originMonth}&originDay=${originDay}&originWeekday=${originWeekday}&destinationMonth=${destinationMonth}&destinationDay=${destinationDay}&destinationWeekday=${destinationWeekday}`;
+
+                const url = `booking_dep.html?origin=${origin}&destination=${destination}&originDay=${originDateStr}&destinationDay=${destinationDateStr}`;
+                window.location.href = url;
+            });
+        });
+        
+    </script>
 </body>
 </html>

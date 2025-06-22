@@ -7,13 +7,15 @@
     <link rel="stylesheet" href="./css/all.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/footer_index.css">
+    <link rel="stylesheet" href="./css/login_modal.css">
     <style>
         .header {
             margin-bottom: 40px;
         }
 
         .main {
-            width: 1200px;
+            width: 100%;
+            max-width: 1200px;
             margin: auto;
             margin-bottom: 100px;
         }
@@ -57,7 +59,7 @@
         }
 
         .member_other_form > p {
-            font-family: "bold";
+            font-family: "light";
             font-size: 1.25em;
             color: #34495E;
             margin-bottom: 15px;
@@ -68,8 +70,10 @@
             flex-wrap: wrap;
             flex-direction: column;
             gap: 5px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
+        
+        
 
         .member_account_set_form > div > label, .member_pii_form > div > label, .member_other_form > div > label {
             font-family: "bold";
@@ -81,16 +85,22 @@
             height: 30px;
             border-radius: 5px;
             border: 1px solid #34495E;
+            padding-left: 10px;
         }
 
-        .member_account_set_form > div > p, .member_pii_form > div > p {
-            width: 62.972292%;
+        .member_pii_form > div > input {
+            padding-left: 10px;
+        }
+
+        .user_password > p, .member_pii_form > div > p {
+            width: 75%;
             font-family: "light";
             font-size: .875em;
             color: #34495E;
         }
 
         .gender, .news_radio, .question_radio {
+            width: 60%;
             display: flex;
             flex-wrap: wrap;
         }
@@ -161,6 +171,64 @@
             display: block;
         }
 
+        @media screen and (max-width: 1024px) {
+            .main {
+                max-width: 960px;
+            }
+
+            .member_singup_title > h2 {
+                font-size: 1.75em;
+            }
+
+            .member_account_set_form > h2, .member_pii_form > h2, .member_other_form > h2 {
+                font-size: 1.625em;
+            }
+
+            .user_password > p {
+                width: 90%;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .main {
+                max-width: 375px;
+                min-width: 320px;
+            }
+
+            .member_account_set_form, .member_pii_form, .member_other_form {
+                width: 90%;
+            }
+
+            .member_singup_title > h2 {
+                font-size: 1.5em;
+            }
+
+            .member_account_set_form > h2, .member_pii_form > h2, .member_other_form > h2 {
+                font-size: 1.25em;
+            }
+
+            .member_account_set_form > div > label, .member_pii_form > div > label, .member_other_form > p, .member_other_form > div > label {
+                font-size: 1.125em;
+            }
+
+            .user_password > p {
+                font-size: .75em;
+                width: 100%;
+            }
+
+            .gender, .news_radio, .question_radio {
+                flex-direction: column;
+            }
+
+            .gender > div > label, .news_radio > div > label, .question_radio > div > label {
+                font-size: 1.125em;
+            }
+
+            .member_singup_btn a {
+                width: 150px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -169,7 +237,7 @@
         <nav class="header_main">
             <div class="header_logo">
                 <a href="./index.html">
-                    <img src="./pic/logo/logo_nav.svg" alt="">
+                    <img src="./pic/logo/logo_book_footer.svg" alt="">
                 </a>    
             </div>
             <div class="header_menu">
@@ -187,18 +255,37 @@
             </div>
             <div class="header_user">
                 <ul class="header_user_list">
-                    <li class="pill join">
+                    <li class="pill join" id="joinbtn">
                         <a href="./member_signup.html">加入會員</a>
                     </li>
-                    <li class="pill login">
+                    <li class="pill login" id="cancelbtn">
                         <a href="#">會員登入</a>
                     </li>
-                    <li class="language">
-                        <a href="#">TW 繁體中文</a>
+                    <li class="header_user_member" id="header_user_member">
+                        <a href="./member_manager.html">您好，<span>WANG先生</span></a>
+                    </li>
+                    <li class="header_user_search" id="header_user_search">
+                        <a href="./booking.html">航班搜尋</a>
+                    </li>
+                    <li class="hamburger_menu">
+                        <div>
+                            <button class="hamburger_toggle" id="hamburger_toggle">
+                                <img src="./pic/icon/icon_menu-burger.svg" alt="" id="menu_open" style="display: block;">
+                                <img src="./pic/icon/icon_menu-burger_cancel.svg" alt="" id="menu_close" style="display: none;">
+                            </button>
+                            <div class="menu_list_group" id="menu_list_group">
+                                <ul class="menu_list">
+                                    <li><a href="./cabin_class.html">體驗AURORA</a></li>
+                                    <li><a href="./membership_tier.html">SkyTier會員</a></li>
+                                    <li><a href="./contact.html">聯絡我們</a></li>
+                                    <li><a href="./booking.html">航班搜尋</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
-        </nav>
+        </nav>    
     </header>
 
     <main class="main">
@@ -215,7 +302,7 @@
                             <label for="">電子信箱</label>
                             <input type="email">
                         </div>
-                        <div>
+                        <div class="user_password">
                             <label for="">設定密碼</label>
                             <p>密碼請輸入8-30字元，最少1個大寫字母、最少1個小寫字母、最少1個數字、最少1個特殊符號(常見特殊符號字元如：!、#、$、^、*……等)，其他字元不接受。</p>
                             <input type="password">
@@ -231,13 +318,11 @@
                         <h2>個人資料</h2>
                             <div>
                                 <label for="">英文姓 (與護照一致)</label>
-                                <p>範例 &#41;WANG</p>
-                                <input type="text">
+                                <input type="text" placeholder="範例 &#41;WANG">
                             </div>
                             <div>
                                 <label for="">英文名+中間名 (與護照一致)</label>
-                                <p>範例 &#41;XIAOMINGJOSEPH</p>
-                                <input type="text">
+                                <input type="text" placeholder="範例 &#41;XIAOMINGJOSEPH">
                             </div>
                             <div>
                                 <label for="">性別</label>
@@ -315,12 +400,48 @@
             </div>
 
             <div class="member_singup_btn">
-                <a href="./member_singup_sucess.html">註冊</a>
+                <a href="#">註冊</a>
                 <!-- <button class="member_singup_next_btn">註冊</button> -->
             </div>
         </form>
-
     </main>
+
+    <!-- login modal -->
+    <div id="loginmodal" class="modal">
+        <div class="modal_content">
+            <button class="modal_close" id="modal_close" type="button">x</button>
+            <div class="modal_title">
+                <h2>SkyTier Gold</h2>
+                <p>會員登入</p>
+            </div>
+            <div class="modal_form">
+                <form action="">
+                    <div>
+                        <label for="">會員號碼</label>
+                        <p>10位數字</p>
+                        <input type="text" id="member_id">
+                    </div>
+                    <div>
+                        <label for="">密碼</label>
+                        <input type="password" id="member_password">
+                    </div>
+                    <div>
+                        <p>個人資訊使用之目的請務必先詳細閱讀奧若拉天航隱私權保護政策並同意其內容再進行下一步。</p>
+                    </div>
+                    <div class="modal_form_btn_group">
+                        <div class="modal_form_btn">
+                            <button id="modal_close_btn" type="button">不登入，直接使用</button>
+                            <button id="modal_login_btn" type="button">登入</button>
+                        </div>
+                        <div class="modal_form_btn">
+                            <a href="">忘記會員號碼的旅客</a>
+                            <a href="">忘記密碼</a>
+                        </div>
+                    </div>    
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!--footer-->
     <footer class="footer">
@@ -332,7 +453,7 @@
                     </div>
                     <div class="footer_inner_txt">
                         <div>
-                            <h3>關於Aurora Sky</h3>
+                            <h3 class="footer_inner_title">關於Aurora Sky</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">關於我們</a>
@@ -352,7 +473,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3>顧客服務</h3>
+                            <h3 class="footer_inner_title">顧客服務</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">顧客滿意度問卷調查</a>
@@ -372,7 +493,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3>網站聲明與規範</h3>
+                            <h3 class="footer_inner_title">網站聲明與規範</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">隱私保護政策</a>
@@ -392,13 +513,29 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                
+                </div>    
             </div>
         </div>
         <div class="footer_bottom">
             <p>&#64;Copyright 2025. Aurora Sky Co.Ltd. All rights reserved</p>
         </div>
     </footer>
+
+    <script src="./js/header.js"></script>
+    <script src="./js/lightbox.js"></script>
+    <script src="./js/footer.js"></script>
+    <script>
+        function init(){
+            checkLoginStatus();
+            document.getElementById("cancelbtn").onclick = login;
+            document.getElementById("modal_close").onclick = logincancel;
+            document.getElementById("modal_close_btn").onclick = logincancelBtn;
+            document.getElementById("modal_login_btn").onclick = checkLoginData;
+            document.getElementById("menu_open").onclick = hamburgeropen;
+            document.getElementById("menu_close").onclick = hamburgerclose;
+        }
+
+        window.addEventListener("load", init);
+    </script>
 </body>
 </html>

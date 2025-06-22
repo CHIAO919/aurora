@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
     <title>我的 SkyTier</title>
     <link rel="stylesheet" href="./css/all.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/footer_index.css">
+    <link rel="stylesheet" href="./css/login_modal.css">
     <style>
         .header {
             margin-bottom: 40px;
         }
 
         .main {
-            width: 1200px;
+            width: 100%;
+            max-width: 1200px;
             margin: auto;
             margin-bottom: 100px;
         }
@@ -23,11 +26,34 @@
             margin: auto;
         }
 
+        .member_manager_title {
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logout_btn > button {
+            background-color: transparent;
+            border: 1px solid #34495E;
+            font-family: "bold";
+            font-size: 1.5em;
+            padding: 5px 20px;
+            color: #34495E;
+            border-radius: 30px;
+        }
+
+        .logout_btn > button:hover {
+            background-color: #A38D6D;
+            color: #fff;
+            border: none;
+            transition: all 0.3s ease-in-out;
+        }
+
         .member_manager_title h2 {
             font-family: "bold";
             font-size: 2.25em;
             color: #34495E;
-            margin-bottom: 30px;
         }
 
         .member_manager_info, .member_manager_mile, .member_pii {
@@ -89,7 +115,7 @@
         }
 
         .member_manager_card, .member_manager_mile_info {
-            width: 83.734939%;
+            width: 90%;
             margin: auto;
             display: flex;
             flex-wrap: wrap;
@@ -147,7 +173,7 @@
         }
 
         .member_pii_info {
-            width: 83.734939%;
+            width: 89%;
             margin: auto;
         }
 
@@ -206,6 +232,113 @@
             display: block;
             width: 100%;
         }
+
+        @media screen and (max-width: 1024px) {
+            .member_manager_card, .member_manager_mile_info, .member_pii_info_detial {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .member_manager_txt {
+                width: 100%;
+            }
+
+            .member_manager_pic {
+                width: 50%;
+                margin: auto;
+            }
+
+            .member_manager_mile_card {
+                width: 100%;
+                padding-bottom: 10px;
+            }
+
+            .member_manager_mile_card:first-child {
+                border-right: none;
+                border-bottom: 1px solid #D9D9D9;
+            }
+
+            .member_manager_title > h2 {
+                font-size: 1.75em;
+            }
+
+            .member_manager_txt_title > h2, .member_manager_mile_card > h2, .member_pii_info_title > h2 {
+                font-size: 1.625em;
+            }
+
+            .member_manager_mile_card > div > p:first-child, .member_manager_mile_card > div > div > p:first-child {
+                font-size: 1.75em;
+            }
+
+            .member_manager_mile_card > div > p, .member_manager_mile_card > div > div > p {
+                font-size: 1.25em;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .main {
+                max-width: 375px;
+                min-width: 320px;
+            }
+
+            .member_manager_txt_detial {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .member_manager_title {
+                margin-bottom: 25px;
+            }
+
+            .member_manager_title > h2 {
+                font-size: 1.5em;
+            }
+
+            .member_manager_txt_title > h2, .member_manager_mile_card > h2, .member_pii_info_title > h2 {
+                font-size: 1.25em;
+            }
+
+            .member_manager_txt_detial > div > p, .member_manager_txt_level > div a, .member_pii_info_detial > div > h2 {
+                font-size: 1.125em;
+            }
+
+            .member_manager_pic {
+                width: 100%;
+            }
+
+            .member_manager_mile_card > div > p:first-child, .member_manager_mile_card > div > div > p:first-child {
+                font-size: 1.5em;
+            }
+
+            .member_manager_mile_card > div > p, .member_manager_mile_card > div > div > p {
+                font-size: 1.125em;
+            }
+
+            .member_pii_info_detial > div {
+                width: 100%;
+            }
+
+            .member_pii_info_detial > div > p {
+                font-size: 1.25em;
+            }
+
+            .member_pii_info_btn {
+                justify-content: center;
+            }
+
+            .member_pii_info_btn_revise {
+                width: 150px;
+            }
+
+            .member_pii_info_btn_revise a {
+                font-size: 1.25em;
+            }
+
+            .logout_btn > button {
+                font-size: 1.25em;
+                padding: 2px 18px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -214,7 +347,7 @@
         <nav class="header_main">
             <div class="header_logo">
                 <a href="./index.html">
-                    <img src="./pic/logo/logo_nav.svg" alt="">
+                    <img src="./pic/logo/logo_book_footer.svg" alt="">
                 </a>    
             </div>
             <div class="header_menu">
@@ -232,23 +365,45 @@
             </div>
             <div class="header_user">
                 <ul class="header_user_list">
-                    <li class="pill join">
+                    <li class="pill join" id="joinbtn">
                         <a href="./member_signup.html">加入會員</a>
                     </li>
-                    <li class="pill login">
+                    <li class="pill login" id="cancelbtn">
                         <a href="#">會員登入</a>
                     </li>
-                    <li class="language">
-                        <a href="#">TW 繁體中文</a>
+                    <li class="header_user_member" id="header_user_member">
+                        <a href="./member_manager.html">您好，<span>WANG先生</span></a>
+                    </li>
+                    <li class="header_user_search" id="header_user_search">
+                        <a href="./booking.html">航班搜尋</a>
+                    </li>
+                    <li class="hamburger_menu">
+                        <div>
+                            <button class="hamburger_toggle" id="hamburger_toggle">
+                                <img src="./pic/icon/icon_menu-burger.svg" alt="" id="menu_open" style="display: block;">
+                                <img src="./pic/icon/icon_menu-burger_cancel.svg" alt="" id="menu_close" style="display: none;">
+                            </button>
+                            <div class="menu_list_group" id="menu_list_group">
+                                <ul class="menu_list">
+                                    <li><a href="./cabin_class.html">體驗AURORA</a></li>
+                                    <li><a href="./membership_tier.html">SkyTier會員</a></li>
+                                    <li><a href="./contact.html">聯絡我們</a></li>
+                                    <li><a href="./booking.html">航班搜尋</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
-        </nav>
+        </nav>    
     </header>
 
     <main class="main">
         <div class="member_manager_title">
             <h2>我的 SkyTier</h2>
+            <div class="logout_btn">
+                <button type="button" id="logoutbtn">登出</button>
+            </div>
         </div>
 
         <div class="member_manager">
@@ -355,6 +510,43 @@
         </div>
     </main>
 
+    <!-- login modal -->
+    <div id="loginmodal" class="modal">
+        <div class="modal_content">
+            <button class="modal_close" id="modal_close" type="button">x</button>
+            <div class="modal_title">
+                <h2>SkyTier Gold</h2>
+                <p>會員登入</p>
+            </div>
+            <div class="modal_form">
+                <form action="">
+                    <div>
+                        <label for="">會員號碼</label>
+                        <p>10位數字</p>
+                        <input type="text" id="member_id">
+                    </div>
+                    <div>
+                        <label for="">密碼</label>
+                        <input type="password" id="member_password">
+                    </div>
+                    <div>
+                        <p>個人資訊使用之目的請務必先詳細閱讀奧若拉天航隱私權保護政策並同意其內容再進行下一步。</p>
+                    </div>
+                    <div class="modal_form_btn_group">
+                        <div class="modal_form_btn">
+                            <button id="modal_close_btn" type="button">不登入，直接使用</button>
+                            <button id="modal_login_btn" type="button">登入</button>
+                        </div>
+                        <div class="modal_form_btn">
+                            <a href="">忘記會員號碼的旅客</a>
+                            <a href="">忘記密碼</a>
+                        </div>
+                    </div>    
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!--footer-->
     <footer class="footer">
         <div class="footer_inner">
@@ -365,7 +557,7 @@
                     </div>
                     <div class="footer_inner_txt">
                         <div>
-                            <h3>關於Aurora Sky</h3>
+                            <h3 class="footer_inner_title">關於Aurora Sky</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">關於我們</a>
@@ -385,7 +577,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3>顧客服務</h3>
+                            <h3 class="footer_inner_title">顧客服務</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">顧客滿意度問卷調查</a>
@@ -405,7 +597,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3>網站聲明與規範</h3>
+                            <h3 class="footer_inner_title">網站聲明與規範</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">隱私保護政策</a>
@@ -425,13 +617,31 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                
+                </div>    
             </div>
         </div>
         <div class="footer_bottom">
             <p>&#64;Copyright 2025. Aurora Sky Co.Ltd. All rights reserved</p>
         </div>
     </footer>
+
+    <script src="./js/header.js"></script>
+    <script src="./js/lightbox.js"></script>
+    <script src="./js/footer.js"></script>
+    <script>
+        function init(){
+            checkLoginStatus();
+            document.getElementById("menu_open").onclick = hamburgeropen;
+            document.getElementById("menu_close").onclick = hamburgerclose;
+        }
+
+        document.getElementById("logoutbtn").onclick = function(e){
+            e.preventDefault();
+            localStorage.removeItem("loginStatus");
+            window.location.href = "index.html";
+        };
+
+        window.addEventListener("load", init);
+    </script>
 </body>
 </html>

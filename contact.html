@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/all.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/footer_index.css">
+    <link rel="stylesheet" href="./css/login_modal.css">
     <style>
         .header {
             margin-bottom: 40px;
@@ -18,9 +19,9 @@
         }
         /*breadcrumbs*/
         .breadcrumbs {
-            width: 100%;
+            width: 90%;
             margin: auto;
-            margin-bottom: 35px;
+            margin-bottom: 60px;
         }
         .breadcrumbs_list {
             display: flex;
@@ -67,12 +68,29 @@
         }
 
         .contact_title {
-            width: 100%;
+            width: 90%;
             margin: auto;
             font-family: "bold";
             font-size: 1.5em;
             color: #34495E;
-            margin-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        .contact_list {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 70px;
+        }
+
+        .contact_card {
+            width: 100%;
+        }
+
+        .contact_card:last-child {
+            margin-bottom: 100px;
         }
 
         .contact_location {
@@ -80,8 +98,7 @@
             margin: auto;
             text-align: center;
             position: relative;
-            margin-top: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 35px;
         }
 
         .contact_location h2 {
@@ -91,53 +108,82 @@
             text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
         }
 
-        .contact_location h2::before {
+/*         .contact_location h2::before {
             content: "";
-            width: 40.714285%;
+            width: 45%;
             height: 0;
             border: 1px solid #A38D6D;
             display: block;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
+        } */
+
+        .contact_location h2::before {
+            content: "";
+            border-bottom: 8px solid #B8A78E;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 100%;
         }
 
         .contact_location h2::after {
             content: "";
-            width: 40.714285%;
+            width: 100%;
             height: 0;
-            border: 1px solid #A38D6D;
+            border: 1.5px solid #B8A78E;
             display: block;
             position: absolute;
-            top: 50%;
+            top: 120%;
             right: 0;
-            transform: translateY(-50%);
+            transform: translateY(-120%);
+        }
+
+        .contact_info_list {
+            width: 100%;
+            margin: auto;
         }
 
         .contact_info {
-            width: 100%;
             margin: auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 30px;
-        }
-
-        .contact_info:last-child {
-            margin-bottom: 100px;
-        }
-
-        .contact_info_card {
-            width: 47.142857%;
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 1.041666% 1.5625%;
-            color: #34495E;
-            font-size: 1em;
             display: flex;
             flex-wrap: wrap;
             flex-direction: column;
             gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .contact_info_card {
+            width: 95%;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            color: #34495E;
+            font-size: 1em;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .contact_info_card_txt {
+            width: 60%;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .contact_info_card_map {
+            flex-grow: 1;
+        }
+
+        .contact_info_card_map > iframe {
+            width: 100%;
+            height: 100%;
         }
 
         .contact_info_title::after {
@@ -150,22 +196,22 @@
 
         .contact_info_title h3 {
             font-family: "bold";
-            font-size: 1.75em;
-            margin-bottom: 15px;
+            font-size: 1.5em;
+            margin-bottom: 10px;
         }
 
         .contact_info_phone, .contact_info_time, .contact_info_address {
             display: flex;
             flex-wrap: wrap;
-            gap: 5px;
+            gap: 2px;
         }
 
         .contact_info_phone p, .contact_info_time p, .contact_info_address p {
             font-family: "light";
-            font-size: 1.25em;
+            font-size: 1.125em;
             display: flex;
             flex-wrap: wrap;
-            gap: 5px;
+            gap: 2px;
         }
 
         .contact_info_phone p:first-child::before {
@@ -201,6 +247,127 @@
             background-image: url("data:image/svg+xml;utf8,<svg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M15 15C13.625 15 12.5 13.875 12.5 12.5C12.5 11.125 13.625 10 15 10C16.375 10 17.5 11.125 17.5 12.5C17.5 13.875 16.375 15 15 15ZM22.5 12.75C22.5 8.2125 19.1875 5 15 5C10.8125 5 7.5 8.2125 7.5 12.75C7.5 15.675 9.9375 19.55 15 24.175C20.0625 19.55 22.5 15.675 22.5 12.75ZM15 2.5C20.25 2.5 25 6.525 25 12.75C25 16.9 21.6625 21.8125 15 27.5C8.3375 21.8125 5 16.9 5 12.75C5 6.525 9.75 2.5 15 2.5Z' fill='%2334495E'/></svg>");
         }
 
+        @media screen and (max-width: 1400px) {
+            .main {
+                width: 1200px;
+            }
+        }
+
+        @media screen and (max-width: 1200px) {
+            .main {
+                width: 1024px;
+            }
+
+            .breadcrumbs {
+                margin-bottom: 40px;
+            }
+
+            .breadcrumbs_list > li {
+                font-size: 1.125em;
+            }
+
+            .contact_list {
+                gap: 40px;
+            }
+
+            .contact_title {
+                margin-bottom: 25px;
+            }
+
+            .contact_title > h2 {
+                font-size: 1.25em;
+            }
+
+            .contact_location > h2 {
+                font-size: 28px;
+            }
+
+            .contact_location h2::after {
+                top: 125%;
+            }
+
+            .contact_info {
+                margin-bottom: 25px;
+            }
+
+            .contact_info_title > h3 {
+                font-size: 1.5em;
+            }
+
+            .contact_info_phone > p, .contact_info_time > p , .contact_info_address > p {
+                font-size: 1em;
+            }
+
+            .contact_info_phone p:first-child::before, .contact_info_time p:first-child::before, .contact_info_address p:first-child::before {
+                width: 25px;
+                height: 25px;
+            }
+        }
+
+        @media screen and (max-width: 1024px) {
+            .main {
+                width: 768px;
+            }
+
+            .breadcrumbs {
+                margin-bottom: 40px;
+            }
+
+            .contact_info_card_txt {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .contact_title > h2 {
+                font-size: 28px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .main {
+                max-width: 375px;
+                min-width: 320px;
+            }
+
+            .breadcrumbs_list > li {
+                font-size: 1em;
+            }
+
+            .contact_title > h2 {
+                font-size: 24px;
+            }
+
+            .contact_location > h2 {
+                font-size: 1.5em;
+            }
+
+            .contact_info_card {
+                width: 100%;
+                padding: 10px 5px;
+            }
+
+            .contact_info_title > h3 {
+                font-size: 1.25em;
+            }
+
+            .contact_info_card_txt {
+                gap: 15px;
+            }
+
+            .contact_info_phone, .contact_info_time, .contact_info_address {
+                flex-direction: column;
+            }
+
+            .contact_info_phone  p, .contact_info_time  p , .contact_info_address  p {
+                font-size: .875em;
+                width: 100%;
+            }
+
+            .contact_info_phone p:first-child::before, .contact_info_time p:first-child::before, .contact_info_address p:first-child::before {
+                width: 20px;
+                height: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -209,7 +376,7 @@
         <nav class="header_main">
             <div class="header_logo">
                 <a href="./index.html">
-                    <img src="./pic/logo/logo_nav.svg" alt="">
+                    <img src="./pic/logo/logo_book_footer.svg" alt="">
                 </a>    
             </div>
             <div class="header_menu">
@@ -218,7 +385,7 @@
                         <a href="./cabin_class.html">體驗AURORA</a>
                     </li>
                     <li>
-                        <a href="#">SkyTier會員</a>
+                        <a href="./membership_tier.html">SkyTier會員</a>
                     </li>
                     <li>
                         <a href="./contact.html">聯絡我們</a>
@@ -227,18 +394,37 @@
             </div>
             <div class="header_user">
                 <ul class="header_user_list">
-                    <li class="pill join">
+                    <li class="pill join" id="joinbtn">
                         <a href="./member_signup.html">加入會員</a>
                     </li>
-                    <li class="pill login">
+                    <li class="pill login" id="cancelbtn">
                         <a href="#">會員登入</a>
                     </li>
-                    <li class="language">
-                        <a href="#">TW 繁體中文</a>
+                    <li class="header_user_member" id="header_user_member">
+                        <a href="./member_manager.html">您好，<span>WANG先生</span></a>
+                    </li>
+                    <li class="header_user_search" id="header_user_search">
+                        <a href="./booking.html">航班搜尋</a>
+                    </li>
+                    <li class="hamburger_menu">
+                        <div>
+                            <button class="hamburger_toggle" id="hamburger_toggle">
+                                <img src="./pic/icon/icon_menu-burger.svg" alt="" id="menu_open" style="display: block;">
+                                <img src="./pic/icon/icon_menu-burger_cancel.svg" alt="" id="menu_close" style="display: none;">
+                            </button>
+                            <div class="menu_list_group" id="menu_list_group">
+                                <ul class="menu_list">
+                                    <li><a href="./cabin_class.html">體驗AURORA</a></li>
+                                    <li><a href="./membership_tier.html">SkyTier會員</a></li>
+                                    <li><a href="./contact.html">聯絡我們</a></li>
+                                    <li><a href="./booking.html">航班搜尋</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
-        </nav>
+        </nav>    
     </header>
 
     <main class="main">
@@ -259,143 +445,258 @@
             <h2>各地服務資訊</h2>
         </div>
 
-        <div class="contact_location">
-            <h2>台灣</h2>
-        </div>
+        <div class="contact_list">
+            <div class="contact_card">
+                <div class="contact_location">
+                    <h2>台灣</h2>
+                </div>
+                <div class="contact_info_list">
+                    <div class="contact_info">
+                        <div class="contact_info_card">
+                            <div class="contact_info_card_txt">
+                                <div class="contact_info_title">
+                                    <h3>台北</h3>
+                                </div>
+                                <div class="contact_info_phone">
+                                    <p>電話 :</p>
+                                    <p>+886-3-306-5086</p>
+                                </div>
+                                <div class="contact_info_time">
+                                    <p>服務時間 :</p>
+                                    <p>週一至週日(含國定假日)08:30-18:00</p>
+                                </div>
+                                <div class="contact_info_address">
+                                    <p>地址 :</p>
+                                    <p>桃園市大園區航站南路9號</p>
+                                </div>
+                            </div>
+                            <div class="contact_info_card_map">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.1549376390226!2d121.22268309999998!3d25.028815500000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346820512ce0a3f9%3A0x3fc196cf9b667c80!2zMzM35qGD5ZyS5biC5aSn5ZyS5Y2A6Iiq56uZ5Y2X6LevOeiZnw!5e0!3m2!1szh-TW!2stw!4v1750062346826!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
 
-        <div class="contact_info">
-            <div class="contact_info_card">
-                <div class="contact_info_title">
-                    <h3>台北</h3>
+                        <div class="contact_info_card">
+                            <div class="contact_info_card_txt">
+                                <div class="contact_info_title">
+                                    <h3>高雄</h3>
+                                </div>
+                                <div class="contact_info_phone">
+                                    <p>電話 :</p>
+                                    <p>+886-7-805-7631</p>
+                                </div>
+                                <div class="contact_info_time">
+                                    <p>服務時間 :</p>
+                                    <p>週一至週日(含國定假日)08:30-18:00</p>
+                                </div>
+                                <div class="contact_info_address">
+                                    <p>地址 :</p>
+                                    <p>高雄市小港區中山四路2號</p>
+                                </div>
+                            </div>
+                            <div class="contact_info_card_map">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.1853080540427!2d120.3366854755893!3d22.57217157949206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e032c40af5c09%3A0xe119ad7c66b6107e!2zODEy6auY6ZuE5biC5bCP5riv5Y2A5Lit5bGx5Zub6LevMuiZnw!5e0!3m2!1szh-TW!2stw!4v1750068150770!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="contact_info_phone">
-                    <p>電話 :</p>
-                    <p>+886-3-306-5086</p>
-                </div>
-                <div class="contact_info_time">
-                    <p>服務時間 :</p>
-                    <p>週一至週日(含國定假日)08:30-18:00</p>
-                </div>
-                <div class="contact_info_address">
-                    <p>地址 :</p>
-                    <p>桃園市大園區航站南路9號</p>
-                </div>
+                
             </div>
 
-            <div class="contact_info_card">
-                <div class="contact_info_title">
-                    <h3>高雄</h3>
+            <div class="contact_card">
+                <div class="contact_location">
+                    <h2>日本</h2>
                 </div>
-                <div class="contact_info_phone">
-                    <p>電話 :</p>
-                    <p>+886-7-805-7631</p>
-                </div>
-                <div class="contact_info_time">
-                    <p>服務時間 :</p>
-                    <p>週一至週日(含國定假日)08:30-18:00</p>
-                </div>
-                <div class="contact_info_address">
-                    <p>地址 :</p>
-                    <p>高雄市小港區中山四路2號</p>
+
+                <div class="contact_info_list">
+                    <div class="contact_info">
+                        <div class="contact_info_card">
+                            <div class="contact_info_card_txt">
+                                <div class="contact_info_title">
+                                    <h3>東京</h3>
+                                </div>
+                                <div class="contact_info_phone">
+                                    <p>電話 :</p>
+                                    <p>+81-4-7634-8000</p>
+                                </div>
+                                <div class="contact_info_time">
+                                    <p>服務時間 :</p>
+                                    <p>週一至週日(國定假日除外)08:30-18:00</p>
+                                </div>
+                                <div class="contact_info_address">
+                                    <p>地址 :</p>
+                                    <p>1-1 Furugome, Narita, Chiba 282-0004 Japan</p>
+                                </div>
+                            </div>
+                            <div class="contact_info_card_map">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3237.004485211195!2d140.3843565760458!3d35.77526617255709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6022f3231fced11f%3A0x5c23a6b14af85ccc!2zMS0xIEZ1cnVnb21lLCBOYXJpdGEsIENoaWJhIDI4Mi0wMDA05pel5pys!5e0!3m2!1szh-TW!2stw!4v1750068367785!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+
+                        <div class="contact_info_card">
+                            <div class="contact_info_card_txt">
+                                <div class="contact_info_title">
+                                    <h3>大阪</h3>
+                                </div>
+                                <div class="contact_info_phone">
+                                    <p>電話 :</p>
+                                    <p>+81-7-2455-2500</p>
+                                </div>
+                                <div class="contact_info_time">
+                                    <p>服務時間 :</p>
+                                    <p>週一至週日(國定假日除外)08:30-18:00</p>
+                                </div>
+                                <div class="contact_info_address">
+                                    <p>地址 :</p>
+                                    <p>1 Senshu Kuko Kita, Izumisano, Osaka 549-0001, Japan</p>
+                                </div>
+                            </div>
+                            <div class="contact_info_card_map">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13163.184516302117!2d135.23166696632288!3d34.43193329671166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000b91323cdfaf7%3A0xf171a79f8d908f88!2z6Zec6KW_5ZyL6Zqb5qmf5aC056ys5LqM6Iiq5buI!5e0!3m2!1szh-TW!2stw!4v1750068663084!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+
+                        <div class="contact_info_card">
+                            <div class="contact_info_card_txt">
+                                <div class="contact_info_title">
+                                    <h3>熊本</h3>
+                                </div>
+                                <div class="contact_info_phone">
+                                    <p>電話 :</p>
+                                    <p>+81-9-6232-2311</p>
+                                </div>
+                                <div class="contact_info_time">
+                                    <p>服務時間 :</p>
+                                    <p>週一至週日(國定假日除外)08:30-18:00</p>
+                                </div>
+                                <div class="contact_info_address">
+                                    <p>地址 :</p>
+                                    <p>1802-2 Oyatsu, Mashiki, Kamimashiki District, Kumamoto 861-2204, Japan</p>
+                                </div>
+                            </div>
+                            <div class="contact_info_card_map">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3352.376389885483!2d130.85898967592797!3d32.83528457363934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3540e58a7c299055%3A0xe94ffd5a8413eef5!2z54aK5pys5qmf5aC0!5e0!3m2!1szh-TW!2stw!4v1750069208588!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                        <div class="contact_info_card">
+                            <div class="contact_info_card_txt">
+                                <div class="contact_info_title">
+                                    <h3>名古屋</h3>
+                                </div>
+                                <div class="contact_info_phone">
+                                    <p>電話 :</p>
+                                    <p>+81-5-6938-1195</p>
+                                </div>
+                                <div class="contact_info_time">
+                                    <p>服務時間 :</p>
+                                    <p>週一至週日(國定假日除外)08:30-18:00</p>
+                                </div>
+                                <div class="contact_info_address">
+                                    <p>地址 :</p>
+                                    <p>1 Chome-1 Centrair, Tokoname, Aichi 479-0881, Japan</p>
+                                </div>
+                            </div>
+                            <div class="contact_info_card_map">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6547.924851362663!2d136.8109834453407!3d34.85717144145761!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60047d93edcc29cf%3A0x42987d286e2c0025!2z5Lit6YOo5ZyL6Zqb5qmf5aC0KOaWsOeJuem6l-S6nik!5e0!3m2!1szh-TW!2stw!4v1750069444956!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>    
                 </div>
             </div>
-        </div>
+    
 
-        <div class="contact_location">
-            <h2>日本</h2>
-        </div>
+            <div class="contact_card">
+                <div class="contact_location">
+                    <h2>韓國</h2>
+                </div>
 
-        <div class="contact_info">
-            <div class="contact_info_card">
-                <div class="contact_info_title">
-                    <h3>東京</h3>
-                </div>
-                <div class="contact_info_phone">
-                    <p>電話 :</p>
-                    <p>+81-4-7634-8000</p>
-                </div>
-                <div class="contact_info_time">
-                    <p>服務時間 :</p>
-                    <p>週一至週日(國定假日除外)08:30-18:00</p>
-                </div>
-                <div class="contact_info_address">
-                    <p>地址 :</p>
-                    <p>1-1 Furugome, Narita, Chiba 282-0004 Japan</p>
-                </div>
-            </div>
-
-            <div class="contact_info_card">
-                <div class="contact_info_title">
-                    <h3>大阪</h3>
-                </div>
-                <div class="contact_info_phone">
-                    <p>電話 :</p>
-                    <p>+81-7-2455-2500</p>
-                </div>
-                <div class="contact_info_time">
-                    <p>服務時間 :</p>
-                    <p>週一至週日(國定假日除外)08:30-18:00</p>
-                </div>
-            </div>
-        </div>    
-        <div class="contact_info">
-            <div class="contact_info_card">
-                <div class="contact_info_title">
-                    <h3>東京</h3>
-                </div>
-                <div class="contact_info_phone">
-                    <p>電話 :</p>
-                    <p>+81-4-7634-8000</p>
-                </div>
-                <div class="contact_info_time">
-                    <p>服務時間 :</p>
-                    <p>週一至週日(國定假日除外)08:30-18:00</p>
-                </div>
-                <div class="contact_info_address">
-                    <p>地址 :</p>
-                    <p>1-1 Furugome, Narita, Chiba 282-0004 Japan</p>
-                </div>
-            </div>
-
-            <div class="contact_info_card">
-                <div class="contact_info_title">
-                    <h3>大阪</h3>
-                </div>
-                <div class="contact_info_phone">
-                    <p>電話 :</p>
-                    <p>+81-7-2455-2500</p>
-                </div>
-                <div class="contact_info_time">
-                    <p>服務時間 :</p>
-                    <p>週一至週日(國定假日除外)08:30-18:00</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="contact_location">
-            <h2>韓國</h2>
-        </div>
-
-        <div class="contact_info">
-            <div class="contact_info_card">
-                <div class="contact_info_title">
-                    <h3>首爾</h3>
-                </div>
-                <div class="contact_info_phone">
-                    <p>電話 :</p>
-                    <p>+82-2-1577-2600</p>
-                </div>
-                <div class="contact_info_time">
-                    <p>服務時間 :</p>
-                    <p>週一至週日(國定假日除外)08:30-18:00</p>
-                </div>
-                <div class="contact_info_address">
-                    <p>地址 :</p>
-                    <p>272 Gonghang-ro, Jung-gu, Incheon, Republic of Korea</p>
+                <div class="contact_info_list">
+                    <div class="contact_info">
+                        <div class="contact_info_card">
+                            <div class="contact_info_card_txt">
+                                <div class="contact_info_title">
+                                    <h3>首爾</h3>
+                                </div>
+                                <div class="contact_info_phone">
+                                    <p>電話 :</p>
+                                    <p>+82-2-1577-2600</p>
+                                </div>
+                                <div class="contact_info_time">
+                                    <p>服務時間 :</p>
+                                    <p>週一至週日(國定假日除外)08:30-18:00</p>
+                                </div>
+                                <div class="contact_info_address">
+                                    <p>地址 :</p>
+                                    <p>Gonghang-ro, Jung-gu, Incheon, Republic of Korea</p>
+                                </div>
+                            </div>
+                            <div class="contact_info_card_map">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3167.0870744953545!2d126.439392976117!3d37.45866597206663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b9a833a5efa59%3A0x8d4ba096cb5cbed4!2z5LuB5bed5ZyL6Zqb5qmf5aC0!5e0!3m2!1szh-TW!2stw!4v1750069534639!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                        <div class="contact_info_card">
+                            <div class="contact_info_card_txt">
+                                <div class="contact_info_title">
+                                    <h3>釜山</h3>
+                                </div>
+                                <div class="contact_info_phone">
+                                    <p>電話 :</p>
+                                    <p>+82-2-1661-2626</p>
+                                </div>
+                                <div class="contact_info_time">
+                                    <p>服務時間 :</p>
+                                    <p>週一至週日(國定假日除外)08:30-18:00</p>
+                                </div>
+                                <div class="contact_info_address">
+                                    <p>地址 :</p>
+                                    <p>108 Gonghangjinip-ro, Gangseo-gu, Busan, Republic of Korea</p>
+                                </div>
+                            </div>
+                            <div class="contact_info_card_map">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3261.348371260466!2d128.94460337602086!3d35.17286877275552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x356892c12212f70d%3A0x15a3a9429a8c32ec!2z6Yec5bGxL-mHkea1t-Wci-mam-apn-WgtA!5e0!3m2!1szh-TW!2stw!4v1750069769103!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
+
+    <!-- login modal -->
+    <div id="loginmodal" class="modal">
+        <div class="modal_content">
+            <button class="modal_close" id="modal_close" type="button">x</button>
+            <div class="modal_title">
+                <h2>SkyTier Gold</h2>
+                <p>會員登入</p>
+            </div>
+            <div class="modal_form">
+                <form action="">
+                    <div>
+                        <label for="">會員號碼</label>
+                        <p>10位數字</p>
+                        <input type="text" id="member_id">
+                    </div>
+                    <div>
+                        <label for="">密碼</label>
+                        <input type="password" id="member_password">
+                    </div>
+                    <div>
+                        <p>個人資訊使用之目的請務必先詳細閱讀奧若拉天航隱私權保護政策並同意其內容再進行下一步。</p>
+                    </div>
+                    <div class="modal_form_btn_group">
+                        <div class="modal_form_btn">
+                            <button id="modal_close_btn" type="button">不登入，直接使用</button>
+                            <button id="modal_login_btn" type="button">登入</button>
+                        </div>
+                        <div class="modal_form_btn">
+                            <a href="">忘記會員號碼的旅客</a>
+                            <a href="">忘記密碼</a>
+                        </div>
+                    </div>    
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!--footer-->
     <footer class="footer">
@@ -407,7 +708,7 @@
                     </div>
                     <div class="footer_inner_txt">
                         <div>
-                            <h3>關於Aurora Sky</h3>
+                            <h3 class="footer_inner_title">關於Aurora Sky</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">關於我們</a>
@@ -427,7 +728,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3>顧客服務</h3>
+                            <h3 class="footer_inner_title">顧客服務</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">顧客滿意度問卷調查</a>
@@ -447,7 +748,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3>網站聲明與規範</h3>
+                            <h3 class="footer_inner_title">網站聲明與規範</h3>
                             <ul class="footer_inner_txt_list">
                                 <li>
                                     <a href="">隱私保護政策</a>
@@ -467,13 +768,29 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                
+                </div>    
             </div>
         </div>
         <div class="footer_bottom">
             <p>&#64;Copyright 2025. Aurora Sky Co.Ltd. All rights reserved</p>
         </div>
     </footer>
+
+    <script src="./js/header.js"></script>
+    <script src="./js/lightbox.js"></script>
+    <script src="./js/footer.js"></script>
+    <script>
+        function init(){
+            checkLoginStatus();
+            document.getElementById("cancelbtn").onclick = login;
+            document.getElementById("modal_close").onclick = logincancel;
+            document.getElementById("modal_close_btn").onclick = logincancelBtn;
+            document.getElementById("modal_login_btn").onclick = checkLoginData;
+            document.getElementById("menu_open").onclick = hamburgeropen;
+            document.getElementById("menu_close").onclick = hamburgerclose;
+        }
+
+        window.addEventListener("load", init);
+    </script>
 </body>
 </html>
