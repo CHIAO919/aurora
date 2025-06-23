@@ -806,12 +806,12 @@
                         </div> -->
                     </div>
                     <div class="flight_price_economy">
-                        <p>21,000元</p>
+                        <p class="eco_0">21,000元</p>
                         <p>(TWD)</p>
                         <button class="flight_price_btn economy" >經濟艙</button>
                     </div>
                     <div class="flight_price_business">
-                        <p>41,000元</p>
+                        <p class="bus_0">41,000元</p>
                         <p>(TWD)</p>
                         <button class="flight_price_btn business" >商務艙</button>
                     </div>
@@ -835,12 +835,12 @@
                         </div> -->
                     </div>
                     <div class="flight_price_economy">
-                        <p>21,000元</p>
+                        <p class="eco_1">21,000元</p>
                         <p>(TWD)</p>
                         <button class="flight_price_btn economy" >經濟艙</button>
                     </div>
                     <div class="flight_price_business">
-                        <p>41,000元</p>
+                        <p class="bus_1">41,000元</p>
                         <p>(TWD)</p>
                         <button class="flight_price_btn business" >商務艙</button>
                     </div>
@@ -976,8 +976,13 @@
         let destination = params.get("destination");
         let originDayStr = params.get("originDay");         // e.g. "2025-06-22"
         let destinationDayStr = params.get("destinationDay");
+        let origin_fligth_no = params.get("originFligthNo");
         let selected_price = parseInt(params.get("price"));
         let total_price;
+        let destination_fligth_no = 0;
+        let centerDate = new Date(destinationDayStr);
+        let destinationWeekday = centerDate.toLocaleDateString("en", { weekday: 'long' });
+        let destinationFlights = getFlightsByAll(destinationWeekday, destination, origin);
 
         // console.log(selected_price);
         // console.log(typeof(selected_price));
@@ -991,6 +996,7 @@
             // console.log(destination);
             // console.log(originDayStr);
             // console.log(destinationDayStr);
+            destination_fligth_no = destinationFlights[0].flightNo;
 
             let container = document.querySelector(".dep_date");
             container.innerHTML = ""; // 清空原本的7格
@@ -1047,7 +1053,7 @@
             });
 
             $("#dep_next_btn").on("click", function(){
-                const url = `booking_detail.html?origin=${origin}&destination=${destination}&originDay=${originDayStr}&destinationDay=${destinationDayStr}&price=${total_price}`;
+                const url = `booking_detail.html?origin=${origin}&destination=${destination}&originDay=${originDayStr}&destinationDay=${destinationDayStr}&price=${total_price}&originFligthNo=${origin_fligth_no}&destinationFligthNo=${destination_fligth_no}`;
                 window.location.href = url;
             });
         }
@@ -1074,9 +1080,7 @@
         }
 
         function initFlight(){
-            let centerDate = new Date(destinationDayStr);
-            const destinationWeekday = centerDate.toLocaleDateString("en", { weekday: 'long' });
-            const destinationFlights = getFlightsByAll(destinationWeekday, destination, origin);
+        
             // console.log(destinationWeekday);
             // console.log(destinationFlights);
 
@@ -1086,7 +1090,7 @@
                 let flight = destinationFlights[i];
 
                 // 計算抵達時間（假設 +2小時）
-                const arrivalTime = getArrivalTime(flight.departureTime, 120); // 120分鐘
+                const arrivalTime = getArrivalTime(flight.departureTime, 240); // 120分鐘
 
                 let flight_num_html = `
                     <div class="flight_num_dep">
@@ -1124,7 +1128,15 @@
         $(".flight_price_economy, .flight_price_business").on("click", function() {
             let priceText = $(this).find("p").first().text();  // 例如 "41,000元"
             let numericValue = parseInt(priceText.replace(/[^\d]/g, ""));  // 轉為 41000
+            let selectedClassFlight = $(this).find("p").first().attr("class");
+            if (selectedClassFlight === "eco_0" || selectedClassFlight === "bus_0") {
+                destination_fligth_no = destinationFlights[0].flightNo;
+            } else {
+                destination_fligth_no = destinationFlights[1].flightNo;
+            }
+
             total_price = selected_price + numericValue;
+            
             // console.log(numericValue);
             // selected_price += numericValue;
 

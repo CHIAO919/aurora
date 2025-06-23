@@ -505,6 +505,12 @@ const flightSchedule = [
   { origin: "pus", originName: "釜山", destination: "khh", destinationName: "高雄", weekday: "Sunday", flightNo: "AK1352", departureTime: "17:00" },
 ];
 
+function getFlightsByFlightNo(flightNo) {
+  return flightSchedule.filter(flight => 
+    flight.flightNo === flightNo
+  );
+}
+
 function getFlightsByAll(weekday, origin, destination) {
   return flightSchedule.filter(flight => 
     flight.weekday === weekday &&

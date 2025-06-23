@@ -790,7 +790,7 @@
                                 <div class="dep_location_flight_info">
                                     <div>
                                         <p>航班號碼</p>
-                                        <p>AK001</p>
+                                        <p class="dep_location_flight_no">AK001</p>
                                     </div>
                                     <div>
                                         <p>營運航空</p>
@@ -857,7 +857,7 @@
                                 <div class="dep_location_flight_info">
                                     <div>
                                         <p>航班號碼</p>
-                                        <p>AK011</p>
+                                        <p class="arr_location_flight_no">AK011</p>
                                     </div>
                                     <div>
                                         <p>營運航空</p>
@@ -1099,9 +1099,14 @@
         let destination = params.get("destination");
         let originDayStr = params.get("originDay");         // e.g. "2025-06-22"
         let destinationDayStr = params.get("destinationDay");
+        let origin_fligth_no = params.get("originFligthNo");
+        let destination_fligth_no = params.get("destinationFligthNo");
         let total_price = parseInt(params.get("price"));
         // let total_price;
+        // console.log(getFlightsByFlightNo(origin_fligth_no));
 
+        // console.log(origin_fligth_no);
+        // console.log(destination_fligth_no);
         // console.log(origin);
         // console.log(destination);
         // console.log(originDayStr);
@@ -1112,11 +1117,11 @@
             let centerDate_origin = new Date(originDayStr);
             let originWeekday = centerDate_origin.toLocaleDateString("en", { weekday: 'long' });
             let originFlights = getFlightsByAll(originWeekday, origin, destination);
-            let flight = originFlights[0];
+            let originFlightNo = getFlightsByFlightNo(origin_fligth_no)[0];
             // console.log(centerDate);
             // console.log(originWeekday);
             // console.log(originFlights);
-            // console.log(flight);
+            // console.log(originFlightNo);
 
             let origin_date = $(".dep_time").find("h2").first();
             let month = centerDate_origin.getMonth() + 1;
@@ -1132,17 +1137,22 @@
             // console.log(dep_location_from);
             // console.log(dep_location_from_time);
             // console.log(dep_location_to);
-            dep_location_from.text(`${flight.originName}`);
-            dep_location_to.text(`${flight.destinationName}`);
+            // console.log($(".dep_location_flight_no"));
+
+            dep_location_from.text(`${originFlightNo.originName}`);
+            dep_location_to.text(`${originFlightNo.destinationName}`);
+            dep_location_from_time.text(`${originFlightNo.departureTime}`);
+            $(".dep_location_flight_no").text(`${originFlightNo.flightNo}`);
 
             let centerDate_destination = new Date(destinationDayStr);
             let destinationWeekday = centerDate_destination.toLocaleDateString("en", { weekday: 'long' });
             let destinationFlights = getFlightsByAll(destinationWeekday, destination, origin);
-            let destinationFlight = destinationFlights[0];
+            let destinationFlightNo = getFlightsByFlightNo(destination_fligth_no)[0];
             // console.log(centerDate_destination);
             // console.log(destinationWeekday);
             // console.log(destinationFlights);
-            console.log(destinationFlight);
+            
+            // console.log(destinationFlightNo);
 
             let destination_date = $(".dep_time").find("h2").last();
             let destination_month = centerDate_destination.getMonth() + 1;
@@ -1157,9 +1167,21 @@
             // console.log(arr_location_from);
             // console.log(arr_location_to);
             // console.log(arr_location_from_time);
-            arr_location_from.text(`${destinationFlight.originName}`);
-            arr_location_to.text(`${destinationFlight.destinationName}`);
+            // console.log($(".arr_location_flight_no"));
+            arr_location_from.text(`${destinationFlightNo.originName}`);
+            arr_location_to.text(`${destinationFlightNo.destinationName}`);
+            arr_location_from_time.text(`${destinationFlightNo.departureTime}`);
+            $(".arr_location_flight_no").text(`${destinationFlightNo.flightNo}`);
 
+            let originArrivalTimes = getArrivalTime(originFlightNo.departureTime, 120);
+            let destinationArrivalTimes = getArrivalTime(destinationFlightNo.departureTime, 240);
+
+            let originArrivalTime = $(".dep_location_to").first().find("p").last();
+            let destinationArrivalTime = $(".dep_location_to").last().find("p").last();
+            // console.log(originArrivalTime);
+            // console.log(destinationArrivalTime);
+            originArrivalTime.text(`${originArrivalTimes}`);
+            destinationArrivalTime.text(`${destinationArrivalTimes}`);
             
             // console.log($("p.payment_total_price"));
             $("p.payment_total_price").text(`${total_price.toLocaleString()}元(TWD)`);
@@ -1170,6 +1192,13 @@
                 const url = `booking_pii.html?origin=${origin}&destination=${destination}&originDay=${originDayStr}&destinationDay=${destinationDayStr}&price=${total_price}`;
                 window.location.href = url;
             });
+        }
+
+        function getArrivalTime(depTime, durationMinutes) {
+            const [h, m] = depTime.split(":").map(Number);
+            const date = new Date(2000, 0, 1, h, m);
+            date.setMinutes(date.getMinutes() + durationMinutes);
+            return date.toTimeString().slice(0, 5); // HH:MM 格式
         }
 
         function init(){
