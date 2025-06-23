@@ -21,7 +21,7 @@
         function checkLoginData(){
             //帳號必須是 0123456789 , 密碼是 Snk1314!
             let  account = "0123456789";
-            let password = "Snk1314!";
+            let password = "Abc1234!";
 
             //正確//登入成功
             let user_account = document.getElementById("member_id").value;
