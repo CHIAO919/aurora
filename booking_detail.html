@@ -315,12 +315,10 @@
 
         .payment_btn {
             width: 50%;    
-            background-color: #0F4C81;
-            border-radius: 50px;    
-            text-align: center;
+            
         }
 
-        .payment_btn > a {
+        .payment_btn > button {
             display: block;
             width: 100%;
             padding: 7.665px 0;
@@ -328,6 +326,10 @@
             font-size: 1.5em;
             text-decoration: none;
             color: #D9D9D9;
+            background-color: #0F4C81;
+            border-radius: 50px;    
+            text-align: center;
+            border: none;
         }
 
         /*footer form*/
@@ -596,7 +598,7 @@
                 font-size: 1.125em;
             }
 
-            .payment_btn > a {
+            .payment_btn > button {
                 font-size: 1.25em;
             }
 
@@ -966,7 +968,7 @@
                         </div>
                     </div>
                     <div class="payment_btn">
-                        <a href="./booking_pii.html">下一步</a>
+                        <button id="next_btn">下一步</button>
                     </div>
                 </div>   
             </div>
@@ -1089,7 +1091,87 @@
 
     <script src="./js/header.js"></script>
     <script src="./js/lightbox.js"></script>
+    <script src="./js/flight_schedule_with_return.js"></script>
+    <script src="./vendors/jquery/jquery-3.7.1.min.js"></script>
     <script>
+        let params = new URLSearchParams(window.location.search);
+        let origin = params.get("origin");
+        let destination = params.get("destination");
+        let originDayStr = params.get("originDay");         // e.g. "2025-06-22"
+        let destinationDayStr = params.get("destinationDay");
+        let total_price = parseInt(params.get("price"));
+        // let total_price;
+
+        // console.log(origin);
+        // console.log(destination);
+        // console.log(originDayStr);
+        // console.log(destinationDayStr);
+        // console.log(total_price);
+
+        function initFlight_origin(){
+            let centerDate_origin = new Date(originDayStr);
+            let originWeekday = centerDate_origin.toLocaleDateString("en", { weekday: 'long' });
+            let originFlights = getFlightsByAll(originWeekday, origin, destination);
+            let flight = originFlights[0];
+            // console.log(centerDate);
+            // console.log(originWeekday);
+            // console.log(originFlights);
+            // console.log(flight);
+
+            let origin_date = $(".dep_time").find("h2").first();
+            let month = centerDate_origin.getMonth() + 1;
+            let day = centerDate_origin.getDate();
+            let weekday = centerDate_origin.toLocaleDateString("zh-TW", { weekday: 'long' });
+
+            origin_date.text(`${month}月${day}日 ${weekday}`);
+            // console.log(origin_date);
+
+            let dep_location_from = $(".dep_location_from").first().find("p").first();
+            let dep_location_to = $(".dep_location_to").first().find("p").first();
+            let dep_location_from_time = $(".dep_location_from").first().find("p").last();
+            // console.log(dep_location_from);
+            // console.log(dep_location_from_time);
+            // console.log(dep_location_to);
+            dep_location_from.text(`${flight.originName}`);
+            dep_location_to.text(`${flight.destinationName}`);
+
+            let centerDate_destination = new Date(destinationDayStr);
+            let destinationWeekday = centerDate_destination.toLocaleDateString("en", { weekday: 'long' });
+            let destinationFlights = getFlightsByAll(destinationWeekday, destination, origin);
+            let destinationFlight = destinationFlights[0];
+            // console.log(centerDate_destination);
+            // console.log(destinationWeekday);
+            // console.log(destinationFlights);
+            console.log(destinationFlight);
+
+            let destination_date = $(".dep_time").find("h2").last();
+            let destination_month = centerDate_destination.getMonth() + 1;
+            let destination_day = centerDate_destination.getDate();
+            let destination_weekday = centerDate_destination.toLocaleDateString("zh-TW", { weekday: 'long' });
+
+            destination_date.text(`${destination_month}月${destination_day}日 ${destination_weekday}`);
+
+            let arr_location_from = $(".dep_location_from").last().find("p").first();
+            let arr_location_to = $(".dep_location_to").last().find("p").first();
+            let arr_location_from_time = $(".dep_location_from").last().find("p").last();
+            // console.log(arr_location_from);
+            // console.log(arr_location_to);
+            // console.log(arr_location_from_time);
+            arr_location_from.text(`${destinationFlight.originName}`);
+            arr_location_to.text(`${destinationFlight.destinationName}`);
+
+            
+            // console.log($("p.payment_total_price"));
+            $("p.payment_total_price").text(`${total_price.toLocaleString()}元(TWD)`);
+        }
+
+        function getParams() {
+            $("#next_btn").on("click", function(){
+                const url = `booking_pii.html?origin=${origin}&destination=${destination}&originDay=${originDayStr}&destinationDay=${destinationDayStr}&price=${total_price}`;
+                window.location.href = url;
+            });
+        }
+
         function init(){
             checkLoginStatus();
             document.getElementById("cancelbtn").onclick = login;
@@ -1100,7 +1182,11 @@
             document.getElementById("menu_close").onclick = hamburgerclose;
         }
 
-        window.addEventListener("load", init);
+        window.addEventListener("load", function () {
+            init();
+            getParams();
+            initFlight_origin();
+        });
     </script>
 </body>
 </html>

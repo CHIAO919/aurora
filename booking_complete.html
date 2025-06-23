@@ -491,7 +491,7 @@
             <div class="book_complete_info">
                 <div>
                     <p>訂位代號</p>
-                    <p>AB1234</p>
+                    <p id="booking_code">AB1234</p>
                 </div>
                 <div>
                     <p>旅客姓名</p>
@@ -499,15 +499,15 @@
                 </div>
                 <div>
                     <p>訂位日期</p>
-                    <p>2025/05/12</p>
+                    <p id="booking_date"></p>
                 </div>
                 <div>
                     <p>總金額</p>
-                    <p>48,000</p>
+                    <p id="ticket_price">48,000</p>
                 </div>
                 <div>
                     <p>機票號碼</p>
-                    <p>123&#8209;1234567890</p>
+                    <p id="ticket_number">123&#8209;1234567890</p>
                 </div>
             </div>
             <div class="manager_btn">
@@ -631,7 +631,67 @@
     
     <script src="./js/header.js"></script>
     <script src="./js/lightbox.js"></script>
+    <script src="./js/flight_schedule_with_return.js"></script>
+    <script src="./vendors/jquery/jquery-3.7.1.min.js"></script>
     <script>
+        let params = new URLSearchParams(window.location.search);
+        let origin = params.get("origin");
+        let destination = params.get("destination");
+        let originDayStr = params.get("originDay");         // e.g. "2025-06-22"
+        let destinationDayStr = params.get("destinationDay");
+        let total_price = parseInt(params.get("price"));
+
+        console.log(origin);
+        console.log(destination);
+        console.log(originDayStr);
+        console.log(destinationDayStr);
+        console.log(total_price);
+        function generateBookingCode() {
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            let code = "";
+                for (let i = 0; i < 6; i++) {
+                    const randIndex = Math.floor(Math.random() * chars.length);
+                    code += chars.charAt(randIndex);
+                }
+                return code;
+        }
+
+        function bookingCode() {
+            // 設定訂位代號
+            $("#booking_code").text(generateBookingCode());
+
+            // 設定機票號碼（前 3 固定 + 後 10 隨機）
+            const prefix = "123";
+            let suffix = "";
+            for (let i = 0; i < 10; i++) {
+                suffix += Math.floor(Math.random() * 10);
+            }
+            $("#ticket_number").text(`${prefix}\u2011${suffix}`);
+        }
+
+        function generateTicketNumber() {
+            const prefix = "123";
+            let suffix = "";
+            for (let i = 0; i < 10; i++) {
+                suffix += Math.floor(Math.random() * 10);
+            }
+            return `${prefix}\u2011${suffix}`;  // 使用非斷行連字元
+        }
+
+        function getTodayDateStr() {
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            return `${yyyy}/${mm}/${dd}`;
+        }
+
+        function initFlight_origin(){
+            // console.log($("p.payment_total_price"));
+            $("#ticket_price").text(`${total_price.toLocaleString()}`);
+        }
+
+
         function init(){
             checkLoginStatus();
             document.getElementById("cancelbtn").onclick = login;
@@ -642,7 +702,14 @@
             document.getElementById("menu_close").onclick = hamburgerclose;
         }
 
-        window.addEventListener("load", init);
+        window.addEventListener("load", function () {
+            init();
+            initFlight_origin();
+            // getParams();
+            $("#ticket_number").text(generateTicketNumber());
+            bookingCode();
+            $("#booking_date").text(getTodayDateStr());
+        });
     </script>
 </body>
 </html>

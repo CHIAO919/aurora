@@ -244,9 +244,9 @@
         }
 
 
-        .flight_price_economy:hover > p, .flight_price_business:hover > p {
+        /* .flight_price_economy:hover > p, .flight_price_business:hover > p {
             color: #FF2525;
-        }
+        } */
 
         .flight_price_economy > p:first-child, .flight_price_business > p:first-child {
             font-size: 1.75em;
@@ -742,37 +742,37 @@
                 <div class="dep_date_box">
                     <p>6月30日</p>
                     <p>(一)</p>
-                    <p class="price">40,000(TWD)</p>
+                    <p class="price">21,000(TWD)</p>
                 </div>
                 <div class="dep_date_box">
                     <p>7月1日</p>
                     <p>(二)</p>
-                    <p class="price">40,000(TWD)</p>
+                    <p class="price">21,000(TWD)</p>
                 </div>
                 <div class="dep_date_box">
                     <p>7月2日</p>
                     <p>(三)</p>
-                    <p class="price">40,000(TWD)</p>
+                    <p class="price">21,000(TWD)</p>
                 </div>
                 <div class="dep_date_box">
                     <p>7月3日</p>
                     <p>(四)</p>
-                    <p class="price">40,000(TWD)</p>
+                    <p class="price">21,000(TWD)</p>
                 </div>
                 <div class="dep_date_box">
                     <p>7月4日</p>
                     <p>(五)</p>
-                    <p class="price">40,000(TWD)</p>
+                    <p class="price">21,000(TWD)</p>
                 </div>
                 <div class="dep_date_box">
                     <p>7月5日</p>
                     <p>(六)</p>
-                    <p class="price">40,000(TWD)</p>
+                    <p class="price">21,000(TWD)</p>
                 </div>
                 <div class="dep_date_box">
                     <p>7月6日</p>
                     <p>(日)</p>
-                    <p class="price">40,000(TWD)</p>
+                    <p class="price">21,000(TWD)</p>
                 </div>
             </div>
             
@@ -1014,7 +1014,7 @@
                 box.innerHTML = `
                     <p>${month}月${day}日</p>
                     <p>(${weekday})</p>
-                    <p class="price">40,000(TWD)</p>
+                    <p class="price">21,000(TWD)</p>
                 `;
                 container.appendChild(box);
             }
@@ -1098,6 +1098,10 @@
                 `;
 
                 $(flight_num_container[i]).append(flight_num_html);
+
+                let dep_location = $("div.dep_location").find("h2");
+                // console.log(dep_location);
+                dep_location.text(`${flight.originName}前往${flight.destinationName}`);
             }
         }
 
@@ -1111,12 +1115,16 @@
         $(".flight_price_economy, .flight_price_business").on("click", function() {
             let priceText = $(this).find("p").first().text();  // 例如 "41,000元"
             let numericValue = parseInt(priceText.replace(/[^\d]/g, ""));  // 轉為 41000
+            
             // console.log(numericValue);
             price = numericValue;
 
             // console.log($("p.price_change"));
             let price_container = $("p.price_change")[0];
             price_container.innerText = numericValue.toLocaleString();
+
+            $(".flight_price_economy p, .flight_price_business p").css("color", "");
+            $(this).find("p").css("color", "red");
         });
 
 
@@ -1126,11 +1134,7 @@
             initFlight();
         });
 
-        
-        
-        
-        
-        
+
     </script>
 </body>
 </html>

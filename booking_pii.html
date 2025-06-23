@@ -281,9 +281,7 @@
         }
 
         .payment_btn {
-            width: 50%;
-            background-color: #0F4C81;
-            border-radius: 50px;
+            width: 50%;    
         }
 
 /*         .payment_next_btn {
@@ -298,7 +296,8 @@
             cursor: pointer;
         } */
 
-        .payment_btn a {
+        .payment_btn > button {
+            width: 100%;
             font-family: "bold";
             font-size: 1.5em;
             border: none;
@@ -307,6 +306,9 @@
             text-decoration: none;
             text-align: center;
             display: block;
+            background-color: #0F4C81;
+            border-radius: 50px;
+            cursor: pointer;
         }
 
         /*footer form*/
@@ -522,7 +524,7 @@
                 font-size: 1.125em;
             }
 
-            .payment_mile > h2, .payment_total > h2, .payment_btn > a {
+            .payment_mile > h2, .payment_total > h2, .payment_btn > button {
                 font-size: 1.25em;
             }
 
@@ -814,8 +816,8 @@
                             </div>
                         </div>
                         <div class="payment_btn">
-                            <a href="./booking_payment.html">下一步</a>
-                            <!-- <button class="payment_next_btn">下一步</button> -->
+                            <!-- <a href="./booking_payment.html">下一步</a> -->
+                            <button id="next_btn" type="button">下一步</button>
                         </div>
                     </div>   
                 </div>
@@ -938,7 +940,35 @@
 
     <script src="./js/header.js"></script>
     <script src="./js/lightbox.js"></script>
+    <script src="./js/flight_schedule_with_return.js"></script>
+    <script src="./vendors/jquery/jquery-3.7.1.min.js"></script>
     <script>
+        let params = new URLSearchParams(window.location.search);
+        let origin = params.get("origin");
+        let destination = params.get("destination");
+        let originDayStr = params.get("originDay");         // e.g. "2025-06-22"
+        let destinationDayStr = params.get("destinationDay");
+        let total_price = parseInt(params.get("price"));
+
+        // console.log(origin);
+        // console.log(destination);
+        // console.log(originDayStr);
+        // console.log(destinationDayStr);
+        // console.log(total_price);
+
+        function initFlight_origin(){
+            // console.log($("p.payment_total_price"));
+            $("p.payment_total_price").text(`${total_price.toLocaleString()}元(TWD)`);
+        }
+
+        function getParams() {
+            $("#next_btn").on("click", function(){
+                // console.log("aa");
+                const url = `booking_payment.html?origin=${origin}&destination=${destination}&originDay=${originDayStr}&destinationDay=${destinationDayStr}&price=${total_price}`;
+                window.location.href = url;
+            });
+        }
+
         function init(){
             checkLoginStatus();
             document.getElementById("cancelbtn").onclick = login;
@@ -949,7 +979,11 @@
             document.getElementById("menu_close").onclick = hamburgerclose;
         }
 
-        window.addEventListener("load", init);
+        window.addEventListener("load", function () {
+            init();
+            initFlight_origin();
+            getParams();
+        });
     </script>
 </body>
 </html>
