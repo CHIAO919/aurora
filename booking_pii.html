@@ -129,6 +129,7 @@
             height: 30px;
             border-radius: 5px;
             border: 1px solid #34495E;
+            background-color: #fff;
         }
 
         .passport > div > label {
@@ -399,6 +400,13 @@
             color: #F0F4F8;
             font-family: "light";
             text-align: center;
+        }
+
+        input[readonly], select[readonly], input[type="date"] {
+            background-color: #fff !important;
+            -webkit-appearance: none;
+            appearance: none;
+            cursor: default;
         }
 
         @media screen and (max-width: 1400px) {
@@ -690,7 +698,7 @@
                                 <div>
                                     <label for="">稱謂</label>
                                     <select name="" id="" class="title_name">
-                                        <option value="" disabled selected hidden></option>
+                                        <option value="" disabled selected hidden readonly></option>
                                         <option value="">先生</option>
                                         <option value="">女士</option>
                                     </select>
