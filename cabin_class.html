@@ -547,6 +547,14 @@
             document.getElementById("modal_login_btn").onclick = checkLoginData;
             document.getElementById("menu_open").onclick = hamburgeropen;
             document.getElementById("menu_close").onclick = hamburgerclose;
+            document.addEventListener("click", function (event) {
+                let menu = document.getElementById("menu_list_group");
+                let toggleBtn = document.getElementById("hamburger_toggle");
+
+                if (isMenuOpen && !menu.contains(event.target) && !toggleBtn.contains(event.target)) {
+                    hamburgerclose();
+                }
+            });
         }
 
         window.addEventListener("load", init);

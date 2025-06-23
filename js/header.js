@@ -1,14 +1,18 @@
         //header 漢堡開關
+        let isMenuOpen = false;
+
         function hamburgeropen(e){
             document.getElementById("menu_list_group").style.display = "block";
             document.getElementById("menu_close").style.display = "block";
             document.getElementById("menu_open").style.display = "none";
+            isMenuOpen = true;
         }
 
         function hamburgerclose(e){
             document.getElementById("menu_list_group").style.display = "none";
             document.getElementById("menu_close").style.display = "none";
             document.getElementById("menu_open").style.display = "block";
+            isMenuOpen = false;
         }
 
         function flight_search(){
